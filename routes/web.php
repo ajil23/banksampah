@@ -32,6 +32,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/menu', function () {
-        return view('admin.admin_master');
+        return view('admin.index');
     })->name('menu');
 });
