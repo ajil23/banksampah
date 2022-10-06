@@ -18,8 +18,10 @@ return new class extends Migration
             $table->date('tgl_tagihan');
             $table->integer('nominal');
             $table->date('tgl_tempo');
-            // foreign key idnasabah
-            // foreign key id dawis
+            $table->unsignedBigInteger('nasabah_id')->required();
+            $table->foreign('nasabah_id')->references('id')->on('nasabah');              // foreign key idnasabah
+            $table->unsignedBigInteger('dawis_id')->required();
+            $table->foreign('dawis_id')->references('id')->on('dawis');              // foreign key id dawis
             $table->timestamps();
         });
     }

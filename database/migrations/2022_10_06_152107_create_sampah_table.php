@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama', 45);
             $table->string('satuan', 10);
-            $table->integer('harga_satuan', 50);
+            $table->integer('harga_satuan')->unsigned();
             $table->timestamps();
         });
     }
