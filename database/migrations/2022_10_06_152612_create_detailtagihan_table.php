@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('petugas', function (Blueprint $table) {
+        Schema::create('detailtagihan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->string('tugas', 25);
-            $table->string('no_hp', 12);
-            $table->string('foto', 50);
-            $table->string('tmp_lahir', 50);
-            $table->date('tgl_lahir');
+            $table->date('tgl_tagihan');
+            $table->integer('nominal');
+            $table->date('tgl_tempo');
+            // foreign key idnasabah
+            // foreign key id dawis
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('petugas');
+        Schema::dropIfExists('detailtagihan');
     }
 };
