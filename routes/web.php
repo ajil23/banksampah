@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +35,5 @@ Route::middleware([
         return view('admin.index');
     })->name('menu');
 });
+
+Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
