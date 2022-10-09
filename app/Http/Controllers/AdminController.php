@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
 
     public function detagihan(){
-        dd('asas');
+        return view('backend.user.view_detailtagihan');
     } 
 }
  
