@@ -15,5 +15,13 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
         return redirect('/login');
     }
+
+    public function tagihan(){
+        dd('asas');
+    }
+
+    public function detagihan(){
+        dd('asas');
+    } 
 }
  

@@ -73,8 +73,8 @@
          <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Transaksi : </h6>
-                 <a class="collapse-item" href="{{route('user.tagihan')}}">Tagihan</a>
-                 <a class="collapse-item" href="{{route('user.detagihan')}}">Detail Tagihan</a>
+                 <a class="collapse-item" href="{{route('tagihan.view')}}">Tagihan</a>
+                 <a class="collapse-item" href="{{route('detagihan.view')}}">Detail Tagihan</a>
              </div>
          </div>
      </li>

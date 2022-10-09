@@ -37,3 +37,7 @@ Route::middleware([
 });
 
 Route::get('/admin/logout',[AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
+Route::prefix('transaksi')->group(function(){
+    Route::get('/tagihan',[AdminController::class, 'tagihan'])->name('tagihan.view');
+    Route::get('/detailtagihan',[AdminController::class, 'detagihan'])->name('detagihan.view');
+});
