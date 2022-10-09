@@ -1,4 +1,4 @@
-@extends('admin.master_admin')
+@extends('admin.admin_master')
 @section('admin')
 
   <!-- Begin Page Content -->
