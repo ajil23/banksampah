@@ -45,5 +45,6 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
     Route::get('/nasabah', [AdminController::class, 'nasabah'])->name('nasabah.view');
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
+    Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
 });
 

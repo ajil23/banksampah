@@ -35,6 +35,10 @@ class AdminController extends Controller
     {
         return view('backend.user.view_petugas');
     } 
+    public function tabungan()
+    {
+        return view('backend.user.view_tabungan');
+    } 
 
 }
  
