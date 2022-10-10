@@ -55,7 +55,7 @@
                             <td>{{$nasabah->tgl_join}}</td>
                             <td>{{$nasabah->tgl_lahir}}</td>
                             <td>
-                                <a href="{{route('nasabah.edit', $nasabah->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="#" class="btn btn-success"> Edit </a>
                                 <a href=""><button type="button" class="btn btn-danger">Hapus</button></a>
                             </td>
                         </tr>
