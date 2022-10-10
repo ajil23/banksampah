@@ -47,27 +47,6 @@ class AdminController extends Controller
     public function petugas()
     {
         return view('backend.user.view_petugas');
-    }
-    public function simpan_nasabah(Request $data)
-    {
-        $nama = $data->nama;
-        $no_hp = $data->no_hp;
-        $foto = $data->foto;
-        $tgl_join = $data->tgl_join;
-        $tgl_lahir = $data->tgl_lahir;
-        $iddawis = $data->iddawis;
-        $nsb = new nasabah;
-        $nsb->nama = $nama;
-        $nsb->no_hp = $no_hp;
-        $nsb->foto = $foto;
-        $nsb->tgl_join = $tgl_join;
-        $nsb->tgl_lahir = $tgl_lahir;
-        $nsb->iddawis = $iddawis;
-        $nsb->save();
-        return redirect("{{route('nasabah.view')}}");
-    }
-    public function edit_nasabah()
-    {
-     dd('data berhasi di edit');
-    }
+    } 
+
 }
