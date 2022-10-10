@@ -56,6 +56,11 @@ class AdminController extends Controller
         $data->save();
         return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil');
     }
+    public function edit_nasabah($id)
+    {
+        $editData = nasabah::Find($id);
+        return view('backend.user.edit_nasabah', compact('editData'));
+    }
     public function petugas()
     {
         return view('backend.user.view_petugas');

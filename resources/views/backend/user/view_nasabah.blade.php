@@ -55,17 +55,18 @@
                             <td>{{$nasabah->tgl_join}}</td>
                             <td>{{$nasabah->tgl_lahir}}</td>
                             <td>
-                                <a href="#" class="btn btn-success"> Edit </a>
+                                <a href="{{route('edit_nasabah', $nasabah->id)}}" class="btn btn-success"> Edit </a>
                                 <a href=""><button type="button" class="btn btn-danger">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
 
 </div>
-
+<a href="{{route('edit.view', $nasabah->id)}}" class="btn btn-success"> Edit </a>
 @endsection

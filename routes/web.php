@@ -45,7 +45,9 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
     Route::get('/nasabah', [AdminController::class, 'nasabah'])->name('nasabah.view');
     Route::get('/add_nasabah',[AdminController::class, 'add_nasabah'])->name('add_nasabah.view');
+    Route::get('/edit_nasabah/{id}',[AdminController::class, 'edit_nasabah'])->name('edit_nasabah');
     Route::post('/tambah_nasabah',[AdminController::class, 'tambah_nasabah'])->name('tambah_nasabah');
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
     Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
+    Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
 });
