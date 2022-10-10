@@ -4,8 +4,16 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Nasabah</h1>
-
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3 mb-2 text-gray-800">Nasabah</h1>
+            </div>
+            <div class="co text-end mb-2">
+                <a href="{{route('add_nasabah.view')}}"><button type="button" class="btn btn-primary">Tambah Data Nasabah</button></a>
+            </div>
+        </div>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -16,96 +24,42 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>Foto</th>
                             <th>Nama</th>
                             <th>no Handphone</th>
-                            <th>Tempat lahir</th>
+                            <th>Tanggal Join</th>
                             <th>Tanggal lahir</th>
-
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>id</th>
                             <th>Foto</th>
                             <th>Nama</th>
                             <th>no Handphone</th>
-                            <th>Tempat lahir</th>
+                            <th>Tanggal Join</th>
                             <th>Tanggal lahir</th>
+                            <th>Aksi</th>
 
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($nasabah as $nsb =>$nasabah)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-
+                            <td>{{$nasabah->id}}</td>
+                            <td>{{$nasabah->foto}}</td>
+                            <td>{{$nasabah->nama}}</td>
+                            <td>{{$nasabah->no_hp}}</td>
+                            <td>{{$nasabah->tgl_join}}</td>
+                            <td>{{$nasabah->tgl_lahir}}</td>
+                            <td>
+                                <a href="{{route('nasabah.edit', $nasabah->id)}}" class="btn btn-success"> Edit </a>
+                                <a href=""><button type="button" class="btn btn-danger">Hapus</button></a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>66</td>
-                            <td>2009/01/12</td>
-
-                        </tr>
-                        <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>22</td>
-                            <td>2012/03/29</td>
-
-                        </tr>
-                        <tr>
-                            <td>Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>33</td>
-                            <td>2008/11/28</td>
-
-                        </tr>
-                        <tr>
-                            <td>Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>61</td>
-                            <td>2012/12/02</td>
-
-                        </tr>
-                        <tr>
-                            <td>Herrod Chandler</td>
-                            <td>Sales Assistant</td>
-                            <td>San Francisco</td>
-                            <td>59</td>
-                            <td>2012/08/06</td>
-
-                        </tr>
-                        <tr>
-                            <td>Rhona Davidson</td>
-                            <td>Integration Specialist</td>
-                            <td>Tokyo</td>
-                            <td>55</td>
-                            <td>2010/10/14</td>
-                        </tr>
-                        <tr>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>39</td>
-                            <td>2009/09/15</td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
