@@ -44,6 +44,18 @@ class AdminController extends Controller
     {
         return view('backend.user.add_nasabah');
     }
+    public function tambah_nasabah(Request $request)
+    {
+        $data = new nasabah();
+        $data->nama = $request->nama;
+        $data->no_hp = $request->no_hp;
+        $data->foto = $request->foto;
+        $data->tgl_join = $request->tgl_join;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->iddawis = $request->iddawis;
+        $data->save();
+        return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil');
+    }
     public function petugas()
     {
         return view('backend.user.view_petugas');
