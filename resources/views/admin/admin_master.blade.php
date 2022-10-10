@@ -74,10 +74,14 @@
 
     <!-- Page level plugins -->
     <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
 
     <!-- Page level custom scripts -->
     <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('backend/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 

@@ -22,6 +22,19 @@ class AdminController extends Controller
 
     public function detagihan(){
         return view('backend.user.view_detailtagihan');
+    }
+    public function dawis()
+    {
+        return view('backend.user.view_dawis');
+    }
+    public function nasabah()
+    {
+        return view('backend.user.view_nasabah');
+    }
+    public function petugas()
+    {
+        return view('backend.user.view_petugas');
     } 
+
 }
  

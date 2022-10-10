@@ -35,9 +35,9 @@
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Jenis Pengguna:</h6>
-                 <a class="collapse-item" href="buttons.html">Nasabah</a>
-                 <a class="collapse-item" href="cards.html">Dawis</a>
-                 <a class="collapse-item" href="cards.html">Petugas</a>
+                 <a class="collapse-item" href="{{route('nasabah.view')}}">Nasabah</a>
+                 <a class="collapse-item" href="{{route('dawis.view')}}">Dawis</a>
+                 <a class="collapse-item" href="{{route('petugas.view')}}">Petugas</a>
              </div>
          </div>
      </li>
@@ -49,11 +49,11 @@
      </div>
      <li class="nav-item">
 
-         <a class="nav-link collapsed" href="#"  data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+         <a class="nav-link collapsed" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
              <i class="fa-solid fa-piggy-bank"></i>
              <span>Tabungan</span>
          </a>
-         
+
      </li>
 
      <!-- Divider -->

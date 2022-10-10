@@ -41,3 +41,9 @@ Route::prefix('transaksi')->group(function(){
     Route::get('/tagihan',[AdminController::class, 'tagihan'])->name('tagihan.view');
     Route::get('/detailtagihan',[AdminController::class, 'detagihan'])->name('detagihan.view');
 });
+Route::prefix('pengguna')->group(function () {
+    Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
+    Route::get('/nasabah', [AdminController::class, 'nasabah'])->name('nasabah.view');
+    Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
+});
+
