@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dawis;
 use App\Models\nasabah;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
@@ -29,10 +30,15 @@ class AdminController extends Controller
     {
         return view('backend.user.view_detailtagihan');
     }
+    //dawis
     public function dawis()
     {
-        return view('backend.user.view_dawis');
+        $data = [
+            'dawis' => dawis::all()
+        ];
+        return view('backend.user.view_dawis', $data);
     }
+    //enddawis
     //nasabah
     public function nasabah()
     {
@@ -90,5 +96,6 @@ class AdminController extends Controller
     {
         return view('backend.user.view_tabungan');
     } 
+    
 
 }

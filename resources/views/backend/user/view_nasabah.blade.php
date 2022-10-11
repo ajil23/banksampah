@@ -68,5 +68,5 @@
     </div>
 
 </div>
-<a href="{{route('edit.view', $nasabah->id)}}" class="btn btn-success"> Edit </a>
+
 @endsection
