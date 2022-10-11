@@ -63,10 +63,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{ route('password.request') }}">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="{{ route('login') }}">Punya akun? Silahkan Login</a>
+                                <a class="small" href="{{ route('login') }}">Sudah punya akun? Silahkan Login</a>
                             </div>
                         </div>
                     </div>
