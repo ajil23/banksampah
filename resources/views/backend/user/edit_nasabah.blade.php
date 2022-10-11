@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Nasabah</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="/pengguna/update_nasabah">
+            <form class="user" method="POST" action="{{route('nasabah.update', $editData->id)}}">
                 @csrf
                 @method('put')
                 <input type="hidden" class="form-control form-control-lg" id="name" placeholder="Name" name="nama" value="{{$editData->id}}">
