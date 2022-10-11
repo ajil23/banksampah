@@ -33,6 +33,7 @@ class AdminController extends Controller
     {
         return view('backend.user.view_dawis');
     }
+    //nasabah
     public function nasabah()
     {
         $data = [
@@ -61,7 +62,7 @@ class AdminController extends Controller
         $editData = nasabah::Find($id);
         return view('backend.user.edit_nasabah', compact('editData'));
     }
-    public function updateNasabah(Request $request,$id)
+    public function nasabahUpdate(Request $request,$id)
     {
         $data = nasabah::find($id);
         $data->nama = $request->nama;
@@ -71,9 +72,16 @@ class AdminController extends Controller
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
-        return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil');
+        return redirect()->route('nasabah.view')->with('info', 'Edit user berhasil');
     }
+    public function nasabahDelete($id)
+    {
+        $deleteData = nasabah::find($id);
+        $deleteData->delete();
 
+        return redirect()->route('nasabah.view')->with('info', 'Delete user berhasil');
+    }
+    //endnasabah
     public function petugas()
     {
         return view('backend.user.view_petugas');

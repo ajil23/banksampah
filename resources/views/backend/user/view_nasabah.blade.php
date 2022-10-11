@@ -56,7 +56,7 @@
                             <td>{{$nasabah->tgl_lahir}}</td>
                             <td>
                                 <a href="{{route('edit_nasabah', $nasabah->id)}}" class="btn btn-success"> Edit </a>
-                                <a href=""><button type="button" class="btn btn-danger">Hapus</button></a>
+                                <a href="{{route('nasabah.delete', $nasabah->id)}}"><button type="button" class="btn btn-danger">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach

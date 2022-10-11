@@ -42,12 +42,15 @@ Route::prefix('transaksi')->group(function () {
     Route::get('/detailtagihan', [AdminController::class, 'detagihan'])->name('detagihan.view');
 });
 Route::prefix('pengguna')->group(function () {
-    Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
+    //nasabah
     Route::get('/nasabah', [AdminController::class, 'nasabah'])->name('nasabah.view');
     Route::get('/add_nasabah',[AdminController::class, 'add_nasabah'])->name('add_nasabah.view');
     Route::get('/edit_nasabah/{id}',[AdminController::class, 'edit_nasabah'])->name('edit_nasabah');
-    Route::post('/update_nasabah/{id}', [UserController::class, 'NasabahUpdate'])->name('nasabah.update');
+    Route::post('/update_nasabah/{id}', [AdminController::class, 'nasabahUpdate'])->name('nasabah.update');
     Route::post('/tambah_nasabah',[AdminController::class, 'tambah_nasabah'])->name('tambah_nasabah');
+    Route::get('/deleteNasabah/{id}', [AdminController::class, 'nasabahDelete'])->name('nasabah.delete');
+    //endnasabah
+    Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
     Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');

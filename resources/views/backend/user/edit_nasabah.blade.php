@@ -8,7 +8,6 @@
         <div class="card-body">
             <form class="user" method="POST" action="{{route('nasabah.update', $editData->id)}}">
                 @csrf
-                @method('put')
                 <input type="hidden" class="form-control form-control-lg" id="name" placeholder="Name" name="nama" value="{{$editData->id}}">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
