@@ -5,7 +5,16 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Daftar Sampah</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="h3 mb-2 text-gray-800">Daftar Sampah</h1>
+            </div>
+            <div class="co text-end mb-2">
+                <a href="{{route('add_sampah.view')}}"><button type="button" class="btn btn-primary">Tambah Data Sampah</button></a>
+            </div>
+        </div>
+    </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -18,6 +27,7 @@
                             <th>Nama Sampah</th>
                             <th>Satuan</th>
                             <th>Harga Satuan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -26,44 +36,22 @@
                             <th>Nama Sampah</th>
                             <th>Satuan</th>
                             <th>Harga Satuan</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                    @foreach($allDataSampah as $smp =>$sampah)
                         <tr>
-                            <td>1</td>
-                            <td>Tiger Nixon</td>
-                            <td>$320,800</td>
+                            <td>{{$sampah->id}}</td>
+                            <td>{{$sampah->nama}}</td>
+                            <td>{{$sampah->satuan}}</td>
+                            <td>{{$sampah->harga_satuan}}</td>
+                            <td>
+                                <a href="#" class="btn btn-success"> Edit </a>
+                                <a href="{{route('sampah.delete', $sampah->id)}}" onclick="return confirm('yakin data dihapus?')"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Garrett Winters</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Ashton Cox</td>
-                            <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Cedric Kelly</td>
-                            <td>$433,060</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Airi Satou</td>
-                            <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Brielle Williamson</td>
-                            <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Herrod Chandler</td>
-                            <td>$137,500</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

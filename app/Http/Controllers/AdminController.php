@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\dawis;
 use App\Models\nasabah;
+use App\Models\sampah;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -139,10 +140,38 @@ class AdminController extends Controller
     {
         return view('backend.user.view_tabungan');
     } 
+    public function daftarsampah()
+    {
+        $data['allDataSampah']=Sampah::all();
+        return view('backend.user.view_sampah', $data);
+    } 
+
     public function sampah()
     {
-        return view('backend.user.view_sampah');
-    } 
-    
-
+        $data = [
+            'sampah' => sampah::all()
+        ];
+        return view('backend.user.view_sampah', $data);
+    }
+    public function add_sampah()
+    {
+        return view('backend.user.add_sampah');
+    }
+    public function tambah_sampah(Request $request)
+    {
+        $data = new sampah();
+        $data->nama = $request->nama;
+        $data->satuan = $request->satuan;
+        $data->harga_satuan = $request->hargas;
+        $data->save();
+        Alert::success('Sukses', 'Sampah Berhasil Ditambah');
+        return redirect()->route('sampah.view')->with('info', 'Tambah Sampah berhasil') ;
+    }
+    public function sampahDelete($id)
+    {
+        $deleteData = sampah::find($id);
+        $deleteData->delete();
+        Alert::success('Sukses', 'Sampah Berhasil Dihapus');
+        return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
+    }
 }

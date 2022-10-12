@@ -59,6 +59,12 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
     Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
+    
+});
+Route::prefix('sampah')->group(function () {
     //sampah
-    Route::get('/daftarsampah', [AdminController::class, 'sampah'])->name('sampah.view');
+    Route::get('/daftarsampah', [AdminController::class, 'daftarsampah'])->name('sampah.view');
+    Route::get('/add_sampah', [AdminController::class, 'add_sampah'])->name('add_sampah.view');
+    Route::get('/deleteSampah/{id}', [AdminController::class, 'sampahDelete'])->name('sampah.delete');
+    Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
