@@ -53,6 +53,12 @@ class AdminController extends Controller
         $data->save();
         return redirect()->route('dawis.view')->with('info', 'Tambah user berhasil');
     }
+    public function dawisDelete($id)
+    {
+        $deleteData = dawis::find($id);
+        $deleteData->delete();
+        return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
+    }
     //enddawis
     //nasabah
     public function nasabah()
