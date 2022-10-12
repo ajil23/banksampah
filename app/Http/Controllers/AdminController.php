@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\dawis;
 use App\Models\nasabah;
+use App\Models\petugas;
+use App\Models\sampah;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
