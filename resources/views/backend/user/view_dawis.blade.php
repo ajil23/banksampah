@@ -56,7 +56,7 @@
                             <td>{{$dawis->tgl_lahir}}</td>
                             <td>
                                 <a href="#" class="btn btn-success"> Edit </a>
-                                <a href="{{route('dawis.delete', $dawis->id)}}" onclick="return confirm('yakin data dihapus?')"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                                <a href="{{route('dawis.delete', $dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach

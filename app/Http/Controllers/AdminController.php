@@ -66,7 +66,7 @@ class AdminController extends Controller
 
 
         $deleteData = dawis::find($id);
-        Alert::success('Sukses', 'Dawis Berhasil Dihapus');
+        
         $deleteData->delete();
         return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
     }
