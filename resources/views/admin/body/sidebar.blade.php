@@ -42,24 +42,10 @@
          </div>
      </li>
 
-     <!-- Nav Item - Utilities Collapse Menu -->
-     <hr class="sidebar-divider">
-     <div class="sidebar-heading">
-         Tabungan
-     </div>
-     <li class="nav-item">
-
-         <a class="nav-link collapsed" href="{{route('tabungan.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-             <i class="fa-solid fa-piggy-bank"></i>
-             <span>Tabungan</span>
-         </a>
-
-     </li>
-
-     <!-- Divider -->
-     <hr class="sidebar-divider">
 
      <!-- Heading -->
+
+     <hr class="sidebar-divider">
      <div class="sidebar-heading">
          Transaksi
      </div>
@@ -78,6 +64,33 @@
              </div>
          </div>
      </li>
+
+     <!-- Divider -->
+
+     
+     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+         Tabungan
+     </div>
+     <li class="nav-item">
+         <a class="nav-link collapsed" href="{{route('tabungan.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+             <i class="fa-solid fa-piggy-bank"></i>
+             <span>Tabungan</span>
+         </a>
+     </li>
+     
+     <!-- Nav Item - Utilities Collapse Menu -->
+     <hr class="sidebar-divider">
+     <div class="sidebar-heading">
+        Sampah
+     </div>
+     <li class="nav-item">
+         <a class="nav-link collapsed" href="{{route('tabungan.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+             <i class="fa-solid fa-trash"></i>
+             <span>Daftar Sampah</span>
+         </a>
+     </li>
+
      <!-- Divider -->
      <hr class="sidebar-divider d-none d-md-block">
 
