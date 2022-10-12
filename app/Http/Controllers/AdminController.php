@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\dawis;
 use App\Models\nasabah;
-use App\Models\sampah;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -71,6 +70,29 @@ class AdminController extends Controller
         $deleteData->delete();
         return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
     }
+    public function edit_dawis($id)
+    {
+        $editDawis = dawis::Find($id);
+        return view('backend.user.edit_dawis', compact('editDawis'));
+    }
+    public function dawisUpdate(Request $request, $id)
+    {
+        $data = dawis::find($id);
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newbaru = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoDawis', $newbaru);
+        }
+        $data['foto'] = $newbaru;
+        $data->nama = $request->nama;
+        $data->no_hp = $request->no_hp;
+        // $data->foto = $request->foto;
+        $data->tmp_lahir = $request->tmp_lahir;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->save();
+        Alert::success('Sukses', 'Dawis Berhasil Diupdate');
+        return redirect()->route('dawis.view')->with('info', 'Edit user berhasil');
+    }
     //enddawis
     //nasabah
     public function nasabah()
@@ -91,7 +113,7 @@ class AdminController extends Controller
         if ($data->foto = $request->file('foto')) {
             $extension = $request->file('foto')->getClientOriginalExtension();
             $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto')->storeAs('fotoNasabah', $newName);
+            $request->file('foto')->storeAs('fotoPetugas', $newName);
         }
         $data['foto'] = $newName;
         $data->nama = $request->nama;
@@ -137,10 +159,69 @@ class AdminController extends Controller
         return redirect()->route('nasabah.view')->with('info', 'Delete user berhasil');
     }
     //endnasabah
+    //petugas
     public function petugas()
     {
-        return view('backend.user.view_petugas');
-    } 
+        $data = [
+            'petugas' => petugas::all()
+        ];
+        return view('backend.user.view_petugas', $data);
+    }
+    public function add_petugas()
+    {
+        $petugas = petugas::all();
+        return view('backend.user.add_petugas', compact('petugas'));
+    }
+    public function tambah_petugas(Request $request)
+    {
+        $data = new petugas();
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoPetugas', $newName);
+        }
+        $data['foto'] = $newName;
+        $data->nama = $request->nama;
+        $data->no_hp = $request->no_hp;
+        // $data->foto = $request->foto;
+        $data->tmp_lahir = $request->tmp_lahir;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->tugas = $request->tugas;
+        $data->save();
+        Alert::success('Sukses', 'Petugas Berhasil Ditambah');
+        return redirect()->route('petugas.view')->with('info', 'Tambah user berhasil');
+    }
+    public function petugasDelete($id)
+    {
+        $deleteData = petugas::find($id);
+        $deleteData->delete();
+        return redirect()->route('petugas.view')->with('info', 'Delete user berhasil');
+    }
+    public function edit_petugas($id)
+    {
+        $petugasData = petugas::Find($id);
+        return view('backend.user.edit_petugas', compact('petugasData'));
+    }
+    public function petugasUpdate(Request $request, $id)
+    {
+        $data = petugas::find($id);
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoPetugas', $newName);
+        }
+        $data['foto'] = $newName;
+        $data->nama = $request->nama;
+        $data->no_hp = $request->no_hp;
+        // $data->foto = $request->foto;
+        $data->tmp_lahir = $request->tmp_lahir;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->tugas = $request->tugas;
+        $data->save();
+        Alert::success('Sukses', 'Petugas Berhasil Diupdate');
+        return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');
+    }
+    //endpetugas
     public function tabungan()
     {
         return view('backend.user.view_tabungan');

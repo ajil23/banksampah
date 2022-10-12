@@ -49,13 +49,13 @@
                         @foreach($dawis as $dws =>$dawis)
                         <tr class=" align-middle">
                             <td class=" align-middle">{{$dawis->id}}</td>
-                            <td ><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
+                            <td><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
                             <td class=" align-middle">{{$dawis->nama}}</td>
                             <td class=" align-middle">{{$dawis->no_hp}}</td>
                             <td class=" align-middle">{{$dawis->tmp_lahir}}</td>
                             <td class=" align-middle">{{$dawis->tgl_lahir}}</td>
                             <td class=" align-middle">
-                                <a href="#" class="btn btn-success"> Edit </a>
+                                <a href="{{route('edit_dawis', $dawis->id)}}" class="btn btn-success"> Edit </a>
                                 <a href="{{route('dawis.delete', $dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
