@@ -49,7 +49,7 @@
                         @foreach($dawis as $dws =>$dawis)
                         <tr>
                             <td>{{$dawis->id}}</td>
-                            <td>{{$dawis->foto}}</td>
+                            <td><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
                             <td>{{$dawis->nama}}</td>
                             <td>{{$dawis->no_hp}}</td>
                             <td>{{$dawis->tmp_lahir}}</td>

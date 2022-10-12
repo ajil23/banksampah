@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Dawis</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="tambah_dawis">
+            <form class="user" method="POST" action="tambah_dawis" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">

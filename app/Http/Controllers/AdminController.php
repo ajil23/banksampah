@@ -45,20 +45,16 @@ class AdminController extends Controller
     }
     public function tambah_dawis(Request $request)
     {
-        $validateData = $request->validate([
-            'nama' => 'required',
-            'no_hp' => 'required|numeric',
-            'foto' => 'required',
-            'tmp_lahir' => 'required',
-            'tgl_lahir' => 'required',
-        ],
-        
-    );
-
         $data = new dawis();
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newbaru = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoDawis', $newbaru);
+        }
+        $data['foto'] = $newbaru;
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
-        $data->foto = $request->foto;
+        // $data->foto = $request->foto;
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
@@ -116,6 +112,7 @@ class AdminController extends Controller
     public function nasabahUpdate(Request $request,$id)
     {
         $data = nasabah::find($id);
+       
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         $data->foto = $request->foto;
@@ -123,6 +120,7 @@ class AdminController extends Controller
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
+        Alert::success('Sukses', 'Nasabah Berhasil Diupdate');
         return redirect()->route('nasabah.view')->with('info', 'Edit user berhasil');
     }
     public function nasabahDelete($id)
