@@ -66,5 +66,6 @@ Route::prefix('sampah')->group(function () {
     Route::get('/daftarsampah', [AdminController::class, 'daftarsampah'])->name('sampah.view');
     Route::get('/add_sampah', [AdminController::class, 'add_sampah'])->name('add_sampah.view');
     Route::get('/deleteSampah/{id}', [AdminController::class, 'sampahDelete'])->name('sampah.delete');
+    Route::get('/editSampah/{id}', [AdminController::class, 'sampahEdit'])->name('sampah.edit');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });

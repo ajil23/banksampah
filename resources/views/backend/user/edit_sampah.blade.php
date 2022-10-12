@@ -3,54 +3,35 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Data Sampah</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Ubah Data Sampah</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="{{route('nasabah.update', $editData->id)}}">
+            <form class="user" method="POST" action="tambah_sampah" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" class="form-control form-control-lg" id="name" placeholder="Name" name="nama" value="{{$editData->id}}">
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="Name">Nama</label>
-                        <input type="text" class="form-control form-control-lg" id="name" placeholder="Name" name="nama" value="{{$editData->nama}}">
+                        <label for="Name">Nama Sampah</label>
+                        <input type="text" class="form-control form-control-lg" id="name" placeholder="Nama Sampah" name="nama">
                     </div>
                     <div class="col-sm-6">
-                        <label for="Nohp">Nomor Handphone</label>
-                        <input type="text" class="form-control form-control-lg" id="nohp" placeholder="No Handphone" name="no_hp" value="{{$editData->no_hp}}">
+                        <label for="Satuan">Satuan</label>
+                        <input type="text" class="form-control form-control-lg" id="satuan" placeholder="Satuan" name="satuan">
                     </div>
                 </div>
-                <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="tgl_join">tgl_join</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_join" value="{{$editData->tgl_join}}">
-                    </div>
-                    <div class=" col-sm-6 mb-sm-0">
-                        <label for="tgl_lahir">tgl_lahir</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" value="{{$editData->tgl_lahir}}">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="Hargasatuan">Harga Satuan</label>
+                        <input type="number" class="form-control form-control-lg" id="hargas" placeholder="hargaSatuan" name="hargas">
                     </div>
                 </div>
-                <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="">Pilih dawis</label>
-                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" value="{{$editData->iddawis}}">
-                            <option>Dawis</option>
-                            <option>1</option>
-                        </select>
-                    </div>
-                    <div class=" col-sm-6 ">
-                        <label for=" exampleFormControlFile1">Masukan Foto</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" value="{{$editData->foto}}">
-                    </div>
-                </div>
-                <button class=" btn btn-primary btn-icon-split">
+                <button class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Edit data</span>
+                    <span class="text">Tambah Data</span>
                 </button>
             </form>
         </div>
     </div>
 </div>
-
 @endsection

@@ -47,7 +47,7 @@
                             <td>{{$sampah->satuan}}</td>
                             <td>{{$sampah->harga_satuan}}</td>
                             <td>
-                                <a href="#" class="btn btn-success"> Edit </a>
+                                <a href="{{route('sampah.edit', $sampah->id)}}" class="btn btn-success"> Edit </a>
                                 <a href="{{route('sampah.delete', $sampah->id)}}" onclick="return confirm('yakin data dihapus?')"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
