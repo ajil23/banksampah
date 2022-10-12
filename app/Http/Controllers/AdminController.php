@@ -45,6 +45,16 @@ class AdminController extends Controller
     }
     public function tambah_dawis(Request $request)
     {
+        $validateData = $request->validate([
+            'nama' => 'required',
+            'no_hp' => 'required|numeric',
+            'foto' => 'required',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required',
+        ],
+        
+    );
+
         $data = new dawis();
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
@@ -75,14 +85,21 @@ class AdminController extends Controller
     }
     public function add_nasabah()
     {
-        return view('backend.user.add_nasabah') ;
+        $dawis = dawis::all();
+        return view('backend.user.add_nasabah', compact('dawis'));
     }
     public function tambah_nasabah(Request $request)
     {
         $data = new nasabah();
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoNasabah', $newName);
+        }
+        $data['foto'] = $newName;
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
-        $data->foto = $request->foto;
+        // $data->foto = $request->foto;
         $data->tgl_join = $request->tgl_join;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;

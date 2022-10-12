@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Nasabah</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="tambah_nasabah">
+            <form class="user" method="POST" action="tambah_nasabah" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -21,24 +21,26 @@
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="tgl_join">tgl_join</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_join">
+                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_join" required>
                     </div>
                     <div class="col-sm-6  mb-sm-0">
                         <label for="tgl_lahir">tgl_lahir</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir">
+                        <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Pilih dawis</label>
-                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis">
-                            <option>Dawis</option>
-                            <option>1</option>
+                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" required>
+                            <option>Pilih Dawis</option>
+                            @foreach($dawis as $dws =>$dawis)
+                            <option value="{{$dawis->id}}">{{$dawis->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-icon-split">
