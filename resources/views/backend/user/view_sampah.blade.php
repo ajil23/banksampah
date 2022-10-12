@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tabungan</h1>
+    <h1 class="h3 mb-2 text-gray-800">Daftar Sampah</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -15,15 +15,17 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Jumlah</th>
+                            <th>Nama Sampah</th>
+                            <th>Satuan</th>
+                            <th>Harga Satuan</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                        <th>No</th>
-                            <th>Nama</th>
-                            <th>Jumlah</th>
+                            <th>No</th>
+                            <th>Nama Sampah</th>
+                            <th>Satuan</th>
+                            <th>Harga Satuan</th>
                         </tr>
                     </tfoot>
                     <tbody>

@@ -139,6 +139,10 @@ class AdminController extends Controller
     {
         return view('backend.user.view_tabungan');
     } 
+    public function sampah()
+    {
+        return view('backend.user.view_sampah');
+    } 
     
 
 }

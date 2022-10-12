@@ -85,7 +85,7 @@
         Sampah
      </div>
      <li class="nav-item">
-         <a class="nav-link collapsed" href="{{route('tabungan.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+         <a class="nav-link collapsed" href="{{route('sampah.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
              <i class="fa-solid fa-trash"></i>
              <span>Daftar Sampah</span>
          </a>
