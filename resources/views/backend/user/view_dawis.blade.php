@@ -7,10 +7,10 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h3 mb-2 text-gray-800">Nasabah</h1>
+                <h1 class="h3 mb-2 text-gray-800">Dawis</h1>
             </div>
             <div class="co text-end mb-2">
-                <a href="#"><button type="button" class="btn btn-primary">Tambah Data Nasabah</button></a>
+                <a href="{{route('add_dawis.view')}}"><button type="button" class="btn btn-primary">Tambah Data Dawis</button></a>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                             <th>Foto</th>
                             <th>Nama</th>
                             <th>no Handphone</th>
-                            <th>Tanggal Join</th>
+                            <th>Tempat lahir</th>
                             <th>Tanggal lahir</th>
                             <th>Aksi</th>
                         </tr>
@@ -39,7 +39,7 @@
                             <th>Foto</th>
                             <th>Nama</th>
                             <th>no Handphone</th>
-                            <th>Tanggal Join</th>
+                            <th>Tempat lahir</th>
                             <th>Tanggal lahir</th>
                             <th>Aksi</th>
 
@@ -52,7 +52,7 @@
                             <td>{{$dawis->foto}}</td>
                             <td>{{$dawis->nama}}</td>
                             <td>{{$dawis->no_hp}}</td>
-                            <td>{{$dawis->tgl_join}}</td>
+                            <td>{{$dawis->tmp_lahir}}</td>
                             <td>{{$dawis->tgl_lahir}}</td>
                             <td>
                                 <a href="#" class="btn btn-success"> Edit </a>

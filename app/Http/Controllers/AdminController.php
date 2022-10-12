@@ -38,6 +38,21 @@ class AdminController extends Controller
         ];
         return view('backend.user.view_dawis', $data);
     }
+    public function add_dawis()
+    {
+        return view('backend.user.add_dawis');
+    }
+    public function tambah_dawis(Request $request)
+    {
+        $data = new dawis();
+        $data->nama = $request->nama;
+        $data->no_hp = $request->no_hp;
+        $data->foto = $request->foto;
+        $data->tmp_lahir = $request->tmp_lahir;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->save();
+        return redirect()->route('dawis.view')->with('info', 'Tambah user berhasil');
+    }
     //enddawis
     //nasabah
     public function nasabah()

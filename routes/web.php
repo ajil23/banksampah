@@ -50,7 +50,11 @@ Route::prefix('pengguna')->group(function () {
     Route::post('/tambah_nasabah',[AdminController::class, 'tambah_nasabah'])->name('tambah_nasabah');
     Route::get('/deleteNasabah/{id}', [AdminController::class, 'nasabahDelete'])->name('nasabah.delete');
     //endnasabah
+    //dawis
     Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');
+    Route::get('/add_dawis', [AdminController::class, 'add_dawis'])->name('add_dawis.view');
+    Route::post('/tambah_dawis', [AdminController::class, 'tambah_dawis'])->name('tambah_dawis');
+    //endawis
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
     Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
