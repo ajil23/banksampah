@@ -58,7 +58,7 @@
                                 <a href="{{route('edit_nasabah', $nasabah->id)}}" class="btn btn-success"> Edit </a>
                                 <!-- Button trigger modal -->
 
-                                <a href="{{route('nasabah.delete', $nasabah->id)}}"><button type="button" class="btn btn-danger delete" onclick="return confirm('yakin data dihapus?')">Hapus</button></a>
+                                <a href="{{route('nasabah.delete', $nasabah->id)}}" id="delete"><button type="button" class="btn btn-danger delete" >Hapus</button></a>
 
                             </td>
                         </tr>

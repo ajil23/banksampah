@@ -21,7 +21,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -47,16 +47,16 @@
                     </tfoot>
                     <tbody>
                         @foreach($dawis as $dws =>$dawis)
-                        <tr>
-                            <td>{{$dawis->id}}</td>
-                            <td><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
-                            <td>{{$dawis->nama}}</td>
-                            <td>{{$dawis->no_hp}}</td>
-                            <td>{{$dawis->tmp_lahir}}</td>
-                            <td>{{$dawis->tgl_lahir}}</td>
-                            <td>
+                        <tr class=" align-middle">
+                            <td class=" align-middle">{{$dawis->id}}</td>
+                            <td ><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
+                            <td class=" align-middle">{{$dawis->nama}}</td>
+                            <td class=" align-middle">{{$dawis->no_hp}}</td>
+                            <td class=" align-middle">{{$dawis->tmp_lahir}}</td>
+                            <td class=" align-middle">{{$dawis->tgl_lahir}}</td>
+                            <td class=" align-middle">
                                 <a href="#" class="btn btn-success"> Edit </a>
-                                <a href="{{route('dawis.delete', $dawis->id)}}" onclick="return confirm('yakin data dihapus?')"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                                <a href="{{route('dawis.delete', $dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach

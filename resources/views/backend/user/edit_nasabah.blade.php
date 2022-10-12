@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Nasabah</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="{{route('nasabah.update', $editData->id)}}">
+            <form class="user" method="POST" action="{{route('nasabah.update', $editData->id)}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" class="form-control form-control-lg" id="name" placeholder="Name" name="nama" value="{{$editData->id}}">
                 <div class="form-group row">
@@ -34,7 +34,9 @@
                         <label for="">Pilih dawis</label>
                         <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" value="{{$editData->iddawis}}">
                             <option>Dawis</option>
-                            <option>1</option>
+                            @foreach($dawis as $dws =>$dawis)
+                            <option value="{{$dawis->id}}">{{$dawis->nama}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class=" col-sm-6 ">

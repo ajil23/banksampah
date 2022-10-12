@@ -67,7 +67,7 @@ class AdminController extends Controller
 
 
         $deleteData = dawis::find($id);
-        Alert::success('Sukses', 'Dawis Berhasil Dihapus');
+        
         $deleteData->delete();
         return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
     }
@@ -107,16 +107,21 @@ class AdminController extends Controller
     public function edit_nasabah($id)
     {
         $editData = nasabah::Find($id);
-        
-        return view('backend.user.edit_nasabah', compact('editData'));
+        $dawis = dawis::all();
+        return view('backend.user.edit_nasabah', compact('editData', 'dawis'));
     }
     public function nasabahUpdate(Request $request,$id)
     {
         $data = nasabah::find($id);
-       
+        if ($data->foto = $request->file('foto')) {
+            $extension = $request->file('foto')->getClientOriginalExtension();
+            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
+            $request->file('foto')->storeAs('fotoNasabah', $newName);
+        }
+        $data['foto'] = $newName;
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
-        $data->foto = $request->foto;
+        // $data->foto = $request->foto;
         $data->tgl_join = $request->tgl_join;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
