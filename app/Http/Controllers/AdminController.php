@@ -262,7 +262,6 @@ class AdminController extends Controller
     {
         $deleteData = sampah::find($id);
         $deleteData->delete();
-        Alert::success('Sukses', 'Sampah Berhasil Dihapus');
         return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
     }
 }
