@@ -55,8 +55,17 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/add_dawis', [AdminController::class, 'add_dawis'])->name('add_dawis.view');
     Route::post('/tambah_dawis', [AdminController::class, 'tambah_dawis'])->name('tambah_dawis');
     Route::get('/deleteDawis/{id}', [AdminController::class, 'dawisDelete'])->name('dawis.delete');
+    Route::get('/edit_dawis/{id}', [AdminController::class, 'edit_dawis'])->name('edit_dawis');
+    Route::post('/update_dawis/{id}', [AdminController::class, 'dawisUpdate'])->name('dawis.update');
     //endawis
+    //petugas
     Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
+    Route::get('/add_petugas', [AdminController::class, 'add_petugas'])->name('add_petugas.view');
+    Route::post('/tambah_petugas', [AdminController::class, 'tambah_petugas'])->name('tambah_petugas');
+    Route::get('/deletePetugas/{id}', [AdminController::class, 'petugasDelete'])->name('petugas.delete');
+    Route::get('/edit_petugas/{id}', [AdminController::class, 'edit_petugas'])->name('edit_petugas');
+    Route::post('/update_petugas/{id}', [AdminController::class, 'petugasUpdate'])->name('petugas.update');
+    //endpetugas
     Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
     
