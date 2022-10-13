@@ -5,6 +5,7 @@ use App\Models\dawis;
 use App\Models\nasabah;
 use App\Models\petugas;
 use App\Models\sampah;
+use App\Models\tagihan;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -24,9 +25,10 @@ class AdminController extends Controller
         return redirect('/login');
     }
 
-    public function tagihan()
+    public function viewtagihan()
     {
-        return view('backend.user.view_tagihan');
+        $data['allDataTagihan']=Tagihan::all();
+        return view('backend.user.view_tagihan', $data);
     }
 
     public function detagihan()
@@ -228,6 +230,7 @@ class AdminController extends Controller
     {
         return view('backend.user.view_tabungan');
     } 
+    //sampah
     public function daftarsampah()
     {
         $data['allDataSampah']=Sampah::all();

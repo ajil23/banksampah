@@ -16,52 +16,21 @@
                         <tr>
                             <th>Id</th>
                             <th>Barang</th>
-                            <th>Harga</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Id</th>
                             <th>Barang</th>
-                            <th>Harga</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($allDataTagihan as $tgh =>$tagihan)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>$320,800</td>
+                            <td>{{$tagihan->id}}</td>
+                            <td>{{$tagihan->nama_barang}}</td>
                         </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>$170,750</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                            <td>$433,060</td>
-                        </tr>
-                        <tr>
-                            <td>Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td>Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td>Herrod Chandler</td>
-                            <td>Sales Assistant</td>
-                            <td>$137,500</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

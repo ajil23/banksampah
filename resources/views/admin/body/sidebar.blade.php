@@ -5,7 +5,7 @@
          <div class="sidebar-brand-icon">
              <img src="{{asset('backend/img/logo2.png')}}" style="height: 40px; width: 40px;" alt="">
          </div>
-         <div class="sidebar-brand-text mx-2">Bank Sampah</div>
+         <div class="sidebar-brand-text mx-2">Istana <br>Sumber Mulia</div>
      </a>
 
      <!-- Divider -->

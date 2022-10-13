@@ -78,3 +78,8 @@ Route::prefix('sampah')->group(function () {
     Route::get('/editSampah/{id}', [AdminController::class, 'sampahEdit'])->name('sampah.edit');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
+Route::prefix('tagihan')->group(function(){
+    //tagihan
+    Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
+    Route::get('/detail', [AdminController::class, 'detailTagihan'])->name('detailtagihan.view');
+});
