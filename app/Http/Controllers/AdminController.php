@@ -117,7 +117,7 @@ class AdminController extends Controller
         if ($data->foto = $request->file('foto')) {
             $extension = $request->file('foto')->getClientOriginalExtension();
             $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto')->storeAs('fotoPetugas', $newName);
+            $request->file('foto')->storeAs('fotoNasabah', $newName);
         }
         $data['foto'] = $newName;
         $data->nama = $request->nama;
