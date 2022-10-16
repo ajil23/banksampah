@@ -24,6 +24,7 @@
                 <table class="table table-bordered align-middle text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>no</th>
                             <th>id</th>
                             <th>Foto</th>
                             <th>Nama</th>
@@ -35,6 +36,7 @@
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>no</th>
                             <th>id</th>
                             <th>Foto</th>
                             <th>Nama</th>
@@ -48,6 +50,7 @@
                     <tbody>
                         @foreach($nasabah as $nsb =>$nasabah)
                         <tr class=" align-middle">
+                            <td class="align-middle">{{$loop->iteration}}</td>
                             <td class="align-middle">{{$nasabah->id}}</td>
                             <td><img src="{{asset('storage/fotoNasabah/'.$nasabah->foto)}}" alt="" width="70px"></td>
                             <td class="align-middle">{{$nasabah->nama}}</td>
