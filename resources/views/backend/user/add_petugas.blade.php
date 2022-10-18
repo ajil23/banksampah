@@ -20,15 +20,20 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" name="password">
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="tmp_lahir">Tempat Lahir</label>
                         <input type="text" class="form-control form-control-lg" id="tmp_lahir" placeholder="Tempat lahir" name="tmp_lahir" required>
                     </div>
+                </div>
+                <div class="form-group row">
+
                     <div class="col-sm-6  mb-sm-0">
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" required>
                     </div>
-                </div>
-                <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Pilih Tugas</label>
                         <select class="form-control form-control-lg  mb-3 mb-sm-0" name="tugas" required>
@@ -38,6 +43,9 @@
                             <option>Penimbang</option>
                         </select>
                     </div>
+                </div>
+                <div class="form-group row">
+
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>

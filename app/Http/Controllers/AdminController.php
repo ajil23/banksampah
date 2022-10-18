@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\dawis;
+use App\Models\detailMasukan;
 use App\Models\nasabah;
 use App\Models\petugas;
 use App\Models\sampah;
@@ -31,10 +32,6 @@ class AdminController extends Controller
         return view('backend.user.view_tagihan', $data);
     }
 
-    public function detagihan()
-    {
-        return view('backend.user.view_detailtagihan');
-    }
     //dawis
     public function dawis()
     {
@@ -59,6 +56,7 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        $data->password = bcrypt($request->password);
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
@@ -67,10 +65,7 @@ class AdminController extends Controller
     }
     public function dawisDelete($id)
     {
-
-
         $deleteData = dawis::find($id);
-        
         $deleteData->delete();
         return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
     }
@@ -91,6 +86,9 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if($request->password!=""){
+            $data->password=bcrypt($request->password);
+        }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
@@ -124,6 +122,7 @@ class AdminController extends Controller
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
         $data->tgl_join = $request->tgl_join;
+        $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -148,7 +147,11 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if ($request->password != "") {
+            $data->password = bcrypt($request->password);
+        }
         $data->tgl_join = $request->tgl_join;
+        
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -189,6 +192,7 @@ class AdminController extends Controller
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
         $data->tmp_lahir = $request->tmp_lahir;
+        $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
         $data->save();
@@ -218,6 +222,9 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if ($request->password != "") {
+            $data->password = bcrypt($request->password);
+        }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
@@ -264,4 +271,6 @@ class AdminController extends Controller
         $deleteData->delete();
         return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
     }
+    
+
 }
