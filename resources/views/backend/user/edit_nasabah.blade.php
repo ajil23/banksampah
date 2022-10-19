@@ -39,6 +39,14 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" name="password">
+                    </div>
+                    
+                </div>
+                <div class=" form-group row">
+                    
                     <div class=" col-sm-6 ">
                         <label for=" exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" value="{{$editData->foto}}">

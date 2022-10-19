@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Masukan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +41,7 @@ Route::middleware([
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
 Route::prefix('transaksi')->group(function () {
     Route::get('/tagihan', [AdminController::class, 'tagihan'])->name('tagihan.view');
-    Route::get('/detailtagihan', [AdminController::class, 'detagihan'])->name('detagihan.view');
+    Route::get('/detailtagihan', [Masukan::class, 'detagihan'])->name('detagihan.view');
 });
 Route::prefix('pengguna')->group(function () {
     //nasabah
@@ -73,13 +75,15 @@ Route::prefix('pengguna')->group(function () {
 Route::prefix('sampah')->group(function () {
     //sampah
     Route::get('/daftarsampah', [AdminController::class, 'daftarsampah'])->name('sampah.view');
-    Route::get('/add_sampah', [AdminController::class, 'add_sampah'])->name('add_sampah.view');
+    Route::get('/add_sampah', [AdminControllr::class, 'add_sampah'])->name('add_sampah.view');
     Route::get('/deleteSampah/{id}', [AdminController::class, 'sampahDelete'])->name('sampah.delete');
     Route::get('/editSampah/{id}', [AdminController::class, 'sampahEdit'])->name('sampah.edit');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
 Route::prefix('tagihan')->group(function(){
     //tagihan
+    Route::get('/masuk_saldo/{id}', [Masukan::class, 'pageMasuk'])->name('page.masuk');
+    Route::post('/masukSaldo/{id}', [Masukan::class, 'masuk'])->name('masuk.saldo');
     Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
-    Route::get('/detail', [AdminController::class, 'detailTagihan'])->name('detailtagihan.view');
+    Route::get('/detail', [Masukan::class, 'detagihan'])->name('detailtagihan.view');
 });

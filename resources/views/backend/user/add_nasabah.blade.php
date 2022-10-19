@@ -20,15 +20,20 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="password" placeholder="Name" name="password">
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="tgl_join">tgl_join</label>
                         <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_join" required>
                     </div>
+                </div>
+                <div class="form-group row">
+
                     <div class="col-sm-6  mb-sm-0">
                         <label for="tgl_lahir">tgl_lahir</label>
                         <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" required>
                     </div>
-                </div>
-                <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Pilih dawis</label>
                         <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" required>
@@ -38,6 +43,9 @@
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="form-group row">
+
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>

@@ -14,11 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('dawis', function (Blueprint $table) {
-            $table->string('no_hp', 12);
-            $table->string('foto', 50);
-            $table->string('tmp_lahir', 50);
-            $table->date('tgl_lahir');
-           
+            $table->string('password', 100);
+            $table->timestamps();
         });
     }
 
@@ -30,10 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('dawis', function (Blueprint $table) {
-             $table->dropColumn('no_hp');
-             $table->dropColumn('foto');
-             $table->dropColumn('tmp_lahir');
-             $table->dropColumn('tgl_lahir');
+            //
         });
     }
 };
