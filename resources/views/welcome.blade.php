@@ -61,7 +61,7 @@ section{
     cursor: pointer;
     margin-top: 1rem;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-    border-radius: 5mm;
+    border-radius: 1mm;
 }
 
 .btn:hover{
