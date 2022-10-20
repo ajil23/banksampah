@@ -24,6 +24,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>id</th>
                             <th>Nama Sampah</th>
                             <th>Satuan</th>
                             <th>Harga Satuan</th>
@@ -33,6 +34,7 @@
                     <tfoot>
                         <tr>
                             <th>No</th>
+                            <th>id</th>
                             <th>Nama Sampah</th>
                             <th>Satuan</th>
                             <th>Harga Satuan</th>
@@ -42,6 +44,7 @@
                     <tbody>
                     @foreach($allDataSampah as $smp =>$sampah)
                         <tr>
+                            <td class="align-middle">{{$loop->iteration}}</td>
                             <td>{{$sampah->id}}</td>
                             <td>{{$sampah->nama}}</td>
                             <td>{{$sampah->satuan}}</td>

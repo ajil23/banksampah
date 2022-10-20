@@ -75,9 +75,10 @@ Route::prefix('pengguna')->group(function () {
 Route::prefix('sampah')->group(function () {
     //sampah
     Route::get('/daftarsampah', [AdminController::class, 'daftarsampah'])->name('sampah.view');
-    Route::get('/add_sampah', [AdminControllr::class, 'add_sampah'])->name('add_sampah.view');
+    Route::get('/add_sampah', [AdminController::class, 'add_sampah'])->name('add_sampah.view');
     Route::get('/deleteSampah/{id}', [AdminController::class, 'sampahDelete'])->name('sampah.delete');
     Route::get('/editSampah/{id}', [AdminController::class, 'sampahEdit'])->name('sampah.edit');
+    Route::post('/updatesampah/{id}', [AdminController::class, 'sampahUpdate'])->name('sampah.update');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
 Route::prefix('tagihan')->group(function(){
