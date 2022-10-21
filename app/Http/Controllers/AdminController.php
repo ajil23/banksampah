@@ -60,7 +60,6 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Dawis Berhasil Ditambah');
         return redirect()->route('dawis.view')->with('info', 'Tambah user berhasil');
@@ -93,7 +92,6 @@ class AdminController extends Controller
         }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Dawis Berhasil Diupdate');
         return redirect()->route('dawis.view')->with('info', 'Edit user berhasil');
@@ -128,7 +126,6 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
         return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;
@@ -158,7 +155,6 @@ class AdminController extends Controller
         
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Diupdate');
         return redirect()->route('nasabah.view')->with('info', 'Edit user berhasil');
@@ -200,7 +196,6 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Ditambah');
         return redirect()->route('petugas.view')->with('info', 'Tambah user berhasil');
@@ -235,7 +230,6 @@ class AdminController extends Controller
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
-        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Diupdate');
         return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');

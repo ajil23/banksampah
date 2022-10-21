@@ -87,4 +87,5 @@ Route::prefix('tagihan')->group(function(){
     Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
     Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
     Route::get('/detail', [Masukan::class, 'detagihan'])->name('detailtagihan.view');
+    Route::post('/tambahSaldoDawis', [Masukan::class,'add_masuk'])->name('tambahSaldoDawis');
 });
