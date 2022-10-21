@@ -43,8 +43,7 @@ class AdminController extends Controller
     }
     public function add_dawis()
     {
-        $struktur = struktur::all();
-        return view('backend.user.add_dawis', compact('struktur'));
+        return view('backend.user.add_dawis');
     }
     public function tambah_dawis(Request $request)
     {
@@ -75,8 +74,7 @@ class AdminController extends Controller
     public function edit_dawis($id)
     {
         $editDawis = dawis::Find($id);
-        $struktur = struktur::all();
-        return view('backend.user.edit_dawis', compact('editDawis','struktur'));
+        return view('backend.user.edit_dawis', compact('editDawis'));
     }
     public function dawisUpdate(Request $request, $id)
     {
@@ -112,8 +110,7 @@ class AdminController extends Controller
     public function add_nasabah()
     {
         $dawis = dawis::all();
-        $struktur = struktur::all();
-        return view('backend.user.add_nasabah', compact('dawis','struktur'));
+        return view('backend.user.add_nasabah', compact('dawis'));
     }
     public function tambah_nasabah(Request $request)
     {
@@ -140,8 +137,7 @@ class AdminController extends Controller
     {
         $editData = nasabah::Find($id);
         $dawis = dawis::all();
-        $struktur = struktur::all();
-        return view('backend.user.edit_nasabah', compact('editData', 'dawis', 'struktur'));
+        return view('backend.user.edit_nasabah', compact('editData', 'dawis'));
     }
     public function nasabahUpdate(Request $request,$id)
     {
@@ -186,8 +182,7 @@ class AdminController extends Controller
     public function add_petugas()
     {
         $petugas = petugas::all();
-        $struktur = struktur::all();
-        return view('backend.user.add_petugas', compact('petugas','struktur'));
+        return view('backend.user.add_petugas', compact('petugas'));
     }
     public function tambah_petugas(Request $request)
     {
@@ -219,8 +214,7 @@ class AdminController extends Controller
     public function edit_petugas($id)
     {
         $petugasData = petugas::Find($id);
-        $struktur = struktur::all();
-        return view('backend.user.edit_petugas', compact('petugasData','struktur'));
+        return view('backend.user.edit_petugas', compact('petugasData'));
 
     }
     public function petugasUpdate(Request $request, $id)
