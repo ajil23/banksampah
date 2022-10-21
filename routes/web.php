@@ -83,8 +83,8 @@ Route::prefix('sampah')->group(function () {
 });
 Route::prefix('tagihan')->group(function(){
     //tagihan
-    Route::get('/masuk_saldo/{id}', [Masukan::class, 'pageMasuk'])->name('page.masuk');
-    Route::post('/masukSaldo/{id}', [Masukan::class, 'masuk'])->name('masuk.saldo');
+    Route::get('/masuk_saldo', [Masukan::class, 'masukSaldo'])->name('page.masuk');
+    Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
     Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
     Route::get('/detail', [Masukan::class, 'detagihan'])->name('detailtagihan.view');
 });

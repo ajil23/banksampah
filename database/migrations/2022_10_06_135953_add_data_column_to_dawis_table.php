@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('foto', 50);
             $table->string('tmp_lahir', 50);
             $table->date('tgl_lahir');
-           
         });
     }
 

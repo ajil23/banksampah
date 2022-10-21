@@ -33,6 +33,18 @@
                         <label for="tgl_lahir">Tanggal Lahir</label>
                         <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" required>
                     </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="">Pilih Role</label>
+                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="struktur" required>
+                            <option>Pilih role</option>
+                            @foreach($struktur as $str =>$struktur)
+                            <option value="{{$struktur->id}}">{{$struktur->jenis}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>

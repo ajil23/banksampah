@@ -6,6 +6,7 @@ use App\Models\detailMasukan;
 use App\Models\nasabah;
 use App\Models\petugas;
 use App\Models\sampah;
+use App\Models\struktur;
 use App\Models\tagihan;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
@@ -42,7 +43,8 @@ class AdminController extends Controller
     }
     public function add_dawis()
     {
-        return view('backend.user.add_dawis');
+        $struktur = struktur::all();
+        return view('backend.user.add_dawis', compact('struktur'));
     }
     public function tambah_dawis(Request $request)
     {
@@ -59,6 +61,7 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Dawis Berhasil Ditambah');
         return redirect()->route('dawis.view')->with('info', 'Tambah user berhasil');
@@ -72,7 +75,8 @@ class AdminController extends Controller
     public function edit_dawis($id)
     {
         $editDawis = dawis::Find($id);
-        return view('backend.user.edit_dawis', compact('editDawis'));
+        $struktur = struktur::all();
+        return view('backend.user.edit_dawis', compact('editDawis','struktur'));
     }
     public function dawisUpdate(Request $request, $id)
     {
@@ -91,6 +95,7 @@ class AdminController extends Controller
         }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Dawis Berhasil Diupdate');
         return redirect()->route('dawis.view')->with('info', 'Edit user berhasil');
@@ -107,7 +112,8 @@ class AdminController extends Controller
     public function add_nasabah()
     {
         $dawis = dawis::all();
-        return view('backend.user.add_nasabah', compact('dawis'));
+        $struktur = struktur::all();
+        return view('backend.user.add_nasabah', compact('dawis','struktur'));
     }
     public function tambah_nasabah(Request $request)
     {
@@ -125,6 +131,7 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
         return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;
@@ -133,7 +140,8 @@ class AdminController extends Controller
     {
         $editData = nasabah::Find($id);
         $dawis = dawis::all();
-        return view('backend.user.edit_nasabah', compact('editData', 'dawis'));
+        $struktur = struktur::all();
+        return view('backend.user.edit_nasabah', compact('editData', 'dawis', 'struktur'));
     }
     public function nasabahUpdate(Request $request,$id)
     {
@@ -154,6 +162,7 @@ class AdminController extends Controller
         
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Diupdate');
         return redirect()->route('nasabah.view')->with('info', 'Edit user berhasil');
@@ -177,7 +186,8 @@ class AdminController extends Controller
     public function add_petugas()
     {
         $petugas = petugas::all();
-        return view('backend.user.add_petugas', compact('petugas'));
+        $struktur = struktur::all();
+        return view('backend.user.add_petugas', compact('petugas','struktur'));
     }
     public function tambah_petugas(Request $request)
     {
@@ -195,6 +205,7 @@ class AdminController extends Controller
         $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Ditambah');
         return redirect()->route('petugas.view')->with('info', 'Tambah user berhasil');
@@ -208,7 +219,9 @@ class AdminController extends Controller
     public function edit_petugas($id)
     {
         $petugasData = petugas::Find($id);
-        return view('backend.user.edit_petugas', compact('petugasData'));
+        $struktur = struktur::all();
+        return view('backend.user.edit_petugas', compact('petugasData','struktur'));
+
     }
     public function petugasUpdate(Request $request, $id)
     {
@@ -228,6 +241,7 @@ class AdminController extends Controller
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
+        $data->id_struktur = $request->id_struktur;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Diupdate');
         return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');
@@ -271,20 +285,6 @@ class AdminController extends Controller
         $deleteData->delete();
         return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
     }
-    public function sampahEdit($id)
-    {
-        $editSampah = sampah::find($id);
-        return view('backend.user.edit_sampah', compact('editSampah'));
-    }
-    public function sampahUpdate(Request $request, $id)
-    {
-        $data = sampah::find($id);
-        $data->nama = $request->nama;
-        $data->satuan = $request->satuan;
-        $data->harga_satuan = $request->hargas;
-        $data->save();
-        Alert::success('Sukses', 'Sampah Berhasil Diupdate');
-        return redirect()->route('sampah.view')->with('info', 'Edit sampah berhasil');
-    }
+    
 
 }

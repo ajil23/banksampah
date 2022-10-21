@@ -29,35 +29,16 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
+                            <th>Struktur</th>
+                            <th>Saldo</th>
                         </tr>
                     </tfoot>
                     <tbody class="text-center">
                         <tr class="text-center">
                             <td>1</td>
-                            <td style="width: 400px;">Tiger Nixon</td>
-                            <td style="width: 300px;">$320,800</td>
-                            <td class="text-center">
-                                <div class="row">
-                                    <div class="col">
-                                        <button type="button" class="btn btn-danger">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-minus"></i>
-                                            </span>
-                                            <span class="text">Keluar</span>
-                                        </button>
-                                    </div>
-                                    <div class="col ">
-                                        <button type="button" class="btn btn-success">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-plus"></i>
-                                            </span>
-                                            <span class="text">Masuk</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
+                            <td>Muhammad Zaynudin</td>
+                            <td>Nasabah</td>
+                            <td>Rp 320,800</td>
                         </tr>
                     </tbody>
                 </table>
