@@ -273,6 +273,19 @@ class AdminController extends Controller
         $deleteData->delete();
         return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
     }
-    
-
+    public function sampahEdit($id)
+    {
+        $editSampah = sampah::find($id);
+        return view('backend.user.edit_sampah', compact('editSampah'));
+    }
+    public function sampahUpdate(Request $request, $id)
+    {
+        $data = sampah::find($id);
+        $data->nama = $request->nama;
+        $data->satuan = $request->satuan;
+        $data->harga_satuan = $request->hargas;
+        $data->save();
+        Alert::success('Sukses', 'Sampah Berhasil Diupdate');
+        return redirect()->route('sampah.view')->with('info', 'Edit sampah berhasil');
+    }
 }
