@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tgl_tagihan');
             $table->integer('nominal');
             $table->date('tgl_tempo');
+            $table->text('keterangan_keluar');
             $table->unsignedBigInteger('idnasabah');
             $table->foreign('idnasabah')->references('id')->on('nasabah')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
