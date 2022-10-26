@@ -90,7 +90,10 @@ class Masukan extends Controller
     }
     public function detagihanDawis()
     {
-        return view('backend.user.view_detailtagihan');
+       $danaMasuk = keluarSaldoDawis::join('dawis', 'dawis.id', '=', 'iddawis')
+        ->select('keluar_saldo_dawis.id', 'nama', 'tgl_tagihan', 'nominal', 'keterangan_keluar', 'tgl_tempo')
+        ->get();
+        return view('backend.user.view_detailtagihan', compact('danaMasuk'));
     }
     public function pageKeluarSaldoDawis()
     {

@@ -41,28 +41,33 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Struktur</th>
-                            <th>Keterangan Masuk</th>
-                            <th>Dana Masuk</th>
+                            <th>Keterangan Keluar</th>
+                            <th>Dana Keluar</th>
+                            <th>Dana Tanggal Tagihan</th>
+                            <th>Dana Tanggal Tempo</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Struktur</th>
                             <th>Keterangan Keluar</th>
                             <th>Dana Keluar</th>
+                            <th>Dana Tanggal Tagihan</th>
+                            <th>Dana Tanggal Tempo</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($danaMasuk as $tgh =>$tagihan)
                         <tr>
-                            <td>1</td>
-                            <td>Muhammad Zaynudin</td>
-                            <td>Nasabah</td>
-                            <td>Dana Dari Pemasukan Sampah</td>
-                            <td>Rp 30.000</td>
+                            <td>{{$tagihan->id}}</td>
+                            <td>{{$tagihan->nama}}</td>
+                            <td>{{$tagihan->keterangan_keluar}}</td>
+                            <td>{{$tagihan->nominal}}</td>
+                            <td>{{$tagihan->tgl_tagihan}}</td>
+                            <td>{{$tagihan->tgl_tempo}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
