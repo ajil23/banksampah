@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -21,30 +22,29 @@ Route::get('/', function () {
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+    // config('jetstream.auth_session'),
+    // 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index');
-    })->name('dashboard')->middleware('auth');
+    })->name('dashboard');
 });
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+    // config('jetstream.auth_session'),
+    // 'verified'
 ])->group(function () {
     Route::get('/menu', function () {
         return view('admin.index');
-    })->name('menu')->middleware('auth');
+    })->name('menu');
 });
 
-Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
 
-Route::middleware(['auth:sanctum'])->group(function(){
-    
+Route::middleware('auth:sanctum')->group(function(){
+
     Route::prefix('transaksi')->group(function () {
         Route::get('/tagihan', [AdminController::class, 'tagihan'])->name('tagihan.view');
-        Route::get('/detailtagihan', [AdminController::class, 'detagihan'])->name('detagihan.view');
+        Route::get('/detailtagihan', [Masukan::class, 'detagihan'])->name('detagihan.view');
     });
     Route::prefix('pengguna')->group(function () {
         //nasabah
@@ -81,14 +81,26 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/add_sampah', [AdminController::class, 'add_sampah'])->name('add_sampah.view');
         Route::get('/deleteSampah/{id}', [AdminController::class, 'sampahDelete'])->name('sampah.delete');
         Route::get('/editSampah/{id}', [AdminController::class, 'sampahEdit'])->name('sampah.edit');
+        Route::post('/updatesampah/{id}', [AdminController::class, 'sampahUpdate'])->name('sampah.update');
         Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
     });
     Route::prefix('tagihan')->group(function(){
         //tagihan
-        Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
-        Route::get('/detail', [AdminController::class, 'detailTagihan'])->name('detailtagihan.view');
+        Route::get('/masuk_saldo', [Masukan::class, 'masukSaldo'])->name('page.masuk');
+        Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
+        Route::get('/masuk', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
+        Route::get('/detail', [Masukan::class, 'detagihan'])->name('masukanDawis.view');
+        Route::post('/tambahSaldoDawis', [Masukan::class,'add_masuk'])->name('tambahSaldoDawis');
+        Route::get('/masuk_nasabah',[Masukan::class, 'detagihanNasabah'])->name('tambahSaldoNasabah.view');
+        Route::get('/masuk_saldo_nasabah',[Masukan::class, 'masukSaldoNasabah'])->name('tambahSaldoNasabah.add');
+        Route::post('/tambah_saldo_nasabah',[Masukan::class, 'add_masukNasabah'])->name('add.SaldoNasabah');
+        Route::get('/tambah_saldo_petugas',[Masukan::class, 'detagihanPetugas'])->name('saldoPetugas.view');
+        Route::get('/masuk_saldo_petugas', [Masukan::class, 'masukSaldoPetugas'])->name('tambahSaldoPetugas.add');
+        Route::post('/tambah_saldo_petugas', [Masukan::class, 'add_masukPetugas'])->name('add.SaldoPetugas');
+        Route::get('/keluar', [Masukan::class, 'detagihanDawis'])->name('kurangSaldoDawis.view');
     });
+
 });
 
 
-    
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
