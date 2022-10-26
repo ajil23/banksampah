@@ -100,13 +100,14 @@ class Masukan extends Controller
     public function KeluarSaldoDawis(Request $request)
     {
         $data = new keluarSaldoDawis();
-        $data->tgl_masukan = $request->tgl_masukan;
-        $data->struktur = $request->struktur;
+        $data->tgl_tagihan = $request->tgl_tagihan;
+        $data->tgl_tempo = $request->tgl_tempo;
         $data->keterangan_keluar = $request->keterangan_keluar;
         $data->iddawis = $request->iddawis;
         $data->nominal = $request->nominal;
         $data->save();
         Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('tambahSaldoPetugas.view')->with('info', 'tambah saldo berhasil');
+        return redirect()->route('kurangSaldoDawis.view')->with('info', 'tambah saldo berhasil');
     }
+
 } 

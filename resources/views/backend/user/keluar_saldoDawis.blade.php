@@ -6,12 +6,12 @@
             <h6 class="m-0 font-weight-bold text-primary">Tambah Data Masuk Dawis</h6>
         </div>
         <div class="card-body">
-            <form class="user" method="POST" action="#">
+            <form class="user" method="POST" action="{{route('kurangSaldoDawis.add')}}">
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Pilih Nasabah</label>
-                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="idnasabah" required>
+                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" required>
                             <option>Pilih dawis</option>
                             @foreach($dawis as $dws =>$dawis)
                             <option value="{{$dawis->id}}">{{$dawis->nama}}</option>
@@ -40,8 +40,12 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="tgl_masukan">Tanggal Masukan</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_masukan" required>
+                        <label for="tgl_join">Tanggal Keluar</label>
+                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_tagihan" required>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="tgl_tempo">Tanggal Tempo</label>
+                        <input type="date" class="form-control form-control-lg" id="tgl_tempo" placeholder="Email Address" name="tgl_tempo" required>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-icon-split">

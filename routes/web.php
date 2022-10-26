@@ -97,6 +97,7 @@ Route::prefix('tagihan')->group(function(){
     Route::post('/tambah_saldo_petugas', [Masukan::class, 'add_masukPetugas'])->name('add.SaldoPetugas');
     Route::get('/keluar', [Masukan::class, 'detagihanDawis'])->name('kurangSaldoDawis.view');
     Route::get('/keluar_saldo_dawis', [Masukan::class, 'pageKeluarSaldoDawis'])->name('keluarSaldoDawis.view');
+    Route::post('kurang_saldo_dawis',[Masukan::class, 'KeluarSaldoDawis'])->name('kurangSaldoDawis.add');
 });
 
 
