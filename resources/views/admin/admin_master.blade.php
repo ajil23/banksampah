@@ -16,10 +16,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css' rel='stylesheet'>
-   
+
     <!-- Custom styles for this template-->
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -80,9 +81,9 @@
     <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('backend/vendor/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    
 
-  
+
+
 
     <!-- Page level custom scripts -->
     <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>
@@ -92,8 +93,8 @@
 
 
     <!-- sweatalert -->
-    
-    
+
+
 </body>
 @include('sweetalert::alert')
 <script type="text/javascript">

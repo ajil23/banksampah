@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Petugas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Ubah Data Petugas</h6>
         </div>
         <div class="card-body">
             <form class="user" method="POST" action="{{route('petugas.update', $petugasData->id)}}" enctype="multipart/form-data">
@@ -39,11 +39,17 @@
                             <option>Penimbang</option>
                         </select>
                     </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" name="password">
+                    </div>
+                </div>
+                <div class="form-group row">
+                 
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" value="{{$petugasData->foto}}" required>
                     </div>
-
                 </div>
                 <button class="btn btn-primary btn-icon-split " style="float: right;">
                     <span class="icon text-white-50">

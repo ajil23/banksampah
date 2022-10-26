@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\dawis;
+use App\Models\detailMasukan;
 use App\Models\nasabah;
 use App\Models\petugas;
 use App\Models\sampah;
+use App\Models\struktur;
 use App\Models\tagihan;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
@@ -27,14 +29,13 @@ class AdminController extends Controller
 
     public function viewtagihan()
     {
-        $data['allDataTagihan']=Tagihan::all();
-        return view('backend.user.view_tagihan', $data);
+        $danaMasuk = detailMasukan::join('dawis', 'dawis.id', '=', 'iddawis')
+        ->select('detail_masukan.id', 'dawis.nama', 'tgl_masukan', 'nominal', 'struktur')
+        ->get();
+        $detailMasukan = detailMasukan::all();
+        return view('backend.user.view_tagihan', compact('danaMasuk', 'detailMasukan'));
     }
 
-    public function detagihan()
-    {
-        return view('backend.user.view_detailtagihan');
-    }
     //dawis
     public function dawis()
     {
@@ -59,6 +60,7 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        $data->password = bcrypt($request->password);
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
@@ -67,10 +69,7 @@ class AdminController extends Controller
     }
     public function dawisDelete($id)
     {
-
-
         $deleteData = dawis::find($id);
-        
         $deleteData->delete();
         return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
     }
@@ -91,6 +90,9 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if($request->password!=""){
+            $data->password=bcrypt($request->password);
+        }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
@@ -124,6 +126,7 @@ class AdminController extends Controller
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
         $data->tgl_join = $request->tgl_join;
+        $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -148,7 +151,11 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if ($request->password != "") {
+            $data->password = bcrypt($request->password);
+        }
         $data->tgl_join = $request->tgl_join;
+        
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -189,6 +196,7 @@ class AdminController extends Controller
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
         $data->tmp_lahir = $request->tmp_lahir;
+        $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
         $data->save();
@@ -205,6 +213,7 @@ class AdminController extends Controller
     {
         $petugasData = petugas::Find($id);
         return view('backend.user.edit_petugas', compact('petugasData'));
+
     }
     public function petugasUpdate(Request $request, $id)
     {
@@ -218,6 +227,9 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
+        if ($request->password != "") {
+            $data->password = bcrypt($request->password);
+        }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->tugas = $request->tugas;
@@ -263,5 +275,20 @@ class AdminController extends Controller
         $deleteData = sampah::find($id);
         $deleteData->delete();
         return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
+    }
+    public function sampahEdit($id)
+    {
+        $editSampah = sampah::find($id);
+        return view('backend.user.edit_sampah', compact('editSampah'));
+    }
+    public function sampahUpdate(Request $request, $id)
+    {
+        $data = sampah::find($id);
+        $data->nama = $request->nama;
+        $data->satuan = $request->satuan;
+        $data->harga_satuan = $request->hargas;
+        $data->save();
+        Alert::success('Sukses', 'Sampah Berhasil Diupdate');
+        return redirect()->route('sampah.view')->with('info', 'Edit sampah berhasil');
     }
 }
