@@ -87,4 +87,8 @@ class Masukan extends Controller
         Alert::success('Sukses', 'tambah saldo Berhasil');
         return redirect()->route('tambahSaldoPetugas.view')->with('info', 'tambah saldo berhasil');
     }
+    public function detagihanDawis()
+    {
+        return view('backend.user.view_detailtagihan');
+    }
 } 

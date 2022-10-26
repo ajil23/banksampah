@@ -60,14 +60,14 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Transaksi : </h6>
                  <a class="collapse-item" href="{{route('tagihan.view')}}">Masuk</a>
-                 <a class="collapse-item" href="{{route('detagihan.view')}}">Tagihan</a>
+                 <a class="collapse-item" href="{{route('kurangSaldoDawis.view')}}">Tagihan</a>
              </div>
          </div>
      </li>
 
      <!-- Divider -->
 
-     
+
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
          Tabungan
@@ -78,11 +78,11 @@
              <span>Tabungan</span>
          </a>
      </li>
-     
+
      <!-- Nav Item - Utilities Collapse Menu -->
      <hr class="sidebar-divider">
      <div class="sidebar-heading">
-        Sampah
+         Sampah
      </div>
      <li class="nav-item">
          <a class="nav-link collapsed" href="{{route('sampah.view')}}" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
