@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\dawis;
 use App\Models\detailMasukan;
+use App\Models\keluarSaldoDawis;
 use App\Models\MasukanSaldoNasabah;
 use App\Models\MasukansaldoPetugas;
 use App\Models\nasabah;
@@ -90,5 +91,22 @@ class Masukan extends Controller
     public function detagihanDawis()
     {
         return view('backend.user.view_detailtagihan');
+    }
+    public function pageKeluarSaldoDawis()
+    {
+        $dawis = dawis::all();
+        return view('backend.user.keluar_saldoDawis', compact('dawis'));
+    }
+    public function KeluarSaldoDawis(Request $request)
+    {
+        $data = new keluarSaldoDawis();
+        $data->tgl_masukan = $request->tgl_masukan;
+        $data->struktur = $request->struktur;
+        $data->keterangan_keluar = $request->keterangan_keluar;
+        $data->iddawis = $request->iddawis;
+        $data->nominal = $request->nominal;
+        $data->save();
+        Alert::success('Sukses', 'tambah saldo Berhasil');
+        return redirect()->route('tambahSaldoPetugas.view')->with('info', 'tambah saldo berhasil');
     }
 } 

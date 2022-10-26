@@ -19,14 +19,14 @@
                         Role Struktur
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{route('tagihan.view')}}">Dawis</a></li>
+                        <li><a class="dropdown-item" href="{{route('kurangSaldoDawis.view')}}">Dawis</a></li>
                         <li><a class="dropdown-item" href="#">Nasabah</a></li>
                         <li><a class="dropdown-item" href="#">Petugas</a></li>
                     </ul>
                 </div>
             </div>
             <div class="co ">
-                <a href="{{route('page.keluar')}}"><button type="button" class="btn btn-primary">Tambah Data Keluar</button></a>
+                <a href="{{route('keluarSaldoDawis.view')}}"><button type="button" class="btn btn-primary">Tambah Data Keluar</button></a>
             </div>
         </div>
     </div>
