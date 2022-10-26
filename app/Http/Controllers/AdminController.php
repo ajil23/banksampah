@@ -29,8 +29,11 @@ class AdminController extends Controller
 
     public function viewtagihan()
     {
-        $data['allDataTagihan']=Tagihan::all();
-        return view('backend.user.view_tagihan', $data);
+        $danaMasuk = detailMasukan::join('dawis', 'dawis.id', '=', 'iddawis')
+        ->select('detail_masukan.id', 'dawis.nama', 'tgl_masukan', 'nominal', 'struktur')
+        ->get();
+        $detailMasukan = detailMasukan::all();
+        return view('backend.user.view_tagihan', compact('danaMasuk', 'detailMasukan'));
     }
 
     //dawis

@@ -85,7 +85,13 @@ Route::prefix('tagihan')->group(function(){
     //tagihan
     Route::get('/masuk_saldo', [Masukan::class, 'masukSaldo'])->name('page.masuk');
     Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
-    Route::get('/', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
-    Route::get('/detail', [Masukan::class, 'detagihan'])->name('detailtagihan.view');
+    Route::get('/masuk', [AdminController::class, 'viewtagihan'])->name('tagihan.view');
+    Route::get('/detail', [Masukan::class, 'detagihan'])->name('masukanDawis.view');
     Route::post('/tambahSaldoDawis', [Masukan::class,'add_masuk'])->name('tambahSaldoDawis');
+    Route::get('/masuk_nasabah',[Masukan::class, 'detagihanNasabah'])->name('tambahSaldoNasabah.view');
+    Route::get('/masuk_saldo_nasabah',[Masukan::class, 'masukSaldoNasabah'])->name('tambahSaldoNasabah.add');
+    Route::post('/tambah_saldo_nasabah',[Masukan::class, 'add_masukNasabah'])->name('add.SaldoNasabah');
+    Route::get('/tambah_saldo_petugas',[Masukan::class, 'detagihanPetugas'])->name('saldoPetugas.view');
+    Route::get('/masuk_saldo_petugas', [Masukan::class, 'masukSaldoPetugas'])->name('tambahSaldoPetugas.add');
+    Route::post('/tambah_saldo_petugas', [Masukan::class, 'add_masukPetugas'])->name('add.SaldoPetugas');
 });

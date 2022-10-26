@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h3 mb-2 text-gray-800">Tabel Data Masuk Dawis</h1>
+                <h1 class="h3 mb-2 text-gray-800">Tabel Data Masuk Nasabah</h1>
             </div>
             <div class="col">
                 <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="co ">
-                <a href="{{route('page.masuk')}}"><button type="button" class="btn btn-primary">Tambah Data Masuk</button></a>
+                <a href="{{route('tambahSaldoNasabah.add')}}"><button type="button" class="btn btn-primary">Tambah Data Masuk</button></a>
             </div>
         </div>
     </div>

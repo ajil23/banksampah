@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h3 mb-2 text-gray-800">Detail Tagihan Keluar Dawis</h1>
+                <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
             </div>
             <div class="col">
                 <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
@@ -19,7 +19,7 @@
                         Role Struktur
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Dawis</a></li>
+                        <li><a class="dropdown-item" href="{{route('tagihan.view')}}">Dawis</a></li>
                         <li><a class="dropdown-item" href="#">Nasabah</a></li>
                         <li><a class="dropdown-item" href="#">Petugas</a></li>
                     </ul>
@@ -102,6 +102,4 @@
     </div>
 </div>
 <!-- /.container-fluid -->
-
-
 @endsection

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\dawis;
 use App\Models\detailMasukan;
+use App\Models\MasukanSaldoNasabah;
+use App\Models\MasukansaldoPetugas;
+use App\Models\nasabah;
+use App\Models\petugas;
 use App\Models\struktur;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -20,13 +24,13 @@ class Masukan extends Controller
         $dawis = dawis::all();
         return view('backend.user.add_keluar', compact( 'dawis'));
     }
-    public function detagihan()
+    public function detagihanNasabah()
     {
-        $danaMasuk = detailMasukan::join('dawis', 'dawis.id', '=', 'iddawis')
-        ->select('detail_masukan.id', 'dawis.nama','tgl_masukan', 'nominal', 'struktur')
+        $danaMasuk = MasukanSaldoNasabah::join('nasabah', 'nasabah.id', '=', 'idnasabah')
+        ->select('masukan_saldo_nasabah.id', 'nama','tgl_masukan', 'nominal', 'struktur')
         ->get();
         $detailMasukan = detailMasukan::all();
-        return view('backend.user.view_detailtagihan' , compact('danaMasuk', 'detailMasukan'));
+        return view('backend.user.view_saldoNasabah' , compact('danaMasuk', 'detailMasukan'));
     }
     public function pageMasuk($id)
     {
@@ -42,6 +46,45 @@ class Masukan extends Controller
         $data->nominal = $request->nominal;
         $data->save();
         Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('detailtagihan.view')->with('info', 'tambah saldo berhasil');
+        return redirect()->route('tagihan.view')->with('info', 'tambah saldo berhasil');
     }
-}
+    public function masukSaldoNasabah()
+    {
+        $nasabah = nasabah::all();
+        return view('backend.user.add_saldoNasabah', compact('nasabah'));
+    }
+    public function add_masukNasabah(Request $request)
+    {
+        $data = new MasukanSaldoNasabah();
+        $data->tgl_masukan = $request->tgl_masukan;
+        $data->struktur = $request->struktur;
+        $data->idnasabah = $request->idnasabah;
+        $data->nominal = $request->nominal;
+        $data->save();
+        Alert::success('Sukses', 'tambah saldo Berhasil');
+        return redirect()->route('tambahSaldoNasabah.view')->with('info', 'tambah saldo berhasil');
+    }
+    public function detagihanPetugas()
+    {
+        $danaMasuk = MasukansaldoPetugas::join('petugas', 'petugas.id', '=', 'idpetugas')
+        ->select('masukan_saldo_petugas.id', 'nama', 'tgl_masukan', 'nominal', 'struktur')
+        ->get();
+        return view('backend.user.view_saldoPetugas', compact('danaMasuk'));
+    }
+    public function masukSaldoPetugas()
+    {
+        $petugas = petugas::all();
+        return view('backend.user.add_saldoPetugas', compact('petugas'));
+    }
+    public function add_masukPetugas(Request $request)
+    {
+        $data = new MasukansaldoPetugas();
+        $data->tgl_masukan = $request->tgl_masukan;
+        $data->struktur = $request->struktur;
+        $data->idpetugas = $request->idpetugas;
+        $data->nominal = $request->nominal;
+        $data->save();
+        Alert::success('Sukses', 'tambah saldo Berhasil');
+        return redirect()->route('tambahSaldoPetugas.view')->with('info', 'tambah saldo berhasil');
+    }
+} 
