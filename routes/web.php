@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,8 @@ Route::get('/', function () {
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+    // config('jetstream.auth_session'),
+    // 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.index');
@@ -30,8 +31,8 @@ Route::middleware([
 });
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+    // config('jetstream.auth_session'),
+    // 'verified'
 ])->group(function () {
     Route::get('/menu', function () {
         return view('admin.index');
@@ -97,3 +98,6 @@ Route::prefix('tagihan')->group(function(){
     Route::get('/keluar', [Masukan::class, 'detagihanDawis'])->name('kurangSaldoDawis.view');
     Route::get('/keluar_saldo_dawis', [Masukan::class, 'pageKeluarSaldoDawis'])->name('keluarSaldoDawis.view');
 });
+
+
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
