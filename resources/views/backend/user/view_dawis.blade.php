@@ -25,42 +25,31 @@
                     <thead>
                         <tr>
                             <th>no</th>
-                            <th>id</th>
-                            <th>Foto</th>
-                            <th>Nama</th>
-                            <th>no Handphone</th>
-                            <th>Tempat lahir</th>
-                            <th>Tanggal lahir</th>
-                            <th>Aksi</th>
+                            <th>Kode</th>
+                            <th>Nama Dawis</th>
+                            <th>No HP</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>no</th>
-                            <th>id</th>
-                            <th>Foto</th>
-                            <th>Nama</th>
-                            <th>no Handphone</th>
-                            <th>Tempat lahir</th>
-                            <th>Tanggal lahir</th>
-                            <th>Aksi</th>
-
+                            <th>Kode</th>
+                            <th>Nama Dawis</th>
+                            <th>No HP</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($dawis as $dws =>$dawis)
+                        @foreach($data_dawis as $item =>$row)
                         <tr class=" align-middle">
                             <td class="align-middle">{{$loop->iteration}}</td>
-                            <td class=" align-middle">{{$dawis->id}}</td>
-                            <td><img src="{{asset('storage/fotoDawis/'.$dawis->foto)}}" alt="" width="70px"></td>
-                            <td class=" align-middle">{{$dawis->nama}}</td>
-                            <td class=" align-middle">{{$dawis->no_hp}}</td>
-                            <td class=" align-middle">{{$dawis->tmp_lahir}}</td>
-                            <td class=" align-middle">{{$dawis->tgl_lahir}}</td>
-                            <td class=" align-middle">
-                                <a href="{{route('edit_dawis', $dawis->id)}}" class="btn btn-success"> Edit </a>
-                                <a href="{{route('dawis.delete', $dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
-                            </td>
+                            <td class=" align-middle">{{$row->kode}}</td>
+                            <td class=" align-middle">{{$row->nasabah->nama}}</td>
+                            <td class=" align-middle">{{$row->nasabah->no_hp}}</td>
+                            <td class=" align-middle">{{$row->nasabah->tgl_join}}</td>
+                            {{-- <td class=" align-middle">
+                                <a href="{{route('edit_dawis', $data_dawis->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('dawis.delete', $data_dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

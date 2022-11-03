@@ -31,33 +31,33 @@ class AdminController extends Controller
     //dawis
     public function dawis()
     {
-        $data = [
-            'dawis' => dawis::all()
-        ];
-        return view('backend.user.view_dawis', $data);
+        $data_dawis = dawis::all();
+        return view('backend.user.view_dawis', compact('data_dawis'));
     }
     public function add_dawis()
     {
-        return view('backend.user.add_dawis');
+        $data_nasabah = nasabah::all();
+        return view('backend.user.add_dawis',compact('data_nasabah'));
     }
     public function tambah_dawis(Request $request)
     {
-        $data = new dawis();
-        if ($data->foto = $request->file('foto')) {
-            $extension = $request->file('foto')->getClientOriginalExtension();
-            $newbaru = $request->nama . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto')->storeAs('fotoDawis', $newbaru);
-        }
-        $data['foto'] = $newbaru;
-        $data->nama = $request->nama;
-        $data->no_hp = $request->no_hp;
-        // $data->foto = $request->foto;
-        $data->password = bcrypt($request->password);
-        $data->tmp_lahir = $request->tmp_lahir;
-        $data->tgl_lahir = $request->tgl_lahir;
-        $data->save();
+        // $this->validate($request,
+        //     [
+        //         'kode'                  => 'required',
+        //         'nasabah_id'            => 'required',
+        //     ],
+        //     [
+        //         'kode.required'         => "Kode Dawis tidak boleh kosong",
+        //         'nasabah_id.required'   => "Pilih Nasabah",
+        //     ]
+        // );
+        $data_dawis = new dawis();
+        $data_dawis->kode = $request->input('kode');
+        $data_dawis->nasabah_id = $request->nasabah_id;
+
+        $data_dawis->save();
         Alert::success('Sukses', 'Dawis Berhasil Ditambah');
-        return redirect()->route('dawis.view')->with('info', 'Tambah user berhasil');
+        return redirect()->route('dawis.view')->with('info', 'Tambah Dawis berhasil');
     }
     public function dawisDelete($id)
     {
@@ -102,8 +102,7 @@ class AdminController extends Controller
     }
     public function add_nasabah()
     {
-        $dawis = dawis::all();
-        return view('backend.user.add_nasabah', compact('dawis'));
+        return view('backend.user.add_nasabah');
     }
     public function tambah_nasabah(Request $request)
     {
@@ -120,7 +119,6 @@ class AdminController extends Controller
         $data->tgl_join = $request->tgl_join;
         $data->password = bcrypt($request->password);
         $data->tgl_lahir = $request->tgl_lahir;
-        $data->iddawis = $request->iddawis;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
         return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;

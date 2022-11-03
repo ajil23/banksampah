@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('dawis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->unsignedBigInteger('role')->default(1); 
-            $table->foreign('role')->references('id')->on('struktur_role')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('kode');
+            $table->unsignedBigInteger('nasabah_id'); 
+            $table->foreign('nasabah_id')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

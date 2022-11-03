@@ -34,15 +34,6 @@
                         <label for="tgl_lahir">tgl_lahir</label>
                         <input type="date" class="form-control form-control-lg" id="tgl_lahir" placeholder="Repeat Password" name="tgl_lahir" required>
                     </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="">Pilih dawis</label>
-                        <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" required>
-                            <option>Pilih Dawis</option>
-                            @foreach($dawis as $dws =>$dawis)
-                            <option value="{{$dawis->id}}">{{$dawis->nama}}</option>
-                            @endforeach
-                        </select>
-                    </div>
                 </div>
                 <div class="form-group row">
                     
