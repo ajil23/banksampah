@@ -16,14 +16,10 @@ return new class extends Migration
         Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50);
-            // $table->unsignedBigInteger('role')->default(2);
-            // $table->foreign('role')->references('id')->on('struktur_role')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('no_hp', 12);
             $table->string('foto', 50);
             $table->date('tgl_join');
             $table->date('tgl_lahir');
-            // $table->unsignedBigInteger('iddawis');
-            // $table->foreign('iddawis')->references('id')->on('dawis')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
