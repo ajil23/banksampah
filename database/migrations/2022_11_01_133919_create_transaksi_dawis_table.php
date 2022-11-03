@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('masukan_saldo_petugas', function (Blueprint $table) {
+        Schema::create('transaksi_dawis', function (Blueprint $table) {
             $table->id();
             $table->date('tgl_masukan');
             $table->integer('nominal');
             $table->string('struktur', 20);
-            $table->unsignedBigInteger('idpetugas');
-            $table->foreign('idpetugas')->references('id')->on('petugas')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('transaksi', 20);
+            $table->unsignedBigInteger('iddawis');
+            $table->foreign('iddawis')->references('id')->on('dawis')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('masukan_saldo_petugas');
+        Schema::dropIfExists('transaksi_dawis');
     }
 };

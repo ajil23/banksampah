@@ -27,14 +27,6 @@ class AdminController extends Controller
         return redirect('/');
     }
 
-    public function viewtagihan()
-    {
-        $danaMasuk = detailMasukan::join('dawis', 'dawis.id', '=', 'iddawis')
-        ->select('detail_masukan.id', 'dawis.nama', 'tgl_masukan', 'nominal', 'struktur')
-        ->get();
-        $detailMasukan = detailMasukan::all();
-        return view('backend.user.view_tagihan', compact('danaMasuk', 'detailMasukan'));
-    }
 
     //dawis
     public function dawis()

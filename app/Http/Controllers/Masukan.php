@@ -10,12 +10,20 @@ use App\Models\MasukansaldoPetugas;
 use App\Models\nasabah;
 use App\Models\petugas;
 use App\Models\struktur;
+use App\Models\transaksiDawis;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class Masukan extends Controller
 {
+    public function transaksiDawis()
+    {
+        $danaMasuk = transaksiDawis::join('dawis', 'dawis.id', '=', 'iddawis')
+        ->select('transaksi_dawis.id', 'nama', 'tgl_masukan', 'nominal', 'struktur', 'transaksi')
+        ->get();
+        return view('backend.user.view_tagihan', compact('danaMasuk'));
+    }
     public function masukSaldo(){
         $dawis = dawis::all();
         return view('backend.user.add_masukDawis', compact( 'dawis'));
@@ -35,16 +43,21 @@ class Masukan extends Controller
     }
     public function pageMasuk($id)
     {
-        $masuk = detailMasukan::Find($id);
+        $masuk = transaksiDawis::Find($id);
         return view('backend.user.masukSaldo', compact('masuk'));
     }
     public function add_masuk(Request $request)
     {
-        $data = new detailMasukan();
+       
+        $data = new transaksiDawis();
         $data->tgl_masukan = $request->tgl_masukan;
         $data->struktur = $request->struktur;
         $data->iddawis = $request->iddawis;
         $data->nominal = $request->nominal;
+        $data->transaksi = 'Masuk';
+        $barang = dawis::find($request->iddawis);
+        $barang->saldo += $request->nominal;
+        $barang->save();
         $data->save();
         Alert::success('Sukses', 'tambah saldo Berhasil');
         return redirect()->route('tagihan.view')->with('info', 'tambah saldo berhasil');
@@ -102,15 +115,18 @@ class Masukan extends Controller
     }
     public function KeluarSaldoDawis(Request $request)
     {
-        $data = new keluarSaldoDawis();
-        $data->tgl_tagihan = $request->tgl_tagihan;
-        $data->tgl_tempo = $request->tgl_tempo;
-        $data->keterangan_keluar = $request->keterangan_keluar;
+        $data = new transaksiDawis();
+        $data->tgl_masukan = $request->tgl_masukan;
+        $data->struktur = $request->struktur;
         $data->iddawis = $request->iddawis;
         $data->nominal = $request->nominal;
+        $data->transaksi = 'Keluar';
+        $barang = dawis::find($request->iddawis);
+        $barang->saldo -= $request->nominal;
+        $barang->save();
         $data->save();
-        Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('kurangSaldoDawis.view')->with('info', 'tambah saldo berhasil');
+        Alert::success('Sukses', 'Keluar saldo Berhasil');
+        return redirect()->route('tagihan.view')->with('info', 'tambah saldo berhasil');
     }
 
 } 

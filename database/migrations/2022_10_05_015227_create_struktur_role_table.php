@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dawis', function (Blueprint $table) {
+        Schema::create('struktur_role', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->unsignedBigInteger('role')->default(1);
-            $table->foreign('role')->references('id')->on('struktur_role')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('role', 15);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dawis');
+        Schema::dropIfExists('struktur_role');
     }
 };

@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="co ">
-                <a href="{{route('page.masuk')}}"><button type="button" class="btn btn-primary">Tambah Data Masuk</button></a>
+                <a href="{{route('page.masuk')}}"><button type="button" class="btn btn-primary">Tambah</button></a>
+                <a href="{{route('keluarSaldoDawis.view')}}"><button type="button" class="btn btn-danger">Keluar</button></a>
             </div>
         </div>
     </div>
@@ -40,9 +41,10 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Struktur</th>
-                            <th>Keterangan Masuk</th>
-                            <th>Dana Masuk</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Keterangan</th>
+                            <th>transaksi</th>
+                            <th>Dana</th>
+                            <th>Tanggal</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -50,18 +52,20 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Struktur</th>
-                            <th>Keterangan Masuk</th>
-                            <th>Dana Masuk</th>
-                            <th>Tanggal Masuk</th>
+                            <th>Keterangan</th>
+                            <th>transaksi</th>
+                            <th>Dana</th>
+                            <th>Tanggal</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach($danaMasuk as $tgh =>$tagihan)
                         <tr>
-                            <td>{{$tagihan->id}}</td>
+                            <td>{{$tgh+1}}</td>
                             <td>{{$tagihan->nama}}</td>
                             <td>{{$tagihan->struktur}}</td>
                             <td>Dana Dari Sampah</td>
+                            <td>{{$tagihan->transaksi}}</td>
                             <td>{{$tagihan->nominal}}</td>
                             <td>{{$tagihan->tgl_masukan}}</td>
                         </tr>

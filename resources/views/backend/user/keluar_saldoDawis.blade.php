@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="">Pilih Nasabah</label>
+                        <label for="">Pilih Dawis</label>
                         <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" required>
                             <option>Pilih dawis</option>
                             @foreach($dawis as $dws =>$dawis)
@@ -34,18 +34,8 @@
                         <input type="text" class="form-control form-control-lg" id="password" placeholder="Nominal" name="nominal">
                     </div>
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="keterangan">Keterangan</label>
-                        <input type="text" class="form-control form-control-lg" id="keterangan" placeholder="Keterangan" name="keterangan_keluar">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="tgl_join">Tanggal Keluar</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_tagihan" required>
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="tgl_tempo">Tanggal Tempo</label>
-                        <input type="date" class="form-control form-control-lg" id="tgl_tempo" placeholder="Email Address" name="tgl_tempo" required>
+                        <input type="date" class="form-control form-control-lg" id="tgl_join" placeholder="Email Address" name="tgl_masukan" required>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-icon-split">
