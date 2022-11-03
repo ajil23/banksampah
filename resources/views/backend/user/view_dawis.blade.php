@@ -28,6 +28,7 @@
                             <th>Kode</th>
                             <th>Nama Dawis</th>
                             <th>No HP</th>
+                            <th>Tanggal Join</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -36,6 +37,7 @@
                             <th>Kode</th>
                             <th>Nama Dawis</th>
                             <th>No HP</th>
+                            <th>Tanggal Join</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -46,10 +48,10 @@
                             <td class=" align-middle">{{$row->nasabah->nama}}</td>
                             <td class=" align-middle">{{$row->nasabah->no_hp}}</td>
                             <td class=" align-middle">{{$row->nasabah->tgl_join}}</td>
-                            {{-- <td class=" align-middle">
+                            <!-- {{-- <td class=" align-middle">
                                 <a href="{{route('edit_dawis', $data_dawis->id)}}" class="btn btn-success"> Edit </a>
                                 <a href="{{route('dawis.delete', $data_dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
-                            </td> --}}
+                            </td> --}} -->
                         </tr>
                         @endforeach
                     </tbody>
