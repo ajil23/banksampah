@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class dawis extends Model
 {
     use HasFactory;
-    protected $table = 'dawis';
-    protected $primaryKey = 'id';
-    public $timestamps = true;
+    protected $fillable = [
+        'kode',
+        'nasabah_id'
+    ];
+
+    public function nasabah(){
+        return $this->belongsTo(nasabah::class,'nasabah_id','id');
+    }
 }

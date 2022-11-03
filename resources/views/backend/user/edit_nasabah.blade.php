@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class=" form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    {{-- <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="">Pilih dawis</label>
                         <select class="form-control form-control-lg  mb-3 mb-sm-0" name="iddawis" value="{{$editData->iddawis}}">
                             <option>Dawis</option>
@@ -38,7 +38,7 @@
                             <option value="{{$dawis->id}}">{{$dawis->nama}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="password">Password</label>
                         <input type="password" class="form-control form-control-lg" id="password" placeholder="Password" name="password">

@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('dawis', function (Blueprint $table) {
-            $table->string('password', 100);
+        Schema::create('dawis', function (Blueprint $table) {
+            $table->id();
+            $table->string('kode');
+            $table->unsignedBigInteger('nasabah_id');
+            $table->foreign('nasabah_id')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -26,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('dawis', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('dawis');
     }
 };
