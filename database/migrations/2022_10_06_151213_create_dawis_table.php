@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dawis', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
-            $table->unsignedBigInteger('nasabah_id');
+            $table->unsignedBigInteger('nasabah_id'); 
             $table->foreign('nasabah_id')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
