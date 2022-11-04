@@ -99,6 +99,14 @@ Route::prefix('tagihan')->group(function(){
     Route::get('/keluar_saldo_dawis', [Masukan::class, 'pageKeluarSaldoDawis'])->name('keluarSaldoDawis.view');
     Route::post('kurang_saldo_dawis',[Masukan::class, 'KeluarSaldoDawis'])->name('kurangSaldoDawis.add');
 });
-
+Route::prefix('penduduk')->group(function () {
+    //sampah
+    Route::get('/daftarpenduduk', [AdminController::class, 'daftarPenduduk'])->name('penduduk.view');
+    Route::get('/tambahpenduduk', [AdminController::class, 'tambahPenduduk'])->name('tambahPenduduk.view');
+    Route::get('/deletependuduk/{id}', [AdminController::class, 'deletePenduduk'])->name('penduduk.delete');
+    Route::get('/editpenduduk/{id}', [AdminController::class, 'editPenduduk'])->name('penduduk.edit');
+    Route::post('/updatependuduk/{id}', [AdminController::class, 'updatePenduduk'])->name('penduduk.update');
+    Route::post('/pendudukBaru', [AdminController::class, 'pendudukBaru'])->name('pendudukBaru');
+});
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
