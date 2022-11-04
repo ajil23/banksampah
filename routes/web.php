@@ -58,7 +58,7 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/add_dawis', [AdminController::class, 'add_dawis'])->name('add_dawis.view');
     Route::post('/tambah_dawis', [AdminController::class, 'tambah_dawis'])->name('tambah_dawis');
     Route::get('/deleteDawis/{id}', [AdminController::class, 'dawisDelete'])->name('dawis.delete');
-    Route::get('/edit_dawis/{id}', [AdminController::class, 'edit_dawis'])->name('edit_dawis');
+    Route::get('/edit_dawis/{id}', [AdminController::class, 'edit_dawis'])->name('dawis.edit');
     Route::post('/update_dawis/{id}', [AdminController::class, 'dawisUpdate'])->name('dawis.update');
     //endawis
     //petugas

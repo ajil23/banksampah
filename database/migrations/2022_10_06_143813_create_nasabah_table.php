@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('nasabah', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->string('no_hp', 12);
-            $table->string('foto', 50);
-            $table->date('tgl_join');
-            $table->date('tgl_lahir');
+            $table->unsignedBigInteger('penduduk_id'); 
+            $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('username');
+            $table->string('password');
+            $table->string('foto');
+            $table->unsignedInteger('saldo');
+            $table->date('tgl_daftar');
+            $table->timestamps();
         });
     }
 

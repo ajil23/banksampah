@@ -28,7 +28,7 @@
                             <th>Kode</th>
                             <th>Nama Dawis</th>
                             <th>No HP</th>
-                            <th>Tanggal Join</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -37,7 +37,7 @@
                             <th>Kode</th>
                             <th>Nama Dawis</th>
                             <th>No HP</th>
-                            <th>Tanggal Join</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -52,6 +52,10 @@
                                 <a href="{{route('edit_dawis', $data_dawis->id)}}" class="btn btn-success"> Edit </a>
                                 <a href="{{route('dawis.delete', $data_dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td> --}} -->
+                            <td class=" align-middle">
+                                <a href="{{route('dawis.edit', $row->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('dawis.delete', $row->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
