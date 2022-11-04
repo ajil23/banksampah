@@ -28,7 +28,7 @@
                             @enderror
                     </div>
                 </div>
-                {{-- <div class="form-group row">
+                <!-- {{-- <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="password">Password</label>
                         <input type="password" class="form-control form-control-lg" id="password" placeholder="Name" name="password">
@@ -47,7 +47,7 @@
                         <label for="exampleFormControlFile1">Masukan Foto</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>
                     </div>
-                </div> --}}
+                </div> --}} -->
                 <button class="btn btn-primary btn-icon-split " style="float: right;">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>

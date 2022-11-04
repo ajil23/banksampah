@@ -47,6 +47,11 @@
                             <td class=" align-middle">{{$row->kode}}</td>
                             <td class=" align-middle">{{$row->nasabah->nama}}</td>
                             <td class=" align-middle">{{$row->nasabah->no_hp}}</td>
+                            <td class=" align-middle">{{$row->nasabah->tgl_join}}</td>
+                            <!-- {{-- <td class=" align-middle">
+                                <a href="{{route('edit_dawis', $data_dawis->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('dawis.delete', $data_dawis->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                            </td> --}} -->
                             <td class=" align-middle">
                                 <a href="{{route('dawis.edit', $row->id)}}" class="btn btn-success"> Edit </a>
                                 <a href="{{route('dawis.delete', $row->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
