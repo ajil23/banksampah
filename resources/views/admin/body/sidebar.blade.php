@@ -35,7 +35,7 @@
          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Jenis Pengguna:</h6>
-                 <a class="collapse-item" href="{{route('dawis.view')}}">Dawis</a>
+                 <a class="collapse-item" href="{{route('penduduk.view')}}">Penduduk</a>
                  <a class="collapse-item" href="{{route('nasabah.view')}}">Nasabah</a>
                  <a class="collapse-item" href="{{route('petugas.view')}}">Petugas</a>
              </div>

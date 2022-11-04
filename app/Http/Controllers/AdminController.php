@@ -8,6 +8,7 @@ use App\Models\petugas;
 use App\Models\sampah;
 use App\Models\struktur;
 use App\Models\tagihan;
+use App\Models\Penduduk;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Console\View\Components\Alert as ComponentsAlert;
 use Illuminate\Http\Request;
@@ -281,5 +282,61 @@ class AdminController extends Controller
         $data->save();
         Alert::success('Sukses', 'Sampah Berhasil Diupdate');
         return redirect()->route('sampah.view')->with('info', 'Edit sampah berhasil');
+    }
+
+    //penduduk
+    public function daftarPenduduk()
+    {
+        $datapenduduk['allDataPenduduk']=Penduduk::all();
+        return view('backend.user.view_penduduk', $datapenduduk);
+    } 
+
+    public function penduduk()
+    {
+        $datapenduduk = [
+            'penduduk' => penduduk::all()
+        ];
+        return view('backend.user.view_penduduk', $datapenduduk);
+    }
+    public function tambahPenduduk()
+    {
+        return view('backend.user.add_penduduk');
+    }
+    public function pendudukBaru(Request $request)
+    {
+        $datapenduduk = new penduduk();
+        $datapenduduk->namaLengkap = $request->nama;
+        $datapenduduk->tmp_lahir = $request->tempatlahir;
+        $datapenduduk->tgl_lahir = $request->tanggallahir;
+        $datapenduduk->alamat = $request->alamat;
+        $datapenduduk->jenis_kelamin = $request->gender;
+        $datapenduduk->no_hp = $request->telepon;
+        $datapenduduk->save();
+        Alert::success('Sukses', 'Penduduk Berhasil Ditambah');
+        return redirect()->route('penduduk.view')->with('info', 'Tambah Penduduk berhasil') ;
+    }
+    public function deletePenduduk($id)
+    {
+        $deletependuduk = penduduk::find($id);
+        $deletependuduk->delete();
+        return redirect()->route('penduduk.view')->with('info', 'Penduduk berhasil dihapus');
+    }
+    public function editPenduduk($id)
+    {
+        $editPenduduk = penduduk::find($id);
+        return view('backend.user.edit_Penduduk', compact('editPenduduk'));
+    }
+    public function updatePenduduk(Request $request, $id)
+    {
+        $datapenduduk = penduduk::find($id);
+        $datapenduduk->namaLengkap = $request->nama;
+        $datapenduduk->tmp_lahir = $request->tempatlahir;
+        $datapenduduk->tgl_lahir = $request->tanggallahir;
+        $datapenduduk->alamat = $request->alamat;
+        $datapenduduk->jenis_kelamin = $request->gender;
+        $datapenduduk->no_hp = $request->telepon;
+        $datapenduduk->save();
+        Alert::success('Sukses', 'penduduk Berhasil Diupdate');
+        return redirect()->route('penduduk.view')->with('info', 'Edit penduduk berhasil');
     }
 }
