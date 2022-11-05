@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Masukan;
+use App\Http\Controllers\NasabahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,12 +47,12 @@ Route::prefix('transaksi')->group(function () {
 });
 Route::prefix('pengguna')->group(function () {
     //nasabah
-    Route::get('/nasabah', [AdminController::class, 'nasabah'])->name('nasabah.view');
-    Route::get('/add_nasabah',[AdminController::class, 'add_nasabah'])->name('add_nasabah.view');
-    Route::get('/edit_nasabah/{id}',[AdminController::class, 'edit_nasabah'])->name('edit_nasabah');
-    Route::post('/update_nasabah/{id}', [AdminController::class, 'nasabahUpdate'])->name('nasabah.update');
-    Route::post('/tambah_nasabah',[AdminController::class, 'tambah_nasabah'])->name('tambah_nasabah');
-    Route::get('/deleteNasabah/{id}', [AdminController::class, 'nasabahDelete'])->name('nasabah.delete');
+    Route::get('/nasabah', [NasabahController::class, 'index'])->name('nasabah.view');
+    Route::get('/add_nasabah',[NasabahController::class, 'create'])->name('add_nasabah.view');
+    Route::get('/edit_nasabah/{id}',[NasabahController::class, 'edit'])->name('nasabah.edit');
+    Route::put('/update_nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
+    Route::post('/tambah_nasabah',[NasabahController::class, 'store'])->name('nasabah.store');
+    Route::get('/deleteNasabah/{id}', [NasabahController::class, 'destroy'])->name('nasabah.delete');
     //endnasabah
     //dawis
     Route::get('/dawis', [AdminController::class, 'dawis'])->name('dawis.view');

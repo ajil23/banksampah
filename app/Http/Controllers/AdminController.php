@@ -108,22 +108,35 @@ class AdminController extends Controller
     }
     public function tambah_nasabah(Request $request)
     {
-        $data = new nasabah();
-        if ($data->foto = $request->file('foto')) {
-            $extension = $request->file('foto')->getClientOriginalExtension();
-            $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
-            $request->file('foto')->storeAs('fotoNasabah', $newName);
-        }
-        $data['foto'] = $newName;
-        $data->nama = $request->nama;
-        $data->no_hp = $request->no_hp;
-        // $data->foto = $request->foto;
-        $data->tgl_join = $request->tgl_join;
-        $data->password = bcrypt($request->password);
-        $data->tgl_lahir = $request->tgl_lahir;
-        $data->save();
-        Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
-        return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;
+        $this->validate($request,
+            [
+                'penduduk'              => 'required',
+                'username'
+            ],
+            [
+                'kode.required'         => "Kode Dawis tidak boleh kosong",
+                'nasabah_id.required'   => "Pilih Nasabah",
+            ]
+        );
+
+        $dataNasabah = new nasabah();
+
+        // $data = new nasabah();
+        // if ($data->foto = $request->file('foto')) {
+        //     $extension = $request->file('foto')->getClientOriginalExtension();
+        //     $newName = $request->nama . '-' . now()->timestamp . '.' . $extension;
+        //     $request->file('foto')->storeAs('fotoNasabah', $newName);
+        // }
+        // $data['foto'] = $newName;
+        // $data->nama = $request->nama;
+        // $data->no_hp = $request->no_hp;
+        // // $data->foto = $request->foto;
+        // $data->tgl_join = $request->tgl_join;
+        // $data->password = bcrypt($request->password);
+        // $data->tgl_lahir = $request->tgl_lahir;
+        // $data->save();
+        // Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
+        // return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;
     }
     public function edit_nasabah($id)
     {

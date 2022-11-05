@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('foto');
-            $table->unsignedInteger('saldo');
+            $table->unsignedInteger('saldo')->default(0);
             $table->date('tgl_daftar');
             $table->timestamps();
         });

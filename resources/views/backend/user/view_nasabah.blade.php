@@ -25,42 +25,39 @@
                     <thead>
                         <tr>
                             <th>no</th>
-                            <th>id</th>
+                            <th>Username</th>
                             <th>Foto</th>
-                            <th>Nama</th>
-                            <th>no Handphone</th>
-                            <th>Tanggal Join</th>
-                            <th>Tanggal lahir</th>
+                            <th>Nama Lengkap</th>
+                            <th>Saldo</th>
+                            <th>Tanggal Daftar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>no</th>
-                            <th>id</th>
+                            <th>Username</th>
                             <th>Foto</th>
-                            <th>Nama</th>
-                            <th>no Handphone</th>
-                            <th>Tanggal Join</th>
-                            <th>Tanggal lahir</th>
+                            <th>Nama Lengkap</th>
+                            <th>Saldo</th>
+                            <th>Tanggal Daftar</th>
                             <th>Aksi</th>
-
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach($nasabah as $nsb =>$nasabah)
+                        @foreach($dataNasabah as $item =>$row)
                         <tr class=" align-middle">
                             <td class="align-middle">{{$loop->iteration}}</td>
-                            <td class="align-middle">{{$nasabah->id}}</td>
-                            <td><img src="{{asset('storage/fotoNasabah/'.$nasabah->foto)}}" alt="" width="70px"></td>
-                            <td class="align-middle">{{$nasabah->nama}}</td>
-                            <td class="align-middle">{{$nasabah->no_hp}}</td>
-                            <td class="align-middle">{{$nasabah->tgl_join}}</td>
-                            <td class="align-middle">{{$nasabah->tgl_lahir}}</td>
-                            <td class="align-middle">
-                                <a href="{{route('edit_nasabah', $nasabah->id)}}" class="btn btn-success"> Edit </a>
-                                <!-- Button trigger modal -->
-                                <a href="{{route('nasabah.delete', $nasabah->id)}}" id="delete"><button type="button" class="btn btn-danger delete" >Hapus</button></a>
+                            <td class=" align-middle">{{$row->username}}</td>
+                            <td>
+                                <img src="{{asset('fotoNasabah/'.$row->foto)}}" width="50px" height="50px" alt="gambar"> 
+                            </td>
+                            <td class=" align-middle">{{$row->penduduk->namaLengkap}}</td>
+                            <td class=" align-middle">{{$row->saldo}}</td>
+                            <td class=" align-middle">{{$row->tgl_daftar}}</td>
+                            <td class=" align-middle">
+                                <a href="{{route('nasabah.edit', $row->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('nasabah.delete', $row->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach
