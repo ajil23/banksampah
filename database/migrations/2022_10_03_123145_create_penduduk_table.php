@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('tmp_lahir');
             $table->date('tgl_lahir');
             $table->string('alamat');
-            $table->string('jenis_kelamin');
+            $table->string('jenis_kelamin')->nullable();
             $table->string('no_hp');
             $table->timestamps();
         });

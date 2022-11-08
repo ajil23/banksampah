@@ -322,7 +322,7 @@ class AdminController extends Controller
         $datapenduduk->tmp_lahir = $request->tempatlahir;
         $datapenduduk->tgl_lahir = $request->tanggallahir;
         $datapenduduk->alamat = $request->alamat;
-        $datapenduduk->jenis_kelamin = $request->gender;
+        $datapenduduk->jenis_kelamin = $request->select;
         $datapenduduk->no_hp = $request->telepon;
         $datapenduduk->save();
         Alert::success('Sukses', 'Penduduk Berhasil Ditambah');
@@ -346,7 +346,7 @@ class AdminController extends Controller
         $datapenduduk->tmp_lahir = $request->tempatlahir;
         $datapenduduk->tgl_lahir = $request->tanggallahir;
         $datapenduduk->alamat = $request->alamat;
-        $datapenduduk->jenis_kelamin = $request->gender;
+        $datapenduduk->jenis_kelamin = $request->select;
         $datapenduduk->no_hp = $request->telepon;
         $datapenduduk->save();
         Alert::success('Sukses', 'penduduk Berhasil Diupdate');
