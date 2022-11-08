@@ -32,13 +32,21 @@
                     </div>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="Jenis">Jenis Kelamin</label>
-                        <input type="text" class="form-control form-control-lg" id="gender" placeholder="Jenis Kelamin" name="gender">
+                        <div class="form-group">
+                            <h5>Pilih Jenis Kelamin<span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <select name="select" id="select" required class="form-control">
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-sm-6">
                         <label for="telepon">Telepon</label>
-                        <input type="text" class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon">
+                        <input type="number" class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon">
                     </div>
                 </div>
                

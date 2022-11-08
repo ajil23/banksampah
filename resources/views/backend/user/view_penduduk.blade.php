@@ -24,7 +24,6 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>id</th>
                             <th>Nama Lengkap</th>
                             <th>Tempat</th>
                             <th>Tanggal Lahir</th>
@@ -34,24 +33,10 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>id</th>
-                            <th>Nama Lengkap</th>
-                            <th>Tempat</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Alamat</th>
-                            <th>Gender</th>
-                            <th>Telepon</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                     @foreach($allDataPenduduk as $pdk =>$penduduk)
                         <tr>
                             <td class="align-middle">{{$loop->iteration}}</td>
-                            <td>{{$penduduk->id}}</td>
                             <td>{{$penduduk->namaLengkap}}</td>
                             <td>{{$penduduk->tmp_lahir}}</td>
                             <td>{{$penduduk->tgl_lahir}}</td>

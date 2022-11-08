@@ -11,7 +11,7 @@
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="Name">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-lg" id="nama" placeholder="Nama Lengkap" name="nama" value="{{$editPenduduk->namalengkap}}" required>
+                        <input type="text" class="form-control form-control-lg" id="nama" placeholder="Nama Lengkap" name="nama" value="{{$editPenduduk->namaLengkap}}" required>
                         <br>
                     </div>
                         
@@ -39,7 +39,7 @@
 
                     <div class="col-sm-6">
                         <label for="telepon">Telepon</label>
-                        <input type="text" class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon" value="{{$editPenduduk->telepon}}" required>    
+                        <input type="text" class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon" value="{{$editPenduduk->no_hp}}" required>    
                     </div>
                 </div>
                 <button class="btn btn-primary btn-icon-split">
