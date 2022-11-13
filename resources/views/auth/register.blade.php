@@ -74,9 +74,9 @@
                                 </button>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="{{ route('login') }}">Sudah punya akun? Silahkan Login</a>
-                            </div>
+                            {{-- <div class="text-center">
+                               
+                            </div> --}}
                         </div>
                     </div>
                 </div>

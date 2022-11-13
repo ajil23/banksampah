@@ -58,7 +58,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('register')}}">Belum punya akun?</a>
+                                        <a class="small" href="{{route('register')}}">Belum punya akun? Daftar disini</a>
                                     </div>
                                 </div>
                             </div>
