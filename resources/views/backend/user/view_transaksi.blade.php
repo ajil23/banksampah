@@ -8,19 +8,18 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
+                <h1 class="h3 mb-2 text-gray-800">Tabel Data Transaksi</h1>
             </div>
             <div class="col">
                 <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
             </div>
-           
+
             <div class="co ">
-                <a href="{{route('keluarSaldo.view')}}"><button type="button" class="btn btn-primary">Tambah Data Keluar</button></a>
+                <a href="{{route('page.masuk')}}"><button type="button" class="btn btn-primary">Tambah</button></a>
+               
             </div>
         </div>
     </div>
-
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -30,27 +29,32 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Keterangan Keluar</th>
+                            <th>Keterangan Pembelian</th>
                             <th>Nominal</th>
                             <th>Tanggal Transaksi</th>
+                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Keterangan Keluar</th>
+                            <th>Keterangan Pembelian</th>
                             <th>Nominal</th>
-                            <th>Tanggal Transaksi</th>
+                            <th>Tnggal Transaksi</th>
+                            <th>Detail</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        
+                       
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
 </div>
 <!-- /.container-fluid -->
+
+
 @endsection

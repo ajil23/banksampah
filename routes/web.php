@@ -83,22 +83,18 @@ Route::prefix('sampah')->group(function () {
     Route::post('/updatesampah/{id}', [AdminController::class, 'sampahUpdate'])->name('sampah.update');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
+Route::get('/ajax_pembayaran', [Masukan::class, 'ajax']);
+Route::get('/ajax', [Masukan::class, 'ajax2']);
 Route::prefix('tagihan')->group(function(){
     //tagihan
     Route::get('/masuk_saldo', [Masukan::class, 'masukSaldo'])->name('page.masuk');
     Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
-    Route::get('/masuk', [Masukan::class, 'transaksiDawis'])->name('tagihan.view');
-    Route::get('/detail', [Masukan::class, 'detagihan'])->name('masukanDawis.view');
-    Route::post('/tambahSaldoDawis', [Masukan::class,'add_masuk'])->name('tambahSaldoDawis');
-    Route::get('/masuk_nasabah',[Masukan::class, 'detagihanNasabah'])->name('tambahSaldoNasabah.view');
+    Route::get('/masuk', [Masukan::class, 'transaksi'])->name('tagihan.view');
     Route::get('/masuk_saldo_nasabah',[Masukan::class, 'masukSaldoNasabah'])->name('tambahSaldoNasabah.add');
-    Route::post('/tambah_saldo_nasabah',[Masukan::class, 'add_masukNasabah'])->name('add.SaldoNasabah');
-    Route::get('/tambah_saldo_petugas',[Masukan::class, 'detagihanPetugas'])->name('saldoPetugas.view');
-    Route::get('/masuk_saldo_petugas', [Masukan::class, 'masukSaldoPetugas'])->name('tambahSaldoPetugas.add');
-    Route::post('/tambah_saldo_petugas', [Masukan::class, 'add_masukPetugas'])->name('add.SaldoPetugas');
-    Route::get('/keluar', [Masukan::class, 'detagihanDawis'])->name('kurangSaldoDawis.view');
-    Route::get('/keluar_saldo_dawis', [Masukan::class, 'pageKeluarSaldoDawis'])->name('keluarSaldoDawis.view');
-    Route::post('kurang_saldo_dawis',[Masukan::class, 'KeluarSaldoDawis'])->name('kurangSaldoDawis.add');
+    Route::get('/kurang_saldo', [Masukan::class, 'pengambilanSampah'])->name('kurangSaldo.view');
+    Route::get('/keluar_saldo_nasabah', [Masukan::class, 'pageKeluarSaldo'])->name('keluarSaldo.view');
+    Route::post('/add_kurang_saldo',[Masukan::class, 'kurangSaldo'])->name('kurangSaldo.add');
+    Route::post('/add_saldo',[Masukan::class, 'detailTransaksi'])->name('saldo.add');
 });
 Route::prefix('penduduk')->group(function () {
     //sampah

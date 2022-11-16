@@ -9,7 +9,9 @@ use App\Models\MasukanSaldoNasabah;
 use App\Models\MasukansaldoPetugas;
 use App\Models\nasabah;
 use App\Models\petugas;
+use App\Models\sampah;
 use App\Models\struktur;
+use App\Models\Transaksi;
 use App\Models\transaksiDawis;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -17,116 +19,80 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class Masukan extends Controller
 {
-    public function transaksiDawis()
+
+    public function transaksi()
     {
-        $danaMasuk = transaksiDawis::join('dawis', 'dawis.id', '=', 'iddawis')
-        ->select('transaksi_dawis.id', 'nama', 'tgl_masukan', 'nominal', 'struktur', 'transaksi')
-        ->get();
-        return view('backend.user.view_tagihan', compact('danaMasuk'));
+        return view('backend.user.view_transaksi');
     }
-    public function masukSaldo(){
-        $dawis = dawis::all();
-        return view('backend.user.add_masukDawis', compact( 'dawis'));
-    }
-    public function keluarSaldo()
+
+    public function masukSaldo()
     {
-        $dawis = dawis::all();
-        return view('backend.user.add_keluar', compact( 'dawis'));
+        $nasabah = nasabah::all();
+        $sampah = sampah::all();
+        return view('backend.user.add_masukSaldo', compact('nasabah', 'sampah'));
     }
-    public function detagihanNasabah()
-    {
-        $danaMasuk = MasukanSaldoNasabah::join('nasabah', 'nasabah.id', '=', 'idnasabah')
-        ->select('masukan_saldo_nasabah.id', 'nama','tgl_masukan', 'nominal', 'struktur')
-        ->get();
-        $detailMasukan = detailMasukan::all();
-        return view('backend.user.view_saldoNasabah' , compact('danaMasuk', 'detailMasukan'));
-    }
-    public function pageMasuk($id)
-    {
-        $masuk = transaksiDawis::Find($id);
-        return view('backend.user.masukSaldo', compact('masuk'));
-    }
-    public function add_masuk(Request $request)
-    {
-       
-        $data = new transaksiDawis();
-        $data->tgl_masukan = $request->tgl_masukan;
-        $data->struktur = $request->struktur;
-        $data->iddawis = $request->iddawis;
-        $data->nominal = $request->nominal;
-        $data->transaksi = 'Masuk';
-        $barang = dawis::find($request->iddawis);
-        $barang->saldo += $request->nominal;
-        $barang->save();
-        $data->save();
-        Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('tagihan.view')->with('info', 'tambah saldo berhasil');
-    }
+
+
     public function masukSaldoNasabah()
     {
         $nasabah = nasabah::all();
         return view('backend.user.add_saldoNasabah', compact('nasabah'));
     }
-    public function add_masukNasabah(Request $request)
+
+
+    public function pengambilanSampah()
     {
-        $data = new MasukanSaldoNasabah();
-        $data->tgl_masukan = $request->tgl_masukan;
-        $data->struktur = $request->struktur;
-        $data->idnasabah = $request->idnasabah;
+        return view('backend.user.view_detailtagihan', );
+    }
+    public function pageKeluarSaldo()
+    {
+        $nasabah = nasabah::all();
+        return view('backend.user.keluar_saldo', compact('nasabah'));
+    }
+    public function kurangSaldo(Request $request)
+    {
+        $data = new Transaksi();
+        $data->tgl_transaksi = $request->tgl_transaksi;
+        $data->nasabah_id = $request->nasabah_id;
         $data->nominal = $request->nominal;
-        $data->save();
-        Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('tambahSaldoNasabah.view')->with('info', 'tambah saldo berhasil');
-    }
-    public function detagihanPetugas()
-    {
-        $danaMasuk = MasukansaldoPetugas::join('petugas', 'petugas.id', '=', 'idpetugas')
-        ->select('masukan_saldo_petugas.id', 'nama', 'tgl_masukan', 'nominal', 'struktur')
-        ->get();
-        return view('backend.user.view_saldoPetugas', compact('danaMasuk'));
-    }
-    public function masukSaldoPetugas()
-    {
-        $petugas = petugas::all();
-        return view('backend.user.add_saldoPetugas', compact('petugas'));
-    }
-    public function add_masukPetugas(Request $request)
-    {
-        $data = new MasukansaldoPetugas();
-        $data->tgl_masukan = $request->tgl_masukan;
-        $data->struktur = $request->struktur;
-        $data->idpetugas = $request->idpetugas;
-        $data->nominal = $request->nominal;
-        $data->save();
-        Alert::success('Sukses', 'tambah saldo Berhasil');
-        return redirect()->route('tambahSaldoPetugas.view')->with('info', 'tambah saldo berhasil');
-    }
-    public function detagihanDawis()
-    {
-       $danaMasuk = keluarSaldoDawis::join('dawis', 'dawis.id', '=', 'iddawis')
-        ->select('keluar_saldo_dawis.id', 'nama', 'tgl_tagihan', 'nominal', 'keterangan_keluar', 'tgl_tempo')
-        ->get();
-        return view('backend.user.view_detailtagihan', compact('danaMasuk'));
-    }
-    public function pageKeluarSaldoDawis()
-    {
-        $dawis = dawis::all();
-        return view('backend.user.keluar_saldoDawis', compact('dawis'));
-    }
-    public function KeluarSaldoDawis(Request $request)
-    {
-        $data = new transaksiDawis();
-        $data->tgl_masukan = $request->tgl_masukan;
-        $data->struktur = $request->struktur;
-        $data->iddawis = $request->iddawis;
-        $data->nominal = $request->nominal;
-        $data->transaksi = 'Keluar';
-        $barang = dawis::find($request->iddawis);
-        $barang->saldo -= $request->nominal;
-        $barang->save();
+        $data->keterangan_pembelian = $request->keterangan_pembelian;
+
+        $saldo = nasabah::find($request->nasabah_id);
+        $saldo->saldo -= $request->nominal;
+        $saldo->save();
         $data->save();
         Alert::success('Sukses', 'Keluar saldo Berhasil');
-        return redirect()->route('tagihan.view')->with('info', 'tambah saldo berhasil');
+        return redirect()->route('keluarSaldo.view');
     }
+    public function ajax(Request $request)
+    {
+        $namaSampah = $request->namaSampah;
+        $ajax_sampah = sampah::where('id', $namaSampah)->get();
+        return view('backend.ajax.ajax_pembayaran', compact('ajax_sampah'));
+    }
+    public function ajax2(Request $request)
+    {
+        $namaSampah = $request->namaSampah;
+        $ajax_sampah = sampah::where('id', $namaSampah)->get();
+        return view('backend.user.ajax_pembayaran', compact('ajax_sampah'));
+    }
+    public function detailTransaksi(Request $request)
+    {
+        foreach ($request->idsampah as $key => $idsampah) {
+            $data = new detailMasukan;
+            $data->idsampah = $idsampah;
+            $data->idnasabah = $request->idnasabah;
+            $data->berat = $request->berat[$key];
+            $data->harga_satuan = $request->harga_satuan[$key];
+            $data->sub_harga = $request->sub_harga[$key];
+            $data->save();
+        }
 
-} 
+        $nasabah = nasabah::find($request->idnasabah);
+        $nasabah->saldo += $request->total;
+        $nasabah->save();
+
+        Alert::success('Sukses', 'Masukan Data Berhasil');
+        return redirect()->route('tagihan.view');
+    }
+}
