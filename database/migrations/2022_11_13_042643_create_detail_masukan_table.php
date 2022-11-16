@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('detail_masukan', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_masukan');
-            $table->integer('nominal');
-            $table->string('struktur', 20);
-            $table->unsignedBigInteger('iddawis');
-            $table->foreign('iddawis')->references('id')->on('dawis')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('idnasabah');
+            $table->foreign('idnasabah')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('idsampah');
+            $table->foreign('idsampah')->references('id')->on('sampah')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('berat');
+            $table->integer('harga_satuan');
+            $table->integer('sub_harga');
             $table->timestamps();
         });
     }

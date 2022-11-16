@@ -1,0 +1,130 @@
+@extends('admin.admin_master')
+@section('admin')
+    <form action="" name="cart">
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="h3 mb-2 text-gray-800">Petugas</h1>
+                    </div>
+                    <div class="co">
+                        <button name="add" class="btn btn-success">Tambah Data</button>
+                    </div>
+                </div>
+            </div>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                            <label>Nasabah</label>
+                            <select name="penduduk_id" class="form-control  @error('penduduk_id') is-invalid @enderror"
+                                id="penduduk_id" data-live-search="true">
+                                <option value="">-Pilih Nama Penduduk-</option>
+                                @foreach ($nasabah as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->penduduk->namaLengkap }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('nasabah_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table name="cart" class="table table-bordered text-center" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Jenis Sampah</th>
+                                    <th>Berat/Jumlah</th>
+                                    <th>Harga Satuan</th>
+                                    <th>Harga</th>
+                                    <th>Hapus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr name="line_items">
+                                    <td>
+                                        <select class="form-control form-control" name="sampah" id="namaSampah" onchange="changes()">
+                                            <option value="">Pilih Sampah</option>
+                                            @foreach ($sampah as $smp => $sampah)
+                                                <option value="{{ $sampah->id }}">{{ $sampah->namaSampah }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control form-control" id="namaSampah"
+                                            name="berat"></td>
+                                    <td id="detail-harga"><input type="text" readonly class="form-control form-control"
+                                            id="username" name="harga"></td>
+                                    <td>
+
+                                        <input type="text" class="form-control form-control" id="username"
+                                            name="total" jAutoCalc="{berat} * {harga}"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                    </td>
+                                    <td><button type="button" name="remove" class="btn btn-danger delete">Hapus</button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">Subtotal</td>
+                                    <td colspan="2"><input type="text" name="sub_total" jAutoCalc="SUM({total})"
+                                            class="form-control form-control-sm" /></td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary"> Masukan</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+@endsection
+
+@push('js')
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $(".add-more").click(function() {
+        //         var html = $(".copy").html();
+        //         $(".after-add-more").after(html);
+        //     });
+
+        //     // saat tombol remove dklik control group akan dihapus 
+        //     $("body").on("click", ".remove", function() {
+        //         $(this).parents(".control-group").remove();
+        //     });
+        // });
+    </script>
+
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $("#berat").keyup(function() {
+        //         var berat = $("#berat").val();
+        //         var jumlah = $("#jumlah").val();
+        //         var total = parseInt(jumlah) * parseInt(berat);
+        //         $("#total").val(total);
+        //     })
+        // })
+    </script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(Document).on('click','#submit', function () {
+            
+        })
+    </script>
+@endpush
