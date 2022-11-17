@@ -20,7 +20,7 @@
                 <form action="{{route('saldo.add')}}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <div class="col-sm-12 mb-3 mb-sm-0">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Nasabah</label>
                             <select name="idnasabah" class="form-control  @error('penduduk_id') is-invalid @enderror"
                                 id="penduduk_id" data-live-search="true">
@@ -34,6 +34,10 @@
                             @error('nasabah_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label for="">Kode Transaksi</label>
+                           <input type="text" class="form-control form-control" id="tmp_lahir" readonly value="{{$kd}}" name="kode_id" required>
                         </div>
                     </div>
                     <div class="table-responsive">

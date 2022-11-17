@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('riwayat', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('kode_id');
+            $table->primary('kode_id');
             $table->unsignedBigInteger('nasabah_id');
             $table->foreign('nasabah_id')->references('id')->on('nasabah')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->text('keterangan_masuk');

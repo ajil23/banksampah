@@ -9,7 +9,7 @@ class Riwayat extends Model
 {
     use HasFactory;
     protected $table = 'riwayat';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'kode_id';
 
     public function nasabah()
     {
