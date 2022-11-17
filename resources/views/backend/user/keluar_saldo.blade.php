@@ -30,11 +30,7 @@
                             <input type="text" class="form-control form-control-lg" id="password" placeholder="Nominal"
                                 name="nominal">
                         </div>
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label for="tgl_join">Tanggal Keluar</label>
-                            <input type="date" class="form-control form-control-lg" id="tgl_join"
-                                placeholder="Email Address" name="tgl_transaksi" required>
-                        </div>
+                       
                     </div>
                     <button class="btn btn-primary btn-icon-split">
                         <span class="icon text-white-50">

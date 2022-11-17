@@ -66,7 +66,6 @@ class Masukan extends Controller
     public function kurangSaldo(Request $request)
     {
         $data = new Transaksi();
-        $data->tgl_transaksi = $request->tgl_transaksi;
         $data->nasabah_id = $request->nasabah_id;
         $data->nominal = $request->nominal;
         $data->keterangan_pembelian = $request->keterangan_pembelian;
@@ -76,7 +75,7 @@ class Masukan extends Controller
         $saldo->save();
         $data->save();
         Alert::success('Sukses', 'Keluar saldo Berhasil');
-        return redirect()->route('keluarSaldo.view');
+        return redirect()->route('kurangSaldo.view');
     }
     public function ajax(Request $request)
     {
