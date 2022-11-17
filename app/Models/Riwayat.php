@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaksi extends Model
+class Riwayat extends Model
 {
     use HasFactory;
-    protected $table = 'transaksi';
+    protected $table = 'riwayat';
     protected $primaryKey = 'id';
-    public $timestamps = true;
-    
+
     public function nasabah()
     {
         return $this->belongsTo(nasabah::class, 'nasabah_id', 'id');

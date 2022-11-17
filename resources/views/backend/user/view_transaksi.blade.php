@@ -46,7 +46,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                       
+                       @foreach($riwayat as $key =>$riwayat)
+                        <tr>
+                            <td class="align-middle">{{$loop->iteration}}</td>
+                            <td>{{$riwayat->nasabah->penduduk->namaLengkap}}</td>
+                            <td>{{$riwayat->keterangan_masuk}}</td>
+                            <td>{{$riwayat->nominal}}</td>
+                            <td>{{$riwayat->created_at}}</td>
+                            <td colspan="2">
+                                <a href="#" class="btn btn-success"> Detail </a>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

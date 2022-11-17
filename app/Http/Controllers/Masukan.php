@@ -9,6 +9,7 @@ use App\Models\MasukanSaldoNasabah;
 use App\Models\MasukansaldoPetugas;
 use App\Models\nasabah;
 use App\Models\petugas;
+use App\Models\Riwayat;
 use App\Models\sampah;
 use App\Models\struktur;
 use App\Models\Transaksi;
@@ -22,7 +23,8 @@ class Masukan extends Controller
 
     public function transaksi()
     {
-        return view('backend.user.view_transaksi');
+        $riwayat = Riwayat::with('nasabah.penduduk')->get();
+        return view('backend.user.view_transaksi', compact('riwayat'));
     }
 
     public function masukSaldo()
@@ -42,7 +44,8 @@ class Masukan extends Controller
 
     public function pengambilanSampah()
     {
-        return view('backend.user.view_detailtagihan', );
+        $transaksi = Transaksi::with('nasabah.penduduk')->get();
+        return view('backend.user.view_detailtagihan', compact('transaksi'));
     }
     public function pageKeluarSaldo()
     {
@@ -91,7 +94,11 @@ class Masukan extends Controller
         $nasabah = nasabah::find($request->idnasabah);
         $nasabah->saldo += $request->total;
         $nasabah->save();
-
+        $riwayat = new Riwayat();
+        $riwayat->nasabah_id = $request->idnasabah;
+        $riwayat->keterangan_masuk = 'Pemasukan Dari Sampah';
+        $riwayat->nominal = $request->total;
+        $riwayat->save();
         Alert::success('Sukses', 'Masukan Data Berhasil');
         return redirect()->route('tagihan.view');
     }
