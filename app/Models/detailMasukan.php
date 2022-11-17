@@ -11,4 +11,9 @@ class detailMasukan extends Model
     protected $table = 'detail_masukan';
     protected $primaryKey = 'id';
     public $timestamps = true;
+
+    public function sampah()
+    {
+        return $this->belongsTo(sampah::class, 'idsampah', 'id');
+    }
 }

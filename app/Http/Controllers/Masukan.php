@@ -116,4 +116,10 @@ class Masukan extends Controller
         Alert::success('Sukses', 'Masukan Data Berhasil');
         return redirect()->route('tagihan.view');
     }
+    public function detail($kode_id)
+    {
+        $riwayat = Riwayat::find($kode_id);
+        $data = Riwayat::with(['detail.sampah'])->findOrFail($kode_id);
+        return view('backend.user.view_detail', compact('data','riwayat'));
+    }
 }

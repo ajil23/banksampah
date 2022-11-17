@@ -95,6 +95,7 @@ Route::prefix('tagihan')->group(function(){
     Route::get('/keluar_saldo_nasabah', [Masukan::class, 'pageKeluarSaldo'])->name('keluarSaldo.view');
     Route::post('/add_kurang_saldo',[Masukan::class, 'kurangSaldo'])->name('kurangSaldo.add');
     Route::post('/add_saldo',[Masukan::class, 'detailTransaksi'])->name('saldo.add');
+    Route::get('/detail/{kode_id}', [Masukan::class, 'detail'])->name('detail.view');
 });
 Route::prefix('penduduk')->group(function () {
     //sampah
