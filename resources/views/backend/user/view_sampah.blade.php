@@ -46,7 +46,7 @@
                         <tr>
                             <td class="align-middle">{{$loop->iteration}}</td>
                             <td>{{$sampah->id}}</td>
-                            <td>{{$sampah->nama}}</td>
+                            <td>{{$sampah->namaSampah}}</td>
                             <td>{{$sampah->satuan}}</td>
                             <td>{{$sampah->harga_satuan}}</td>
                             <td colspan="2">

@@ -11,7 +11,9 @@ class Transaksi extends Model
     protected $table = 'transaksi';
     protected $primaryKey = 'id';
     public $timestamps = true;
-
-  
-
+    
+    public function nasabah()
+    {
+        return $this->belongsTo(nasabah::class, 'nasabah_id', 'id');
+    }
 }

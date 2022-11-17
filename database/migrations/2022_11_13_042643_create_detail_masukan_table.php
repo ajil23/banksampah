@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('idnasabah');
             $table->foreign('idnasabah')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('idriwayat');
+            $table->foreign('idriwayat')->references('kode_id')->on('riwayat')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('idsampah');
             $table->foreign('idsampah')->references('id')->on('sampah')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('berat');

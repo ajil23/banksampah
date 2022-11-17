@@ -160,7 +160,6 @@ class AdminController extends Controller
             $data->password = bcrypt($request->password);
         }
         $data->tgl_join = $request->tgl_join;
-        
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -268,7 +267,7 @@ class AdminController extends Controller
     public function tambah_sampah(Request $request)
     {
         $data = new sampah();
-        $data->nama = $request->nama;
+        $data->namaSampah = $request->namaSampah;
         $data->satuan = $request->satuan;
         $data->harga_satuan = $request->hargas;
         $data->save();
