@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,19 +27,17 @@ Route::middleware([
     // config('jetstream.auth_session'),
     // 'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 });
-Route::middleware([
-    'auth:sanctum',
-    // config('jetstream.auth_session'),
-    // 'verified'
-])->group(function () {
-    Route::get('/menu', function () {
-        return view('admin.index');
-    })->name('menu');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     // config('jetstream.auth_session'),
+//     // 'verified'
+// ])->group(function () {
+//     Route::get('/menu', function () {
+//         return view('admin.index');
+//     })->name('menu');
+// });
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
 Route::prefix('transaksi')->group(function () {
