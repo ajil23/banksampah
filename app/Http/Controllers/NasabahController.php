@@ -6,6 +6,7 @@ use App\Models\nasabah;
 use App\Models\Penduduk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -30,7 +31,11 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        $dataPenduduk = Penduduk::all();
+        $dataPenduduk = DB::table('Penduduk')
+        ->whereNotIn('id', function ($query) {
+            $query->select('penduduk_id')->from('nasabah');
+        })
+        ->get();;
         return view('backend.user.add_nasabah',compact('dataPenduduk'));
     }
 

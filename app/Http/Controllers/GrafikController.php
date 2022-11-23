@@ -24,12 +24,14 @@ class GrafikController extends Controller
         ->where(DB::raw('YEAR(created_at)'), '=', '2022' )
         ->GroupBy(DB::raw("Month(created_at)"))
         ->pluck('bulan');
-        dd($bulan);
-        $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        
+
+        $jumlahPenduduk = DB::table('Penduduk')
         ->whereNotIn('id', function($query){
             $query->select('penduduk_id')->from('nasabah');
         })
-        ->count();
+        ->get();
+        dd($jumlahPenduduk);
         return view('test', compact('total_harga')); 
     }
 }
