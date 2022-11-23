@@ -11,7 +11,7 @@
                 <h1 class="h3 mb-2 text-gray-800">Tabel Data Transaksi</h1>
             </div>
             <div class="col">
-                <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
+                <a href="{{route('riwayat.export')}}"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
             </div>
 
             <div class="co ">
@@ -51,7 +51,7 @@
                             <td class="align-middle">{{$loop->iteration}}</td>
                             <td>{{$riwayat->nasabah->penduduk->namaLengkap}}</td>
                             <td>{{$riwayat->keterangan_masuk}}</td>
-                            <td>{{$riwayat->nominal}}</td>
+                            <td>Rp. {{$riwayat->nominal}}</td>
                             <td>{{$riwayat->created_at}}</td>
                             <td colspan="2">
                                 <a href="{{route('detail.view', $riwayat->kode_id)}}" class="btn btn-success"> Detail </a>

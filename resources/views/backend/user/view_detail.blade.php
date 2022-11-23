@@ -35,13 +35,13 @@
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td class=" align-middle">{{ $data->sampah->namaSampah }}</td>
                                     <td class=" align-middle">{{ $data->berat }}</td>
-                                    <td class=" align-middle">{{ $data->harga_satuan }}</td>
-                                    <td class=" align-middle">{{ $data->sub_harga }}</td>
+                                    <td class=" align-middle">Rp. {{ $data->harga_satuan }}</td>
+                                    <td class=" align-middle">Rp. {{ $data->sub_harga }}</td>
                                 </tr>
                             @endforeach
                             <tr class=" align-middle">
                                 <td colspan="3" class=" align-middle">Total Keseluruhan</td>
-                                <td colspan="2" class=" align-middle">{{ $riwayat->nominal }}</td>
+                                <td colspan="2" class=" align-middle">Rp. {{ $riwayat->nominal }}</td>
                             </tr>
                         </tbody>
                     </table>

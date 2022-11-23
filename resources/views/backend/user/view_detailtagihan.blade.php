@@ -2,7 +2,6 @@
 @section('admin')
     <!-- Begin Page Content -->
     <div class="container-fluid">
-
         <!-- Page Heading -->
         <div class="container">
             <div class="row">
@@ -10,7 +9,7 @@
                     <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
                 </div>
                 <div class="col">
-                    <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
+                    <a href="{{route('keluaran.export')}}"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
                 </div>
 
                 <div class="co ">
@@ -50,7 +49,7 @@
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td>{{ $transaksi->nasabah->penduduk->namaLengkap }}</td>
                                     <td>{{ $transaksi->keterangan_pembelian}}</td>
-                                    <td>{{ $transaksi->nominal }}</td>
+                                    <td>Rp. {{ $transaksi->nominal }}</td>
                                     <td>{{ $transaksi->tgl_transaksi }}</td>
                                 </tr>
                             @endforeach
