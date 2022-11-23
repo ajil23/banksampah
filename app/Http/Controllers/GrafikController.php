@@ -21,15 +21,15 @@ class GrafikController extends Controller
         ->pluck('total_harga');
 
         $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
+        ->where(DB::raw('YEAR(created_at)'), '=', '2022' )
         ->GroupBy(DB::raw("Month(created_at)"))
         ->pluck('bulan');
-
+        dd($bulan);
         $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
         ->whereNotIn('id', function($query){
             $query->select('penduduk_id')->from('nasabah');
         })
         ->count();
-        dd($jumlahPenduduk);
         return view('test', compact('total_harga')); 
     }
 }

@@ -40,10 +40,12 @@ Route::middleware([
         $penduduk = (new penduduk())->getTable();
 
         $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
+        ->where(DB::raw('YEAR(created_at)'), '=', '2022')
         ->GroupBy(DB::raw("Month(created_at)"))
         ->pluck('bulan');
 
         $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
+        ->where(DB::raw('YEAR(created_at)'), '=', '2022')
         ->GroupBy(DB::raw("Month(created_at)"))
         ->pluck('total_harga');
 
