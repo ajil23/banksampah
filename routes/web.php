@@ -7,6 +7,10 @@ use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
+use App\Models\detailMasukan;
+use App\Models\nasabah;
+use App\Models\Penduduk;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +33,32 @@ Route::middleware([
     // 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.index');
+        $penduduks = Penduduk::count();
+        $nasabahs = nasabah::count();
+
+        $nasabah = (new nasabah())->getTable();
+        $penduduk = (new penduduk())->getTable();
+
+        $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
+        ->GroupBy(DB::raw("Month(created_at)"))
+        ->pluck('bulan');
+
+        $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
+        ->GroupBy(DB::raw("Month(created_at)"))
+        ->pluck('total_harga');
+
+        $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereNotIn('id', function ($query) {
+            $query->select('penduduk_id')->from('nasabah');
+        })
+        ->count();
+
+        $jumlahNasabah = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereIn('id', function ($query) {
+            $query->select('penduduk_id')->from('nasabah');
+        })
+        ->count();
+        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah'));
     })->name('dashboard');
 });
 // Route::middleware([
