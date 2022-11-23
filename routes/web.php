@@ -7,9 +7,6 @@ use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
-use App\Models\detailMasukan;
-use App\Models\Penduduk;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,34 +29,18 @@ Route::middleware([
     // 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
-            ->GroupBY(DB::raw("Year(created_at)"))
-            ->pluck('total_harga');
-        $bulan = detailMasukan::select(DB::raw("Year(created_at) as bulan"))
-            ->GroupBY(DB::raw("Year(created_at)"))
-            ->pluck('bulan');
-        $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
-            ->whereNotIn('id', function ($query) {
-                $query->select('penduduk_id')->from('nasabah');
-            })
-            ->count();
-        $jumlahNasabah = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
-        ->whereIn('id', function ($query) {
-            $query->select('penduduk_id')->from('nasabah');
-        })
-            ->count();
-        return view('admin.index', compact('total_harga', 'bulan', 'jumlahPenduduk', 'jumlahNasabah'));
+        return view('admin.index');
     })->name('dashboard');
 });
-Route::middleware([
-    'auth:sanctum',
-    // config('jetstream.auth_session'),
-    // 'verified'
-])->group(function () {
-    Route::get('/menu', function () {
-        return view('admin.index');
-    })->name('menu');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     // config('jetstream.auth_session'),
+//     // 'verified'
+// ])->group(function () {
+//     Route::get('/menu', function () {
+//         return view('admin.index');
+//     })->name('menu');
+// });
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
 Route::prefix('transaksi')->group(function () {
