@@ -71,7 +71,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- kalkulator-->
-   
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -88,18 +88,12 @@
     <!-- Page level plugins -->
     <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    {{-- <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
-
-
-
-
+    <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <!-- Page level custom scripts -->
     <script src="{{ asset('backend/js/demo/datatables-demo.js') }}"></script>
-
     {{-- <script src="{{ asset('calc/js/jquery.min.js') }}"></script> --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="{{ asset('calc/js/jautocalc.js') }}"></script>
-    <script src="{{ asset('calc/js/script.js') }}"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
+
 
     @stack('js')
 
