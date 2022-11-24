@@ -7,6 +7,7 @@ use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\TabunganController;
 use App\Models\detailMasukan;
 use App\Models\nasabah;
 use App\Models\Penduduk;
@@ -103,7 +104,7 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/edit_petugas/{id}', [AdminController::class, 'edit_petugas'])->name('edit_petugas');
     Route::post('/update_petugas/{id}', [AdminController::class, 'petugasUpdate'])->name('petugas.update');
     //endpetugas
-    Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
+    Route::get('/tabungan', [TabunganController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
 });
 Route::prefix('sampah')->group(function () {
