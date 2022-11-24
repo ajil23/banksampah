@@ -242,10 +242,11 @@ class AdminController extends Controller
         return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');
     }
     //endpetugas
-    public function tabungan()
-    {
-        return view('backend.user.view_tabungan');
-    } 
+    // public function tabungan()
+    // {
+    //     $tabungan['allDataTabungan']=nasabah::all();
+    //     return view('backend.user.view_saldo', compact('tabungan'));
+    // } 
     //sampah
     public function daftarsampah()
     {
