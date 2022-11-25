@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('petugas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 50);
-            $table->string('tugas', 25);
-            $table->unsignedBigInteger('role')->default(3);
-            $table->foreign('role')->references('id')->on('struktur_role')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('no_hp', 12);
-            $table->string('foto', 50);
-            $table->string('tmp_lahir', 50);
-            $table->date('tgl_lahir');
+            $table->unsignedBigInteger('penduduk_id');
+            $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('username');
+            $table->string('password');
+            $table->string('foto');
+            $table->string('role');
             $table->timestamps();
         });
     }
