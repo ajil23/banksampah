@@ -635,7 +635,7 @@ header .navbar a:hover{
                     <span>362155401145</span>
                 </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum expedita cum iure nulla. Error hic facilis impedit ut inventore velit? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, odit!</p>
+            <p>Belajarlah untuk mengenal siapa dirimu yang sebenarnya</p>
         </div>
 
         <div class="box">
@@ -646,7 +646,7 @@ header .navbar a:hover{
                     <span>362155401117</span>
                 </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum expedita cum iure nulla. Error hic facilis impedit ut inventore velit? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, odit!</p>
+            <p>Mimpi itu tujuan, berjuang itu jalan</p>
         </div>
 
         <div class="box">
@@ -657,7 +657,7 @@ header .navbar a:hover{
                     <span>362155401149</span>
                 </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum expedita cum iure nulla. Error hic facilis impedit ut inventore velit? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, odit!</p>
+            <p>Jangan berhenti untuk berusaha, tetap semangat dan pantang menyerah</p>
         </div>
 
         <div class="box">
@@ -668,7 +668,7 @@ header .navbar a:hover{
                     <span>362155401107</span>
                 </div>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum expedita cum iure nulla. Error hic facilis impedit ut inventore velit? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, odit!</p>
+            <p>Belajar Belajar Belajar</p>
         </div>
 
     </div>
