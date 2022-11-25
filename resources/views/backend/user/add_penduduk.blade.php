@@ -11,29 +11,29 @@
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="Name">Nama Lengkap</label>
-                        <input type="text" class="form-control form-control-lg" id="nama" placeholder="Nama Lengkap" name="nama">
+                        <input type="text" required class="form-control form-control-lg" id="nama" placeholder="Nama Lengkap" name="nama">
                         <br>
                     </div>
                         
                     <div class="col-sm-6">
                         <label for="Tempat">Tempat Lahir</label>
-                        <input type="text" class="form-control form-control-lg" id="tempat" placeholder="Tempat Lahir" name="tempatlahir">
+                        <input type="text" required class="form-control form-control-lg" id="tempat" placeholder="Tempat Lahir" name="tempatlahir">
                     </div>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="Alamat">Alamat</label>
-                        <input type="text" class="form-control form-control-lg" id="alamat" placeholder="Alamat" name="alamat">
+                        <input type="text" required class="form-control form-control-lg" id="alamat" placeholder="Alamat" name="alamat">
                         <br>
                     </div>
 
                     <div class="col-sm-6">
                         <label for="Tanggal">Tanggal Lahir</label>
-                        <input type="date" class="form-control form-control-lg" id="tanggal" placeholder="Tanggal Lahir" name="tanggallahir">
+                        <input type="date" required class="form-control form-control-lg" id="tanggal" placeholder="Tanggal Lahir" name="tanggallahir">
                     </div>
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <div class="form-group">
-                            <h5>Pilih Jenis Kelamin<span class="text-danger">*</span></h5>
+                            <label for="Tanggal">Jenis Kelamin</label>
                             <div class="controls">
                                 <select name="select" id="select" required class="form-control">
                                     <option value="">Pilih Jenis Kelamin</option>
@@ -46,7 +46,7 @@
 
                     <div class="col-sm-6">
                         <label for="telepon">Telepon</label>
-                        <input type="number" class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon">
+                        <input type="number" required class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon">
                     </div>
                 </div>
                
