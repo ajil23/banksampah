@@ -7,6 +7,7 @@ use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\TabunganController;
 use App\Models\detailMasukan;
 use App\Models\nasabah;
@@ -97,12 +98,12 @@ Route::prefix('pengguna')->group(function () {
     Route::post('/update_dawis/{id}', [AdminController::class, 'dawisUpdate'])->name('dawis.update');
     //endawis
     //petugas
-    Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
-    Route::get('/add_petugas', [AdminController::class, 'add_petugas'])->name('add_petugas.view');
-    Route::post('/tambah_petugas', [AdminController::class, 'tambah_petugas'])->name('tambah_petugas');
-    Route::get('/deletePetugas/{id}', [AdminController::class, 'petugasDelete'])->name('petugas.delete');
-    Route::get('/edit_petugas/{id}', [AdminController::class, 'edit_petugas'])->name('edit_petugas');
-    Route::post('/update_petugas/{id}', [AdminController::class, 'petugasUpdate'])->name('petugas.update');
+    Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.view');
+    Route::get('/add_petugas', [PetugasController::class, 'create'])->name('add_petugas.view');
+    Route::post('/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
+    Route::get('/deletePetugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.delete');
+    Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
+    Route::put('/update_petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
     //endpetugas
     Route::get('/tabungan', [TabunganController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');

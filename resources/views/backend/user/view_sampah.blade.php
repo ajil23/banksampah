@@ -31,16 +31,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>id</th>
-                            <th>Nama Sampah</th>
-                            <th>Satuan</th>
-                            <th>Harga Satuan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                     @foreach($allDataSampah as $smp =>$sampah)
                         <tr>

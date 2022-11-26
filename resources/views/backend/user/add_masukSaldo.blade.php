@@ -115,4 +115,11 @@
 
 @push('js')
     <script src="{{ asset('calc/js/scriptTransaksi.js') }}"></script>
+     <script>
+        $(document).ready(function() {
+            $('#penduduk_id').select2({
+                theme: "bootstrap4"
+            });
+        });
+    </script>
 @endpush
