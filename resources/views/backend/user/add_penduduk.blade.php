@@ -46,7 +46,7 @@
 
                     <div class="col-sm-6">
                         <label for="telepon">Telepon</label>
-                        <input type="number" required class="form-control form-control-lg" id="telepon" placeholder="No Telepon" name="telepon">
+                        <input type="number" required class="form-control form-control-lg" id="telepon" placeholder="Nomor Telepon" name="telepon">
                     </div>
                 </div>
                
