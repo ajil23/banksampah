@@ -38,6 +38,7 @@
                  <a class="collapse-item" href="{{route('penduduk.view')}}">Penduduk</a>
                  <a class="collapse-item" href="{{route('nasabah.view')}}">Nasabah</a>
                  <a class="collapse-item" href="{{route('petugas.view')}}">Petugas</a>
+                 <a class="collapse-item" href="{{route('dawis.view')}}">Dawis</a>
              </div>
          </div>
      </li>

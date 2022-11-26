@@ -40,6 +40,32 @@
                            <input type="text" class="form-control form-control" id="tmp_lahir" readonly value="{{$kd}}" name="kode_id" required>
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label>Dawis</label>
+                            <select name="iddawis" class="form-control"
+                                id="dawis_id" data-live-search="true">
+                                <option value="">-Pilih Nama Dawis-</option>
+                                @foreach ($dawis as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->nasabah->penduduk->namaLengkap }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                             <label>Petugas</label>
+                            <select name="idpetugas" class="form-control"
+                                id="petugas_id" data-live-search="true">
+                                <option value="">-Pilih Nama Petugas-</option>
+                                @foreach ($petugas as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->penduduk}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table name="cart" class="table table-bordered text-center" width="100%" cellspacing="0">
                             <thead>

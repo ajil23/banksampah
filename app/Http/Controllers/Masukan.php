@@ -30,6 +30,8 @@ class Masukan extends Controller
     public function masukSaldo()
     {
         $nasabah = nasabah::all();
+        $petugas = petugas::all();
+        $dawis = dawis::all();
         $sampah = sampah::all();
         $q = DB::table('riwayat')->select(DB::raw('MAX(RIGHT(kode_id,6)) as kode'));
         $kd = "";
@@ -41,7 +43,7 @@ class Masukan extends Controller
         } else {
             $kd = "000001";
         }
-        return view('backend.user.add_masukSaldo', compact('nasabah', 'sampah','kd'));
+        return view('backend.user.add_masukSaldo', compact('nasabah', 'sampah','kd','dawis','petugas'));
     }
 
 
