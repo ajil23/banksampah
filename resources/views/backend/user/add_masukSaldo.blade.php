@@ -60,7 +60,7 @@
                                 <option value="">-Pilih Nama Petugas-</option>
                                 @foreach ($petugas as $item)
                                     <option value="{{ $item->id }}">
-                                        {{ $item->penduduk}}
+                                        {{ $item->penduduk->namaLengkap}}
                                     </option>
                                 @endforeach
                             </select>

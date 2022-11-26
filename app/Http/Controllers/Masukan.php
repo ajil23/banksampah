@@ -105,6 +105,8 @@ class Masukan extends Controller
             $data = new detailMasukan;
             $data->idsampah = $idsampah;
             $data->idnasabah = $request->idnasabah;
+            $data->idpetugas = $request->idpetugas;
+            $data->iddawis = $request->iddawis;
             $data->idriwayat = $request->kode_id;
             $data->berat = $request->berat[$key];
             $data->harga_satuan = $request->harga_satuan[$key];
