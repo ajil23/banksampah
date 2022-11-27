@@ -160,7 +160,6 @@ class AdminController extends Controller
             $data->password = bcrypt($request->password);
         }
         $data->tgl_join = $request->tgl_join;
-        
         $data->tgl_lahir = $request->tgl_lahir;
         $data->iddawis = $request->iddawis;
         $data->save();
@@ -243,10 +242,11 @@ class AdminController extends Controller
         return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');
     }
     //endpetugas
-    public function tabungan()
-    {
-        return view('backend.user.view_tabungan');
-    } 
+    // public function tabungan()
+    // {
+    //     $tabungan['allDataTabungan']=nasabah::all();
+    //     return view('backend.user.view_saldo', compact('tabungan'));
+    // } 
     //sampah
     public function daftarsampah()
     {
@@ -268,7 +268,7 @@ class AdminController extends Controller
     public function tambah_sampah(Request $request)
     {
         $data = new sampah();
-        $data->nama = $request->nama;
+        $data->namaSampah = $request->namaSampah;
         $data->satuan = $request->satuan;
         $data->harga_satuan = $request->hargas;
         $data->save();

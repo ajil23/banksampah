@@ -3,8 +3,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ExportControlller;
+use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\TabunganController;
+use App\Models\detailMasukan;
+use App\Models\nasabah;
+use App\Models\Penduduk;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,18 +35,45 @@ Route::middleware([
     // 'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.index');
+        $penduduks = Penduduk::count();
+        $nasabahs = nasabah::count();
+
+        $nasabah = (new nasabah())->getTable();
+        $penduduk = (new penduduk())->getTable();
+
+        $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
+        ->where(DB::raw('YEAR(created_at)'), '=', '2022')
+        ->GroupBy(DB::raw("Month(created_at)"))
+        ->pluck('bulan');
+
+        $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
+        ->where(DB::raw('YEAR(created_at)'), '=', '2022')
+        ->GroupBy(DB::raw("Month(created_at)"))
+        ->pluck('total_harga');
+
+        $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereNotIn('id', function ($query) {
+            $query->select('penduduk_id')->from('nasabah');
+        })
+        ->count();
+
+        $jumlahNasabah = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereIn('id', function ($query) {
+            $query->select('penduduk_id')->from('nasabah');
+        })
+        ->count();
+        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah'));
     })->name('dashboard');
 });
-Route::middleware([
-    'auth:sanctum',
-    // config('jetstream.auth_session'),
-    // 'verified'
-])->group(function () {
-    Route::get('/menu', function () {
-        return view('admin.index');
-    })->name('menu');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     // config('jetstream.auth_session'),
+//     // 'verified'
+// ])->group(function () {
+//     Route::get('/menu', function () {
+//         return view('admin.index');
+//     })->name('menu');
+// });
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
 Route::prefix('transaksi')->group(function () {
@@ -48,10 +83,10 @@ Route::prefix('transaksi')->group(function () {
 Route::prefix('pengguna')->group(function () {
     //nasabah
     Route::get('/nasabah', [NasabahController::class, 'index'])->name('nasabah.view');
-    Route::get('/add_nasabah',[NasabahController::class, 'create'])->name('add_nasabah.view');
-    Route::get('/edit_nasabah/{id}',[NasabahController::class, 'edit'])->name('nasabah.edit');
+    Route::get('/add_nasabah', [NasabahController::class, 'create'])->name('add_nasabah.view');
+    Route::get('/edit_nasabah/{id}', [NasabahController::class, 'edit'])->name('nasabah.edit');
     Route::put('/update_nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
-    Route::post('/tambah_nasabah',[NasabahController::class, 'store'])->name('nasabah.store');
+    Route::post('/tambah_nasabah', [NasabahController::class, 'store'])->name('nasabah.store');
     Route::get('/deleteNasabah/{id}', [NasabahController::class, 'destroy'])->name('nasabah.delete');
     //endnasabah
     //dawis
@@ -63,16 +98,15 @@ Route::prefix('pengguna')->group(function () {
     Route::post('/update_dawis/{id}', [AdminController::class, 'dawisUpdate'])->name('dawis.update');
     //endawis
     //petugas
-    Route::get('/petugas', [AdminController::class, 'petugas'])->name('petugas.view');
-    Route::get('/add_petugas', [AdminController::class, 'add_petugas'])->name('add_petugas.view');
-    Route::post('/tambah_petugas', [AdminController::class, 'tambah_petugas'])->name('tambah_petugas');
-    Route::get('/deletePetugas/{id}', [AdminController::class, 'petugasDelete'])->name('petugas.delete');
-    Route::get('/edit_petugas/{id}', [AdminController::class, 'edit_petugas'])->name('edit_petugas');
-    Route::post('/update_petugas/{id}', [AdminController::class, 'petugasUpdate'])->name('petugas.update');
+    Route::get('/petugas', [PetugasController::class, 'index'])->name('petugas.view');
+    Route::get('/add_petugas', [PetugasController::class, 'create'])->name('add_petugas.view');
+    Route::post('/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
+    Route::get('/deletePetugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.delete');
+    Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
+    Route::put('/update_petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
     //endpetugas
-    Route::get('/tabungan', [AdminController::class, 'tabungan'])->name('tabungan.view');
+    Route::get('/tabungan', [TabunganController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
-    
 });
 Route::prefix('sampah')->group(function () {
     //sampah
@@ -83,22 +117,19 @@ Route::prefix('sampah')->group(function () {
     Route::post('/updatesampah/{id}', [AdminController::class, 'sampahUpdate'])->name('sampah.update');
     Route::post('/tambah_sampah', [AdminController::class, 'tambah_sampah'])->name('tambah_sampah');
 });
-Route::prefix('tagihan')->group(function(){
+Route::get('/ajax_pembayaran', [Masukan::class, 'ajax']);
+Route::get('/ajax', [Masukan::class, 'ajax2']);
+Route::prefix('tagihan')->group(function () {
     //tagihan
     Route::get('/masuk_saldo', [Masukan::class, 'masukSaldo'])->name('page.masuk');
     Route::get('/keluar_saldo', [Masukan::class, 'keluarSaldo'])->name('page.keluar');
-    Route::get('/masuk', [Masukan::class, 'transaksiDawis'])->name('tagihan.view');
-    Route::get('/detail', [Masukan::class, 'detagihan'])->name('masukanDawis.view');
-    Route::post('/tambahSaldoDawis', [Masukan::class,'add_masuk'])->name('tambahSaldoDawis');
-    Route::get('/masuk_nasabah',[Masukan::class, 'detagihanNasabah'])->name('tambahSaldoNasabah.view');
-    Route::get('/masuk_saldo_nasabah',[Masukan::class, 'masukSaldoNasabah'])->name('tambahSaldoNasabah.add');
-    Route::post('/tambah_saldo_nasabah',[Masukan::class, 'add_masukNasabah'])->name('add.SaldoNasabah');
-    Route::get('/tambah_saldo_petugas',[Masukan::class, 'detagihanPetugas'])->name('saldoPetugas.view');
-    Route::get('/masuk_saldo_petugas', [Masukan::class, 'masukSaldoPetugas'])->name('tambahSaldoPetugas.add');
-    Route::post('/tambah_saldo_petugas', [Masukan::class, 'add_masukPetugas'])->name('add.SaldoPetugas');
-    Route::get('/keluar', [Masukan::class, 'detagihanDawis'])->name('kurangSaldoDawis.view');
-    Route::get('/keluar_saldo_dawis', [Masukan::class, 'pageKeluarSaldoDawis'])->name('keluarSaldoDawis.view');
-    Route::post('kurang_saldo_dawis',[Masukan::class, 'KeluarSaldoDawis'])->name('kurangSaldoDawis.add');
+    Route::get('/masuk', [Masukan::class, 'transaksi'])->name('tagihan.view');
+    Route::get('/masuk_saldo_nasabah', [Masukan::class, 'masukSaldoNasabah'])->name('tambahSaldoNasabah.add');
+    Route::get('/kurang_saldo', [Masukan::class, 'pengambilanSampah'])->name('kurangSaldo.view');
+    Route::get('/keluar_saldo_nasabah', [Masukan::class, 'pageKeluarSaldo'])->name('keluarSaldo.view');
+    Route::post('/add_kurang_saldo', [Masukan::class, 'kurangSaldo'])->name('kurangSaldo.add');
+    Route::post('/add_saldo', [Masukan::class, 'detailTransaksi'])->name('saldo.add');
+    Route::get('/detail/{kode_id}', [Masukan::class, 'detail'])->name('detail.view');
 });
 Route::prefix('penduduk')->group(function () {
     //sampah
@@ -109,5 +140,10 @@ Route::prefix('penduduk')->group(function () {
     Route::post('/updatependuduk/{id}', [AdminController::class, 'updatePenduduk'])->name('penduduk.update');
     Route::post('/pendudukBaru', [AdminController::class, 'pendudukBaru'])->name('pendudukBaru');
 });
+
+Route::get('/test', [GrafikController::class, 'grafik']);
+
+Route::get('dataRiwayat', [ExportControlller::class,'export'])->name('riwayat.export');
+Route::get('dataKeluaran', [ExportControlller::class, 'exportKeluaran'])->name('keluaran.export');
 
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');

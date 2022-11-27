@@ -21,25 +21,17 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Struktur</th>
                             <th>Saldo</th>
                         </tr>
-                    </tfoot>
+                    </thead>
                     <tbody class="text-center">
-                        <tr class="text-center">
-                            <td>1</td>
-                            <td>Muhammad Zaynudin</td>
-                            <td>Nasabah</td>
-                            <td>Rp 320,800</td>
+                        @foreach($tabungan as $all)
+                        <tr>
+                            <td class="align-middle">{{$loop->iteration}}</td>
+                            <td>{{$all->penduduk->namaLengkap}}</td>
+                            <td>{{$all->saldo}}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

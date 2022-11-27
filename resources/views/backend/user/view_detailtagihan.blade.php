@@ -1,78 +1,63 @@
 @extends('admin.admin_master')
 @section('admin')
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
+                </div>
+                <div class="col">
+                    <a href="{{route('keluaran.export')}}"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
+                </div>
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
-            </div>
-            <div class="col">
-                <a href="#"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
-            </div>
-            <div class="col">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Role Struktur
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{route('kurangSaldoDawis.view')}}">Dawis</a></li>
-                        <li><a class="dropdown-item" href="#">Nasabah</a></li>
-                        <li><a class="dropdown-item" href="#">Petugas</a></li>
-                    </ul>
+                <div class="co ">
+                    <a href="{{ route('keluarSaldo.view') }}"><button type="button" class="btn btn-primary">Tambah Data
+                            Keluar</button></a>
                 </div>
             </div>
-            <div class="co ">
-                <a href="{{route('keluarSaldoDawis.view')}}"><button type="button" class="btn btn-primary">Tambah Data Keluar</button></a>
+        </div>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Keterangan Keluar</th>
+                                <th>Nominal</th>
+                                <th>Tanggal Transaksi</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Keterangan Keluar</th>
+                                <th>Nominal</th>
+                                <th>Tanggal Transaksi</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach ($transaksi as $key => $transaksi)
+                                <tr>
+                                    <td class="align-middle">{{ $loop->iteration }}</td>
+                                    <td>{{ $transaksi->nasabah->penduduk->namaLengkap }}</td>
+                                    <td>{{ $transaksi->keterangan_pembelian}}</td>
+                                    <td>Rp. {{ $transaksi->nominal }}</td>
+                                    <td>{{ $transaksi->tgl_transaksi }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Keterangan Keluar</th>
-                            <th>Dana Keluar</th>
-                            <th>Dana Tanggal Tagihan</th>
-                            <th>Dana Tanggal Tempo</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Keterangan Keluar</th>
-                            <th>Dana Keluar</th>
-                            <th>Dana Tanggal Tagihan</th>
-                            <th>Dana Tanggal Tempo</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach($danaMasuk as $tgh =>$tagihan)
-                        <tr>
-                            <td>{{$tagihan->id}}</td>
-                            <td>{{$tagihan->nama}}</td>
-                            <td>{{$tagihan->keterangan_keluar}}</td>
-                            <td>{{$tagihan->nominal}}</td>
-                            <td>{{$tagihan->tgl_tagihan}}</td>
-                            <td>{{$tagihan->tgl_tempo}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 @endsection

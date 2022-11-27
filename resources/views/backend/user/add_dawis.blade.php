@@ -19,7 +19,7 @@
                                 <option value="">-Pilih Nasabah-</option>
                                 @foreach($data_nasabah as $item)
                                 <option value="{{$item->id}}">
-                                    {{$item->nama}}
+                                    {{$item->penduduk->namaLengkap}}
                                 </option>
                                 @endforeach
                             </select>

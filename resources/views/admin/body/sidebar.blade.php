@@ -38,6 +38,7 @@
                  <a class="collapse-item" href="{{route('penduduk.view')}}">Penduduk</a>
                  <a class="collapse-item" href="{{route('nasabah.view')}}">Nasabah</a>
                  <a class="collapse-item" href="{{route('petugas.view')}}">Petugas</a>
+                 <a class="collapse-item" href="{{route('dawis.view')}}">Dawis</a>
              </div>
          </div>
      </li>
@@ -60,7 +61,7 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Transaksi : </h6>
                  <a class="collapse-item" href="{{route('tagihan.view')}}">Masuk</a>
-                 <a class="collapse-item" href="{{route('kurangSaldoDawis.view')}}">Tagihan</a>
+                 <a class="collapse-item" href="{{route('kurangSaldo.view')}}">Tagihan</a>
              </div>
          </div>
      </li>

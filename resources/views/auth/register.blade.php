@@ -54,8 +54,8 @@
                                     <select name="role"
                                         class="form-control @error('role') is-invalid @enderror" style="border-radius: 20px">
                                         <option value="Admin" @if (old('role') == 'Admin') selected="selected" @endif>Admin</option>
-                                        <option value="Petugas" @if (old('role') == 'Petugas') selected="selected" @endif>Petugas</option>
-                                        <option value="Nasabah" @if (old('role') == 'Nasabah') selected="selected" @endif>Nasabah</option>
+                                        {{-- <option value="Petugas" @if (old('role') == 'Petugas') selected="selected" @endif>Petugas</option>
+                                        <option value="Nasabah" @if (old('role') == 'Nasabah') selected="selected" @endif>Nasabah</option> --}}
                                     </select>
                                 </div>
 
@@ -74,9 +74,9 @@
                                 </button>
                             </form>
                             <hr>
-                            <div class="text-center">
-                                <a class="small" href="{{ route('login') }}">Sudah punya akun? Silahkan Login</a>
-                            </div>
+                            {{-- <div class="text-center">
+                               
+                            </div> --}}
                         </div>
                     </div>
                 </div>

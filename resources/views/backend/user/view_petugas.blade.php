@@ -25,41 +25,29 @@
                     <thead>
                         <tr>
                             <th>no</th>
+                            <th>Username</th>
                             <th>Foto</th>
-                            <th>Nama</th>
-                            <th>Jenis Tugas</th>
-                            <th>no Handphone</th>
-                            <th>Tempat lahir</th>
-                            <th>Tanggal lahir</th>
+                            <th>Nama Lengkap</th>
+                            <th>Role</th>
+                            <th>Tanggal Daftar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>no</th>
-                            <th>Foto</th>
-                            <th>Nama</th>
-                            <th>Jenis Tugas</th>
-                            <th>no Handphone</th>
-                            <th>Tempat lahir</th>
-                            <th>Tanggal lahir</th>
-                            <th>Aksi</th>
-
-                        </tr>
-                    </tfoot>
+                   
                     <tbody>
-                        @foreach($petugas as $pts =>$petugas)
+                        @foreach($dataPetugas as $item =>$row)
                         <tr class=" align-middle">
                             <td class="align-middle">{{$loop->iteration}}</td>
-                            <td><img src="{{asset('storage/fotoPetugas/'.$petugas->foto)}}" alt="" width="70px"></td>
-                            <td class=" align-middle">{{$petugas->nama}}</td>
-                            <td class=" align-middle">{{$petugas->tugas}}</td>
-                            <td class=" align-middle">{{$petugas->no_hp}}</td>
-                            <td class=" align-middle">{{$petugas->tmp_lahir}}</td>
-                            <td class=" align-middle">{{$petugas->tgl_lahir}}</td>
+                            <td class=" align-middle">{{$row->username}}</td>
+                            <td>
+                                <img src="{{asset('fotoPetugas/'.$row->foto)}}" width="50px" height="50px" alt="gambar"> 
+                            </td>
+                            <td class=" align-middle">{{$row->penduduk->namaLengkap}}</td>
+                            <td class=" align-middle">{{$row->role}}</td>
+                            <td class=" align-middle">{{$row->created_at}}</td>
                             <td class=" align-middle">
-                                <a href="{{route('edit_petugas', $petugas->id)}}" class="btn btn-success"> Edit </a>
-                                <a href="{{route('petugas.delete', $petugas->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                                <a href="{{route('petugas.edit', $row->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('petugas.delete', $row->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach
