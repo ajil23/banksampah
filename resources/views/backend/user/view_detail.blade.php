@@ -12,10 +12,48 @@
             </div>
         </div>
         <!-- DataTales Example -->
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="card  mb-3 bg-success text-light">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Nama Nasabah</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                {{ $data->nasabah->penduduk->namaLengkap }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Nama Dawis</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                {{ $data->dawis->nasabah->penduduk->namaLengkap}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Nama Petugas</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                  {{ $data->petugas->penduduk->namaLengkap}}
+                            </div>
+                        </div>
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Detail Riwayat</h6>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered align-middle text-center" id="dataTable" width="100%"

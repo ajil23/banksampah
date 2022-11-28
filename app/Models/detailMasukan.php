@@ -16,12 +16,5 @@ class detailMasukan extends Model
     {
         return $this->belongsTo(sampah::class, 'idsampah', 'id');
     }
-    public function petugas()
-    {
-        return $this->belongsTo(petugas::class, 'idpetugas', 'id');
-    }
-    public function dawis()
-    {
-        return $this->belongsTo(dawis::class, 'iddawis', 'id');
-    }
+   
 }

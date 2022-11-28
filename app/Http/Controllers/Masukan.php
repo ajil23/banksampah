@@ -97,6 +97,8 @@ class Masukan extends Controller
         $riwayat = new Riwayat();
         $riwayat->kode_id = $request->kode_id;
         $riwayat->nasabah_id = $request->idnasabah;
+        $riwayat->petugas_id = $request->idpetugas;
+        $riwayat->dawis_id = $request->iddawis;
         $riwayat->keterangan_masuk = 'Pemasukan Dari Sampah';
         $riwayat->nominal = $request->total;
         $riwayat->save();
@@ -105,8 +107,7 @@ class Masukan extends Controller
             $data = new detailMasukan;
             $data->idsampah = $idsampah;
             $data->idnasabah = $request->idnasabah;
-            $data->idpetugas = $request->idpetugas;
-            $data->iddawis = $request->iddawis;
+            
             $data->idriwayat = $request->kode_id;
             $data->berat = $request->berat[$key];
             $data->harga_satuan = $request->harga_satuan[$key];
@@ -121,8 +122,9 @@ class Masukan extends Controller
     }
     public function detail($kode_id)
     {
+        
         $riwayat = Riwayat::find($kode_id);
-        $data = Riwayat::with(['detail.sampah'])->findOrFail($kode_id);
+        $data = Riwayat::with(['detail.sampah'], 'detail.petugas', 'detail.dawis')->findOrFail($kode_id);
         return view('backend.user.view_detail', compact('data','riwayat'));
     }
 }

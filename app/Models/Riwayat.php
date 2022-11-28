@@ -20,4 +20,12 @@ class Riwayat extends Model
     {
         return $this->hasMany(detailMasukan::class,'idriwayat','kode_id');
     }
+    public function petugas()
+    {
+        return $this->belongsTo(petugas::class, 'petugas_id', 'id');
+    }
+    public function dawis()
+    {
+        return $this->belongsTo(dawis::class, 'dawis_id', 'id');
+    }
 }
