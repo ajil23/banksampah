@@ -27,7 +27,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-4">
-                                <h6 class="mb-0">Nama Dawis</h6>
+                                <h6 class="mb-0">Nama Dawiss</h6>
                             </div>
                             <div class="col-sm-6">
                                 {{ $data->dawis->nasabah->penduduk->namaLengkap}}
