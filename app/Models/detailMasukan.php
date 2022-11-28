@@ -16,4 +16,5 @@ class detailMasukan extends Model
     {
         return $this->belongsTo(sampah::class, 'idsampah', 'id');
     }
+   
 }

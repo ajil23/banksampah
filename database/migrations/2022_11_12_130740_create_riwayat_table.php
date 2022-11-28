@@ -18,6 +18,10 @@ return new class extends Migration
             $table->primary('kode_id');
             $table->unsignedBigInteger('nasabah_id');
             $table->foreign('nasabah_id')->references('id')->on('nasabah')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('petugas_id');
+            $table->foreign('petugas_id')->references('id')->on('petugas')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('dawis_id');
+            $table->foreign('dawis_id')->references('id')->on('dawis')->onDelete('cascade')->onUpdate('cascade');
             $table->text('keterangan_masuk');
             $table->integer('nominal');
             $table->timestamps();
