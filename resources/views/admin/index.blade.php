@@ -158,6 +158,9 @@
                         <span class="mr-2">
                             <i class="fas fa-circle text-success"></i> Nasabah
                         </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-info"></i> Petugas
+                        </span>
                     </div>
                 </div>
             </div>
@@ -302,12 +305,13 @@ Chart.defaults.global.defaultFontColor = '#858796';
 var ctx = document.getElementById("myPieChart");
 var jumlahPenduduk = <?php echo json_encode($jumlahPenduduk) ?>;
 var jumlahNasabah = <?php echo json_encode($jumlahNasabah) ?>;
+var jumlahPetugas = <?php echo json_encode($jumlahPetugas) ?>;
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Tidak Nasabah", "Nasabah" ],
+    labels: ["Tidak Nasabah", "Nasabah","Petugas"],
     datasets: [{
-      data: [jumlahPenduduk, jumlahNasabah],
+      data: [jumlahPenduduk, jumlahNasabah, jumlahPetugas],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

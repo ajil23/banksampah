@@ -62,7 +62,11 @@ Route::middleware([
             $query->select('penduduk_id')->from('nasabah');
         })
         ->count();
-        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah'));
+        $jumlahPetugas = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereIn('id', function ($query) {
+            $query->select('penduduk_id')->from('petugas');
+        })->count();
+        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah', 'jumlahPetugas'));
     })->name('dashboard');
 });
 // Route::middleware([

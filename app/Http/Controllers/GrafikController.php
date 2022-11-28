@@ -31,7 +31,18 @@ class GrafikController extends Controller
             $query->select('penduduk_id')->from('nasabah');
         })
         ->get();
-        dd($jumlahPenduduk);
+       
+
+        $jumlahpetugas = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereIn('id', function ($query) {
+            $query->select('penduduk_id')->from('petugas');
+        })->count();
+        dd($jumlahpetugas);
+
+        $jumlahDawis = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
+        ->whereIn('id', function ($query) {
+            $query->select('penduduk_id')->from('petugas');
+        })->count();
         return view('test', compact('total_harga')); 
     }
 }
