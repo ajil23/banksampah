@@ -103,14 +103,14 @@
     {{-- <script src="{{ asset('calc/js/jquery.min.js') }}"></script> --}}
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
 
-
+    @include('sweetalert::alert')
     @stack('js')
 
     <!-- sweatalert -->
 
 
 </body>
-@include('sweetalert::alert')
+
 <script type="text/javascript">
     $(function() {
         $(document).on('click', '#delete', function(e) {

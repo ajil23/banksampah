@@ -134,6 +134,9 @@ Route::prefix('tagihan')->group(function () {
     Route::post('/add_kurang_saldo', [Masukan::class, 'kurangSaldo'])->name('kurangSaldo.add');
     Route::post('/add_saldo', [Masukan::class, 'detailTransaksi'])->name('saldo.add');
     Route::get('/detail/{kode_id}', [Masukan::class, 'detail'])->name('detail.view');
+    Route::get('/data_cash', [Masukan::class, 'viewCash'])->name('cash.view');
+    Route::get('/cashStore', [Masukan::class, 'indexCash'])->name('cash.store');
+    Route::post('/tambah_cash', [Masukan::class, 'addCash'])->name('cash.add');
 });
 Route::prefix('penduduk')->group(function () {
     //sampah

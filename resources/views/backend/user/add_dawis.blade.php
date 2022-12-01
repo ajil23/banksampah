@@ -11,7 +11,7 @@
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
                         <label for="Kode">Kode</label>
-                        <input type="text" class="form-control form-control-lg" placeholder="Kode" name="kode" required>
+                        <input type="text" class="form-control form-control" placeholder="Kode" name="kode" required>
                     </div>
                     <div class="col-sm-6">
                         <label>Nasabah</label>

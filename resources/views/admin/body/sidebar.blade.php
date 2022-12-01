@@ -62,6 +62,7 @@
                  <h6 class="collapse-header">Transaksi : </h6>
                  <a class="collapse-item" href="{{route('tagihan.view')}}">Masuk</a>
                  <a class="collapse-item" href="{{route('kurangSaldo.view')}}">Tagihan</a>
+                 <a class="collapse-item" href="{{route('cash.view')}}">Cash</a>
              </div>
          </div>
      </li>

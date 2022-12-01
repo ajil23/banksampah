@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cash;
 use App\Models\dawis;
 use App\Models\detailMasukan;
 use App\Models\keluarSaldoDawis;
@@ -43,15 +44,15 @@ class Masukan extends Controller
         } else {
             $kd = "000001";
         }
-        return view('backend.user.add_masukSaldo', compact('nasabah', 'sampah','kd','dawis','petugas'));
+        return view('backend.user.add_masukSaldo', compact('nasabah', 'sampah', 'kd', 'dawis', 'petugas'));
     }
 
 
     public function masukSaldoNasabah()
     {
         $nasabah = nasabah::all();
-        
-        return view('backend.user.add_saldoNasabah', compact('nasabah','kd'));
+
+        return view('backend.user.add_saldoNasabah', compact('nasabah', 'kd'));
     }
 
 
@@ -67,6 +68,16 @@ class Masukan extends Controller
     }
     public function kurangSaldo(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'nominal'              => 'required',
+            ],
+            [
+                'kode.required'         => "Kode Dawis tidak boleh kosong",
+                'nasabah_id.required'   => "Pilih Nasabah",
+            ]
+        );
         $data = new Transaksi();
         $data->nasabah_id = $request->nasabah_id;
         $data->nominal = $request->nominal;
@@ -74,10 +85,18 @@ class Masukan extends Controller
 
         $saldo = nasabah::find($request->nasabah_id);
         $saldo->saldo -= $request->nominal;
-        $saldo->save();
-        $data->save();
-        Alert::success('Sukses', 'Keluar saldo Berhasil');
-        return redirect()->route('kurangSaldo.view');
+
+        if ($request->nominal <= 0) {
+            Alert::error('Error', 'Keluar saldo gagal, Masukan Salah');
+            return redirect()->route('kurangSaldo.view');
+        } elseif ($saldo->saldo < 0) {
+            Alert::html('Saldo Kurang!!, Apakah Mau Cash?', "<a href='cashStore'><button type='button' class='btn btn-primary'>Tambah</button></a>",'warning');
+            return redirect()->route('keluarSaldo.view');
+        } else {
+            $saldo->save();
+            $data->save();
+            return redirect()->route('kurangSaldo.view')->with('success', 'kurang saldo berhasil');
+        }
     }
     public function ajax(Request $request)
     {
@@ -93,7 +112,7 @@ class Masukan extends Controller
     }
     public function detailTransaksi(Request $request)
     {
-       
+
         $riwayat = new Riwayat();
         $riwayat->kode_id = $request->kode_id;
         $riwayat->nasabah_id = $request->idnasabah;
@@ -107,7 +126,7 @@ class Masukan extends Controller
             $data = new detailMasukan;
             $data->idsampah = $idsampah;
             $data->idnasabah = $request->idnasabah;
-            
+
             $data->idriwayat = $request->kode_id;
             $data->berat = $request->berat[$key];
             $data->harga_satuan = $request->harga_satuan[$key];
@@ -122,9 +141,32 @@ class Masukan extends Controller
     }
     public function detail($kode_id)
     {
-        
         $riwayat = Riwayat::find($kode_id);
         $data = Riwayat::with(['detail.sampah'], 'detail.petugas', 'detail.dawis')->findOrFail($kode_id);
-        return view('backend.user.view_detail', compact('data','riwayat'));
+        return view('backend.user.view_detail', compact('data', 'riwayat'));
+    }
+    public function viewCash()
+    {
+        $data = Cash::all();
+        return view('backend.user.view_cash', compact('data'));
+    }
+    public function indexCash()
+    {
+        $data_nasabah = nasabah::all();
+        return view('backend.user.add_cash', compact('data_nasabah'));
+    }
+    public function addCash(Request $request)
+    {
+        $data = new Cash();
+        $data->nasabah_id = $request->nasabah_id;
+        $data->nominal = $request->nominal;
+        $data->keterangan_cash = $request->keterangan_cash;
+
+        $nasabah = nasabah::find($request->nasabah_id);
+        $nasabah->saldo += $request->nominal;
+
+        $data->save();
+        $nasabah->save();
+        return redirect()->route('cash.view')->with('success', 'Tambah saldo Cash berhasil, Silahkan Masukan Tagihan Kembali');
     }
 }
