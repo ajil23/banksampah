@@ -34,15 +34,7 @@
                                 <th>Tanggal Transaksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Keterangan Keluar</th>
-                                <th>Nominal</th>
-                                <th>Tanggal Transaksi</th>
-                            </tr>
-                        </tfoot>
+                       
                         <tbody>
                             @foreach ($transaksi as $key => $transaksi)
                                 <tr>
