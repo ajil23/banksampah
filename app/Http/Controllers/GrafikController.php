@@ -16,33 +16,37 @@ class GrafikController extends Controller
         $nasabah = (new nasabah())->getTable();
         $penduduk = (new penduduk())->getTable();
 
-        $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
-        ->GroupBy(DB::raw("Month(created_at)"))
-        ->pluck('total_harga');
+
+
+        $total_harga = detailMasukan::select(DB::raw("SUM(sub_harga) as total_harga"))
+            ->where(DB::raw('YEAR(created_at)'), '=', '2022')
+            ->GroupBy(DB::raw("Month(created_at)"))
+            ->pluck('total_harga');
+        dd($total_harga);
 
         $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
-        ->where(DB::raw('YEAR(created_at)'), '=', '2022' )
-        ->GroupBy(DB::raw("Month(created_at)"))
-        ->pluck('bulan');
-        
+            ->where(DB::raw('YEAR(created_at)'), '=', '2022')
+            ->GroupBy(DB::raw("Month(created_at)"))
+            ->pluck('bulan');
+        dd($bulan);
 
         $jumlahPenduduk = DB::table('Penduduk')
-        ->whereNotIn('id', function($query){
-            $query->select('penduduk_id')->from('nasabah');
-        })
-        ->get();
-       
+            ->whereNotIn('id', function ($query) {
+                $query->select('penduduk_id')->from('nasabah');
+            })
+            ->get();
+
 
         $jumlahpetugas = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
-        ->whereIn('id', function ($query) {
-            $query->select('penduduk_id')->from('petugas');
-        })->count();
+            ->whereIn('id', function ($query) {
+                $query->select('penduduk_id')->from('petugas');
+            })->count();
         dd($jumlahpetugas);
 
         $jumlahDawis = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
-        ->whereIn('id', function ($query) {
-            $query->select('penduduk_id')->from('petugas');
-        })->count();
-        return view('test', compact('total_harga')); 
+            ->whereIn('id', function ($query) {
+                $query->select('penduduk_id')->from('petugas');
+            })->count();
+        return view('test', compact('total_harga'));
     }
 }

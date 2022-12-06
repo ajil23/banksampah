@@ -39,7 +39,7 @@
                             <td class=" align-middle">{{$row->nominal}}</td>
                             <td class=" align-middle">{{$row->created_at}}</td>
                             <td class=" align-middle">
-                                <a href="#"><button type="button" class="btn btn-success">Struk</button></a>
+                                <a href="{{route('strukTagihan.view', $row->id)}}"><button type="button" class="btn btn-success">Struk</button></a>
                             </td>
                         </tr>
                         @endforeach
