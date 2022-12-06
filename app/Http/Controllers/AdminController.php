@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\dawis;
 use App\Models\detailMasukan;
 use App\Models\nasabah;
@@ -39,7 +40,7 @@ class AdminController extends Controller
     {
         $data_nasabah = nasabah::doesntHave('dawis')->get();
 
-        return view('backend.user.add_dawis',compact('data_nasabah'));
+        return view('backend.user.add_dawis', compact('data_nasabah'));
     }
     public function tambah_dawis(Request $request)
     {
@@ -58,14 +59,14 @@ class AdminController extends Controller
         $data_dawis->nasabah_id = $request->nasabah_id;
 
         $data_dawis->save();
-        Alert::success('Sukses', 'Dawis Berhasil Ditambah');
-        return redirect()->route('dawis.view')->with('info', 'Tambah Dawis berhasil');
+
+        return redirect()->route('dawis.view')->with('success', 'Tambah Dawis berhasil');
     }
     public function dawisDelete($id)
     {
         $deleteData = dawis::find($id);
         $deleteData->delete();
-        return redirect()->route('dawis.view')->with('info', 'Delete user berhasil');
+        return redirect()->route('dawis.view')->with('success', 'Delete user berhasil');
     }
     public function edit_dawis($id)
     {
@@ -84,14 +85,14 @@ class AdminController extends Controller
         $data->nama = $request->nama;
         $data->no_hp = $request->no_hp;
         // $data->foto = $request->foto;
-        if($request->password!=""){
-            $data->password=bcrypt($request->password);
+        if ($request->password != "") {
+            $data->password = bcrypt($request->password);
         }
         $data->tmp_lahir = $request->tmp_lahir;
         $data->tgl_lahir = $request->tgl_lahir;
         $data->save();
         Alert::success('Sukses', 'Dawis Berhasil Diupdate');
-        return redirect()->route('dawis.view')->with('info', 'Edit user berhasil');
+        return redirect()->route('dawis.view')->with('success', 'Edit user berhasil');
     }
     //enddawis
     //nasabah
@@ -108,7 +109,8 @@ class AdminController extends Controller
     }
     public function tambah_nasabah(Request $request)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'penduduk'              => 'required',
                 'username'
@@ -136,7 +138,7 @@ class AdminController extends Controller
         // $data->tgl_lahir = $request->tgl_lahir;
         // $data->save();
         // Alert::success('Sukses', 'Nasabah Berhasil Ditambah');
-        // return redirect()->route('nasabah.view')->with('info', 'Tambah user berhasil') ;
+        // return redirect()->route('nasabah.view')->with('success', 'Tambah user berhasil') ;
     }
     public function edit_nasabah($id)
     {
@@ -144,7 +146,7 @@ class AdminController extends Controller
         $dawis = dawis::all();
         return view('backend.user.edit_nasabah', compact('editData', 'dawis'));
     }
-    public function nasabahUpdate(Request $request,$id)
+    public function nasabahUpdate(Request $request, $id)
     {
         $data = nasabah::find($id);
         if ($data->foto = $request->file('foto')) {
@@ -164,14 +166,14 @@ class AdminController extends Controller
         $data->iddawis = $request->iddawis;
         $data->save();
         Alert::success('Sukses', 'Nasabah Berhasil Diupdate');
-        return redirect()->route('nasabah.view')->with('info', 'Edit user berhasil');
+        return redirect()->route('nasabah.view')->with('success', 'Edit user berhasil');
     }
     public function nasabahDelete($id)
     {
         $deleteData = nasabah::find($id);
         $deleteData->delete();
         Alert::success('Sukses', 'Nasabah Berhasil Dihapus');
-        return redirect()->route('nasabah.view')->with('info', 'Delete user berhasil');
+        return redirect()->route('nasabah.view')->with('success', 'Delete user berhasil');
     }
     //endnasabah
     //petugas
@@ -205,19 +207,18 @@ class AdminController extends Controller
         $data->tugas = $request->tugas;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Ditambah');
-        return redirect()->route('petugas.view')->with('info', 'Tambah user berhasil');
+        return redirect()->route('petugas.view')->with('success', 'Tambah user berhasil');
     }
     public function petugasDelete($id)
     {
         $deleteData = petugas::find($id);
         $deleteData->delete();
-        return redirect()->route('petugas.view')->with('info', 'Delete user berhasil');
+        return redirect()->route('petugas.view')->with('success', 'Delete user berhasil');
     }
     public function edit_petugas($id)
     {
         $petugasData = petugas::Find($id);
         return view('backend.user.edit_petugas', compact('petugasData'));
-
     }
     public function petugasUpdate(Request $request, $id)
     {
@@ -239,7 +240,7 @@ class AdminController extends Controller
         $data->tugas = $request->tugas;
         $data->save();
         Alert::success('Sukses', 'Petugas Berhasil Diupdate');
-        return redirect()->route('petugas.view')->with('info', 'Edit user berhasil');
+        return redirect()->route('petugas.view')->with('success', 'Edit user berhasil');
     }
     //endpetugas
     // public function tabungan()
@@ -250,9 +251,9 @@ class AdminController extends Controller
     //sampah
     public function daftarsampah()
     {
-        $data['allDataSampah']=Sampah::all();
+        $data['allDataSampah'] = Sampah::all();
         return view('backend.user.view_sampah', $data);
-    } 
+    }
 
     public function sampah()
     {
@@ -273,13 +274,13 @@ class AdminController extends Controller
         $data->harga_satuan = $request->hargas;
         $data->save();
         Alert::success('Sukses', 'Sampah Berhasil Ditambah');
-        return redirect()->route('sampah.view')->with('info', 'Tambah Sampah berhasil') ;
+        return redirect()->route('sampah.view')->with('success', 'Tambah Sampah berhasil');
     }
     public function sampahDelete($id)
     {
         $deleteData = sampah::find($id);
         $deleteData->delete();
-        return redirect()->route('sampah.view')->with('info', 'Delete sampah berhasil');
+        return redirect()->route('sampah.view')->with('success', 'Delete sampah berhasil');
     }
     public function sampahEdit($id)
     {
@@ -294,15 +295,15 @@ class AdminController extends Controller
         $data->harga_satuan = $request->hargas;
         $data->save();
         Alert::success('Sukses', 'Sampah Berhasil Diupdate');
-        return redirect()->route('sampah.view')->with('info', 'Edit sampah berhasil');
+        return redirect()->route('sampah.view')->with('success', 'Edit sampah berhasil');
     }
 
     //penduduk
     public function daftarPenduduk()
     {
-        $datapenduduk['allDataPenduduk']=Penduduk::all();
+        $datapenduduk['allDataPenduduk'] = Penduduk::all();
         return view('backend.user.view_penduduk', $datapenduduk);
-    } 
+    }
 
     public function penduduk()
     {
@@ -326,13 +327,13 @@ class AdminController extends Controller
         $datapenduduk->no_hp = $request->telepon;
         $datapenduduk->save();
         Alert::success('Sukses', 'Penduduk Berhasil Ditambah');
-        return redirect()->route('penduduk.view')->with('info', 'Tambah Penduduk berhasil') ;
+        return redirect()->route('penduduk.view')->with('success', 'Tambah Penduduk berhasil');
     }
     public function deletePenduduk($id)
     {
         $deletependuduk = penduduk::find($id);
         $deletependuduk->delete();
-        return redirect()->route('penduduk.view')->with('info', 'Penduduk berhasil dihapus');
+        return redirect()->route('penduduk.view')->with('success', 'Penduduk berhasil dihapus');
     }
     public function editPenduduk($id)
     {
@@ -350,6 +351,6 @@ class AdminController extends Controller
         $datapenduduk->no_hp = $request->telepon;
         $datapenduduk->save();
         Alert::success('Sukses', 'penduduk Berhasil Diupdate');
-        return redirect()->route('penduduk.view')->with('info', 'Edit penduduk berhasil');
+        return redirect()->route('penduduk.view')->with('success', 'Edit penduduk berhasil');
     }
 }
