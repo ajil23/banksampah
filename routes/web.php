@@ -49,7 +49,7 @@ Route::middleware([
         $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
         ->where(DB::raw('YEAR(created_at)'), '=', '2022')
         ->GroupBy(DB::raw("Month(created_at)"))
-        ->first()->total_harga;
+        ->pluck('total_harga');
 
         $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
         ->whereNotIn('id', function ($query) {
