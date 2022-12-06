@@ -35,16 +35,7 @@
                             <th>Detail</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Keterangan Pembelian</th>
-                            <th>Nominal</th>
-                            <th>Tnggal Transaksi</th>
-                            <th>Detail</th>
-                        </tr>
-                    </tfoot>
+                   
                     <tbody>
                        @foreach($riwayat as $key =>$riwayat)
                         <tr>

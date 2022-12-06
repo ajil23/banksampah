@@ -33,17 +33,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>no</th>
-                            <th>Username</th>
-                            <th>Foto</th>
-                            <th>Nama Lengkap</th>
-                            <th>Saldo</th>
-                            <th>Tanggal Daftar</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
+                    
                     <tbody>
                         @foreach($dataNasabah as $item =>$row)
                         <tr class=" align-middle">
