@@ -155,4 +155,4 @@ Route::get('/test', [GrafikController::class, 'grafik']);
 Route::get('dataRiwayat', [ExportControlller::class,'export'])->name('riwayat.export');
 Route::get('dataKeluaran', [ExportControlller::class, 'exportKeluaran'])->name('keluaran.export');
 
-Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');
+// Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('auth');

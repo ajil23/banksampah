@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar</h1>
                 </div>
                 <div class="col">
                     <a href="{{ route('keluaran.export') }}"><button type="button" class="btn btn-success">Eksport ke
@@ -33,6 +33,7 @@
                                 <th>Keterangan Keluar</th>
                                 <th>Nominal</th>
                                 <th>Tanggal Transaksi</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                        

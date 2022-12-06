@@ -38,7 +38,6 @@
                             </div>
                             <form class="user" method="POST" action="{{ route('register') }}">
                                 @csrf
-
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="name" name="name"
                                         placeholder="Nama">
@@ -47,8 +46,6 @@
                                     <input type="email" class="form-control form-control-user" id="email" name="email"
                                         placeholder="Email Address">
                                 </div>
-
-
                                 <input type="hidden" name="" id="">
                                 <div class="form-group">
                                     <select name="role"
@@ -58,7 +55,6 @@
                                         <option value="Nasabah" @if (old('role') == 'Nasabah') selected="selected" @endif>Nasabah</option> --}}
                                     </select>
                                 </div>
-
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
