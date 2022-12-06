@@ -9,7 +9,8 @@
                     <h1 class="h3 mb-2 text-gray-800">Tabel Data Keluar Dawis</h1>
                 </div>
                 <div class="col">
-                    <a href="{{route('keluaran.export')}}"><button type="button" class="btn btn-success">Eksport ke excel</button></a>
+                    <a href="{{ route('keluaran.export') }}"><button type="button" class="btn btn-success">Eksport ke
+                            excel</button></a>
                 </div>
 
                 <div class="co ">
@@ -40,9 +41,13 @@
                                 <tr>
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td>{{ $transaksi->nasabah->penduduk->namaLengkap }}</td>
-                                    <td>{{ $transaksi->keterangan_pembelian}}</td>
+                                    <td>{{ $transaksi->keterangan_pembelian }}</td>
                                     <td>Rp. {{ $transaksi->nominal }}</td>
                                     <td>{{ $transaksi->tgl_transaksi }}</td>
+                                    <td>
+                                        <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-success">
+                                            Struk </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

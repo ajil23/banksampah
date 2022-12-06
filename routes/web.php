@@ -49,7 +49,7 @@ Route::middleware([
         $total_harga = detailMasukan::select(DB::raw("CAST(SUM(sub_harga) as int) as total_harga"))
         ->where(DB::raw('YEAR(created_at)'), '=', '2022')
         ->GroupBy(DB::raw("Month(created_at)"))
-        ->pluck('total_harga');
+        ->first()->total_harga;
 
         $jumlahPenduduk = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
         ->whereNotIn('id', function ($query) {
@@ -137,6 +137,8 @@ Route::prefix('tagihan')->group(function () {
     Route::get('/data_cash', [Masukan::class, 'viewCash'])->name('cash.view');
     Route::get('/cashStore', [Masukan::class, 'indexCash'])->name('cash.store');
     Route::post('/tambah_cash', [Masukan::class, 'addCash'])->name('cash.add');
+    Route::get('/struk_cash/{id}', [Masukan::class, 'strukCash'])->name('strukTagihan.view');
+    Route::get('/struk_tagihan/{id}', [Masukan::class, 'strukTagihan'])->name('strukSaldo.view');
 });
 Route::prefix('penduduk')->group(function () {
     //sampah

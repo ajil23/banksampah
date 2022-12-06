@@ -42,8 +42,6 @@
                                   {{ $data->petugas->penduduk->namaLengkap}}
                             </div>
                         </div>
-                       
-
                     </div>
                 </div>
             </div>

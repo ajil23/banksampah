@@ -31,7 +31,7 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        $dataPenduduk = DB::table('Penduduk')
+        $dataPenduduk = DB::table('penduduk')
         ->whereNotIn('id', function ($query) {
             $query->select('penduduk_id')->from('nasabah');
         })

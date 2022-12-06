@@ -126,7 +126,6 @@ class Masukan extends Controller
             $data = new detailMasukan;
             $data->idsampah = $idsampah;
             $data->idnasabah = $request->idnasabah;
-
             $data->idriwayat = $request->kode_id;
             $data->berat = $request->berat[$key];
             $data->harga_satuan = $request->harga_satuan[$key];
@@ -164,9 +163,18 @@ class Masukan extends Controller
 
         $nasabah = nasabah::find($request->nasabah_id);
         $nasabah->saldo += $request->nominal;
-
         $data->save();
         $nasabah->save();
         return redirect()->route('cash.view')->with('success', 'Tambah saldo Cash berhasil, Silahkan Masukan Tagihan Kembali');
+    }
+    public function strukCash($id)
+    {
+        $data = Cash::find($id);
+        return view('backend.user.view_struk', compact('data'));
+    }
+    public function strukTagihan($id)
+    {
+        $data = Transaksi::find($id);
+        return view('backend.user.view_strukSaldo', compact('data'));
     }
 }
