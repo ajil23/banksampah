@@ -33,7 +33,7 @@
                                 <th>Keterangan Keluar</th>
                                 <th>Nominal</th>
                                 <th>Tanggal Transaksi</th>
-                                <th>Detail</th>
+                                <th>Invoice</th>
                             </tr>
                         </thead>
                        
@@ -45,9 +45,14 @@
                                     <td>{{ $transaksi->keterangan_pembelian }}</td>
                                     <td>Rp. {{ $transaksi->nominal }}</td>
                                     <td>{{ $transaksi->tgl_transaksi }}</td>
-                                    <td>
-                                        <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-success">
-                                            Struk </a>
+                                    <td colspan="2">
+                                        <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-warning">
+                                            Lihat 
+                                        </a>
+                                         
+                                        <a href="{{ url('/struk_tagihan/'.$transaksi->id.'/generate') }}" class="btn btn-success">
+                                                Cetak 
+                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
