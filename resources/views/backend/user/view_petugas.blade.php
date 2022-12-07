@@ -38,7 +38,7 @@
                         @foreach($dataPetugas as $item =>$row)
                         <tr class=" align-middle">
                             <td class="align-middle">{{$loop->iteration}}</td>
-                            <td class=" align-middle">{{$row->username}}</td>
+                            <td class=" align-middle">{{$row->user->email}}</td>
                             <td>
                                 <img src="{{asset('fotoPetugas/'.$row->foto)}}" width="50px" height="50px" alt="gambar"> 
                             </td>
@@ -46,8 +46,9 @@
                             <td class=" align-middle">{{$row->role}}</td>
                             <td class=" align-middle">{{$row->created_at}}</td>
                             <td class=" align-middle">
+                                <a href="{{route('userPetugas.edit', $row->user_id)}}" class="btn btn-warning"> Edit Paswword </a>
                                 <a href="{{route('petugas.edit', $row->id)}}" class="btn btn-success"> Edit </a>
-                                <a href="{{route('petugas.delete', $row->id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
+                                <a href="{{route('petugas.delete', $row->user_id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>
                         @endforeach

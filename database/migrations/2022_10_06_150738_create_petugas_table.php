@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penduduk_id');
             $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('username');
-            $table->string('password');
             $table->string('foto');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('role');
             $table->timestamps();
         });

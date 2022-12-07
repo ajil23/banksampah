@@ -27,10 +27,6 @@ class AuthController extends Controller
 
         return response()->json([
             'token'         => $user->createToken("API TOKEN")->plainTextToken,
-            'id'            => $user->id,
-            'username'      => $user->username,
-            'saldo'         => $user->saldo,
-            'tgl_daftar'    => $user->tgl_daftar,
         ], 200);
     }
 }

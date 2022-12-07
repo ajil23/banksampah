@@ -29,19 +29,6 @@
                             @enderror
                     </div>   
                 </div>
-
-                <div class="form-group row">
-                    <div class="col-sm-6">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control form-control-lg" id="username" placeholder="Username" name="username"
-                        value="{{ old('username',$dataNasabah->username) }}">
-                    </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control form-control-lg" id="password" placeholder="Name" name="password">
-                    </div>
-                </div>
-
                 <div class="form-group row">
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>

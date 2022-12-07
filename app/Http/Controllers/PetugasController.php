@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\nasabah;
 use App\Models\Penduduk;
 use App\Models\petugas;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -34,12 +35,22 @@ class PetugasController extends Controller
      */
     public function create()
     {
+        $q = DB::table('users')->select(DB::raw('MAX(RIGHT(id,6)) as kode'));
+        $kd = "";
+        if ($q->count() > 0) {
+            foreach ($q->get() as $k) {
+                $tmp = ((int)$k->kode) + 1;
+                $kd = sprintf("%06s", $tmp);
+            }
+        } else {
+            $kd = "000001";
+        }
         $dataPenduduk = DB::table('Penduduk')
             ->whereNotIn('id', function ($query) {
                 $query->select('penduduk_id')->from('petugas');
             })
             ->get();;
-        return view('backend.user.add_petugas', compact('dataPenduduk'));
+        return view('backend.user.add_petugas', compact('dataPenduduk','kd'));
     }
 
     public function store(Request $request)
@@ -57,6 +68,13 @@ class PetugasController extends Controller
                 'password.required'     => "Password harus diisi",
             ]
         );
+        $user = new User();
+        $user->name         = $request->input('username');
+        $user->email        = $request->input('username');
+        $user->password     = bcrypt($request->password);
+        $user->role         = "petugas";
+        $user->save();
+
         $dataPetugas = new petugas();
 
         if ($request->hasFile('foto')) {
@@ -65,8 +83,7 @@ class PetugasController extends Controller
         }
 
         $dataPetugas->penduduk_id   = $request->penduduk_id;
-        $dataPetugas->username      = $request->input('username');
-        $dataPetugas->password      = bcrypt($request->password);
+        $dataPetugas->user_id       = $request->user_id;
         $dataPetugas->role          = $request->role;
         $dataPetugas->save();
         Alert::success('Sukses', 'Petugas Berhasil Ditambah');
@@ -74,9 +91,10 @@ class PetugasController extends Controller
     }
 
 
-    public function show($id)
+    public function editUser($id)
     {
-        //
+        $dataUser = User::find($id);
+        return view('backend.user.edit_paswordNasabah', compact('dataUser'));
     }
 
 
@@ -116,19 +134,39 @@ class PetugasController extends Controller
         }
 
         $dataPetugas->penduduk_id   = $request->penduduk_id;
-        $dataPetugas->username      = $request->username;
-        $dataPetugas->password      = bcrypt($request->password);
         $dataPetugas->update();
         Alert::success('Sukses', 'Petugas Berhasil Diupdate');
         return redirect()->route('petugas.view')->with('info', 'Update Petugas berhasil');
     }
 
+    public function updatePassword(Request $request, $id)
+    {
+        $this->validate(
+            $request,
+            [
+                'username'              => 'required',
+                'password'              => 'required',
+            ],
+            [
+
+                'username.required'     => "Username Harus diisi",
+                'password.required'     => "Password harus diisi",
+            ]
+        );
+
+        $dataUser = User::find($id);
+
+        $dataUser->email      = $request->username;
+        $dataUser->password      = bcrypt($request->password);
+        $dataUser->update();
+
+        return redirect()->route('petugas.view')->with('success', 'Update password berhasil');
+    }
+
     public function destroy($id)
     {
-        $dataBarang = petugas::find($id);
+        $dataBarang = user::find($id);
         $dataBarang->delete();
-
-        Alert::success('Sukses', 'Petugas Berhasil Dihapus');
-        return redirect()->route('petugas.view')->with('info', 'Hapus Petugas berhasil');
+        return redirect()->route('petugas.view')->with('success', 'Hapus Petugas berhasil');
     }
 }

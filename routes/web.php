@@ -89,7 +89,9 @@ Route::prefix('pengguna')->group(function () {
     Route::get('/nasabah', [NasabahController::class, 'index'])->name('nasabah.view');
     Route::get('/add_nasabah', [NasabahController::class, 'create'])->name('add_nasabah.view');
     Route::get('/edit_nasabah/{id}', [NasabahController::class, 'edit'])->name('nasabah.edit');
+    Route::get('/edit_password/{id}', [NasabahController::class, 'editUser'])->name('user.edit');
     Route::put('/update_nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
+    Route::put('/update_password/{id}', [NasabahController::class, 'updatePassword'])->name('password.update');
     Route::post('/tambah_nasabah', [NasabahController::class, 'store'])->name('nasabah.store');
     Route::get('/deleteNasabah/{id}', [NasabahController::class, 'destroy'])->name('nasabah.delete');
     //endnasabah
@@ -107,6 +109,8 @@ Route::prefix('pengguna')->group(function () {
     Route::post('/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
     Route::get('/deletePetugas/{id}', [PetugasController::class, 'destroy'])->name('petugas.delete');
     Route::get('/edit_petugas/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
+    Route::get('/edit_passwordPetugas/{id}', [NasabahController::class, 'editUser'])->name('userPetugas.edit');
+    Route::put('/update_passwordPetugas/{id}', [NasabahController::class, 'updatePassword'])->name('passwordPetugas.update');
     Route::put('/update_petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
     //endpetugas
     Route::get('/tabungan', [TabunganController::class, 'tabungan'])->name('tabungan.view');

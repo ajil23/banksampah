@@ -66,7 +66,7 @@ class NasabahController extends Controller
             ]
         );
 
-        $dataNasabah = new nasabah();
+        
 
         $user = new User();
         $user->name         = $request->input('username');
@@ -74,16 +74,14 @@ class NasabahController extends Controller
         $user->password     = bcrypt($request->password);
         $user->role         = "nasabah";
         $user->save();
-       
 
+        $dataNasabah = new nasabah();
         if ($request->hasFile('foto')) {
             $request->file('foto')->move('fotoNasabah/', $request->file('foto')->getClientOriginalName());
             $dataNasabah->foto = $request->file('foto')->getClientOriginalName();
         }
 
         $dataNasabah->penduduk_id   = $request->penduduk_id;
-        $dataNasabah->username      = $request->input('username');
-        $dataNasabah->password      = bcrypt($request->password);
         $dataNasabah->user_id       = $request->user_id;
         $dataNasabah->tgl_daftar    = Carbon::now();
         $dataNasabah->save();
@@ -93,7 +91,8 @@ class NasabahController extends Controller
 
     public function editUser($id)
     {
-        //
+        $dataUser = User::find($id);
+        return view('backend.user.edit_paswordNasabah', compact('dataUser'));
     }
 
 
@@ -110,13 +109,11 @@ class NasabahController extends Controller
         $this->validate($request,
             [
                 'penduduk_id'           => 'required',
-                'username'              => 'required',
-                'password'              => 'required',
+                
             ],
             [
                 'penduduk_id.required'  => "Kode Dawis tidak boleh kosong",
-                'username.required'     => "Username Harus diisi",
-                'password.required'     => "Password harus diisi",
+                
             ]
         );
 
@@ -132,19 +129,35 @@ class NasabahController extends Controller
         }
 
         $dataNasabah->penduduk_id   = $request->penduduk_id;
-        $dataNasabah->username      = $request->username;
-        $dataNasabah->password      = bcrypt($request->password);
         $dataNasabah->update();
-        Alert::success('Sukses', 'Nasabah Berhasil Diupdate');
-        return redirect()->route('nasabah.view')->with('info', 'Update nasabah berhasil') ;
+        return redirect()->route('nasabah.view')->with('success', 'Update nasabah berhasil') ;
+    }
+    public function updatePassword(Request $request, $id)
+    {
+        $this->validate($request,
+            [
+    
+                'username'              => 'required',
+                'password'              => 'required',
+            ],
+            [
+            
+                'username.required'     => "Username Harus diisi",
+                'password.required'     => "Password harus diisi",
+            ]
+        );
+
+        $dataUser = User::find($id);
+        $dataUser->email      = $request->username;
+        $dataUser->password      = bcrypt($request->password);
+        $dataUser->update();
+        return redirect()->route('nasabah.view')->with('success', 'Update password berhasil') ;
     }
 
     public function destroy($id)
     {
-        $dataBarang = nasabah::find($id);
+        $dataBarang = user::find($id);
         $dataBarang->delete();
-
-        Alert::success('Sukses', 'Nasabah Berhasil Dihapus');
-        return redirect()->route('nasabah.view')->with('info', 'Hapus nasabah berhasil');
+        return redirect()->route('nasabah.view')->with('success', 'Hapus nasabah berhasil');
     }
 }

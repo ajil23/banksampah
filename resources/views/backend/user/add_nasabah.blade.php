@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                          <div class="col-sm-6">
-                            <input  type="text" class="form-control form-control"  value="{{$kd}}"
+                            <input  type="text" class="form-control d-lg-none "  value="{{$kd}}"
                                 name="user_id" readonly>
                         </div>
                     </div>
@@ -33,12 +33,12 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control form-control" id="username" placeholder="Username"
+                            <input type="number" class="form-control form-control" required id="username" placeholder="Username"
                                 name="username">
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control form-control" id="password" placeholder="Name"
+                            <input type="password" class="form-control form-control" required id="password" placeholder="Name"
                                 name="password">
                         </div>
                     </div>

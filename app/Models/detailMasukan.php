@@ -12,6 +12,14 @@ class detailMasukan extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+    protected $fillable = [
+        'idnasabah',
+        'idriwayat',
+        'idsampah',
+        'berat',
+        'harga_satuan',
+        'sub_harga',
+    ];
     public function sampah()
     {
         return $this->belongsTo(sampah::class, 'idsampah', 'id');

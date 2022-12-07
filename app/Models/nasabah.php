@@ -31,6 +31,10 @@ class nasabah extends Model
     public function dawis(){
         return $this->hasOne(dawis::class,'nasabah_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public $timestamps = true;
 }
