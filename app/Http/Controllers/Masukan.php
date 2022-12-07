@@ -18,6 +18,7 @@ use App\Models\transaksiDawis;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Masukan extends Controller
 {
@@ -90,7 +91,7 @@ class Masukan extends Controller
             Alert::error('Error', 'Keluar saldo gagal, Masukan Salah');
             return redirect()->route('kurangSaldo.view');
         } elseif ($saldo->saldo < 0) {
-            Alert::html('Saldo Kurang!!, Apakah Mau Cash?', "<a href='cashStore'><button type='button' class='btn btn-primary'>Tambah</button></a>",'warning');
+            Alert::html('Saldo Kurang!!, Apakah Mau Cash?', "<a href='cashStore'><button type='button' class='btn btn-primary'>Tambah</button></a>", 'warning');
             return redirect()->route('keluarSaldo.view');
         } else {
             $saldo->save();
@@ -176,5 +177,21 @@ class Masukan extends Controller
     {
         $data = Transaksi::find($id);
         return view('backend.user.view_strukSaldo', compact('data'));
+    }
+    // public function generatestruk($id)
+    // {
+    //     $data = Transaksi::find($id);
+    //     $pdf = Pdf::loadView('backend.user.view_strukSaldo', $data);
+    //     return $pdf->download('invoice' . $data->id . '.pdf');
+    // }
+
+    public function generatestruk($id)
+    {
+        $data = Transaksi::find($id);
+        $pdf = PDF::loadView('backend.user.view_strukSaldo', array($data))->output();
+        return response()->streamDownload(
+            fn () => print($pdf),
+            "invoice.pdf"
+        );
     }
 }

@@ -1,6 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Invoice</title>
+
+    <style>
+        html,
+        body {
+            margin: 10px;
+            padding: 10px;
+            font-family: sans-serif;
+        }
+        h1,h2,h3,h4,h5,h6,p,span,label {
+            font-family: sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0px !important;
+        }
+        table thead th {
+            height: 28px;
+            text-align: left;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .heading {
+            font-size: 24px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            font-family: sans-serif;
+        }
+        .small-heading {
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+        .total-heading {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: sans-serif;
+        }
+        .order-details tbody tr td:nth-child(1) {
+            width: 20%;
+        }
+        .order-details tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+
+        .text-start {
+            text-align: left;
+        }
+        .text-end {
+            text-align: right;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .company-data span {
+            margin-bottom: 4px;
+            display: inline-block;
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .no-border {
+            border: 1px solid #fff !important;
+        }
+        .bg-blue {
+            background-color: #414ab1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="order-details">
+        <thead>
+            <tr>
+                <th width="50%" colspan="2">
+                    <h2 class="text-start">Istana Sumber Suci</h2>
+                </th>
+                <th width="50%" colspan="2" class="text-end company-data">
+                    <span>Invoice Id: {{ $data->id }}</span> <br>
+                    <span>Tangal:{{ date('Y-m-d : H:i:s', strtotime($data->created_at)) }}</span> <br>
+                    <span>Alamat: Desa Tambong, Kec.Kabat, Banyuwangi - 68461</span> <br>
+                </th>
+            </tr>
+            <tr class="bg-blue">
+                <th width="50%" colspan="2">Detail Pembelian</th>
+                <th width="50%" colspan="2">Detail Pelanggan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID Pesanan:</td>
+                <td>{{ $data->id }}</td>
+
+                <td>Nama Lengkap:</td>
+                <td>{{ $data->nasabah->penduduk->namaLengkap }}</td>
+            </tr>
+            <tr>
+                <td>Tanggal Pesan:</td>
+                <td>22-09-2022 10:54 AM</td>
+
+                <td>No Telepon:</td>
+                <td>8889997775</td>
+            </tr>
+            <tr>
+                <td>Status Pesanan:</td>
+                <td>Lunas</td>
+
+                <td>Alamat:</td>
+                <td>{{ $data->nasabah->penduduk->alamat }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th class="no-border text-start heading" colspan="5">
+                    Pesanan
+                </th>
+            </tr>
+            <tr class="bg-blue">
+                <th>No</th>
+                <th>Produk</th>
+                <th>Harga</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="10%">1</td>
+                <td>
+                    {{ $data->keterangan_pembelian }}
+                </td>
+                <td width="10%">Rp {{ number_format($data->nominal) }}</td>
+                <td width="10%">1</td>
+                <td width="15%" class="fw-bold">Rp {{ number_format($data->nominal) }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" class="total-heading">Total :</td>
+                <td colspan="1" class="total-heading">Rp {{ number_format($data->nominal) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <p class="text-center">
+        Terimakasih karena telah menjadi nasabah yang patuh pajak 😊
+    </p>
+
+</body>
+</html>
+
+{{-- <!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -114,4 +278,4 @@
         </div>
     </div>
 </body>
-</html>
+</html> --}}
