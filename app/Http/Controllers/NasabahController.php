@@ -84,6 +84,7 @@ class NasabahController extends Controller
         $dataNasabah->penduduk_id   = $request->penduduk_id;
         $dataNasabah->username      = $request->input('username');
         $dataNasabah->password      = bcrypt($request->password);
+        $dataNasabah->user_id       = $request->user_id;
         $dataNasabah->tgl_daftar    = Carbon::now();
         $dataNasabah->save();
         return redirect()->route('nasabah.view')->with('success', 'Tambah nasabah berhasil');
