@@ -31,15 +31,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>no</th>
-                            <th>Kode</th>
-                            <th>Nama Dawis</th>
-                            <th>No HP</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
+                    
                     <tbody>
                         @foreach($data_dawis as $item =>$row)
                         <tr class=" align-middle">

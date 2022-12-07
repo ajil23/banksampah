@@ -45,16 +45,7 @@
                             <th>Tanggal Masuk</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>Struktur</th>
-                            <th>Keterangan Masuk</th>
-                            <th>Dana Masuk</th>
-                            <th>Tanggal Masuk</th>
-                        </tr>
-                    </tfoot>
+                   
                     <tbody>
                         @foreach($danaMasuk as $tgh =>$tagihan)
                         <tr>
