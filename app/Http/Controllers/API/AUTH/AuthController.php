@@ -29,4 +29,8 @@ class AuthController extends Controller
             'token'         => $user->createToken("API TOKEN")->plainTextToken,
         ], 200);
     }
+    public function logoutNasabah()
+    {
+        
+    }
 }

@@ -92,4 +92,8 @@ class NasabahController extends Controller
     {
         //
     }
+    public function logoutNasabah(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+    }
 }

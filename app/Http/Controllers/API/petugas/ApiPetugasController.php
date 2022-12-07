@@ -121,4 +121,8 @@ class ApiPetugasController extends Controller
     {
         //
     }
+    public function logoutPetugas(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+    }
 }
