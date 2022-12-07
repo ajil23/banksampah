@@ -51,7 +51,7 @@
                             <td class="align-middle">{{$loop->iteration}}</td>
                             <td>{{$riwayat->nasabah->penduduk->namaLengkap}}</td>
                             <td>{{$riwayat->keterangan_masuk}}</td>
-                            <td>Rp. {{$riwayat->nominal}}</td>
+                            <td>Rp. {{number_format($riwayat->nominal)}}</td>
                             <td>{{$riwayat->created_at}}</td>
                             <td colspan="2">
                                 <a href="{{route('detail.view', $riwayat->kode_id)}}" class="btn btn-success"> Detail </a>

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('foto');
             $table->unsignedInteger('saldo')->default(0)->unsigned();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_daftar');
             $table->timestamps();
         });

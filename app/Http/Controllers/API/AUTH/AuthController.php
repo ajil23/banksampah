@@ -8,15 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $request->validate([
-            'email'     => 'required',
+            'email'  => 'required',
             'password'  => 'required'
         ]);
 
-        $login = request(['email','password']);
+        $login = request(['email', 'password']);
 
-        if(!Auth::attempt($login)){
+        if (!Auth::attempt($login)) {
             return response()->json([
                 'error' => 'Login gagal. Harap periksa user'
             ], 401);
@@ -26,10 +27,10 @@ class AuthController extends Controller
 
         return response()->json([
             'token'         => $user->createToken("API TOKEN")->plainTextToken,
-            'user_id'       => $user->id,
-            'role'          => $user->role,
-            'email'         => $user->email,
-            'name'          => $user->name,
-        ],200);
+            'id'            => $user->id,
+            'username'      => $user->username,
+            'saldo'         => $user->saldo,
+            'tgl_daftar'    => $user->tgl_daftar,
+        ], 200);
     }
 }
