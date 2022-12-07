@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('penduduk_id'); 
             $table->foreign('penduduk_id')->references('id')->on('penduduk')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('username');
-            $table->string('password');
             $table->string('foto');
             $table->unsignedInteger('saldo')->default(0)->unsigned();
             $table->unsignedBigInteger('user_id');

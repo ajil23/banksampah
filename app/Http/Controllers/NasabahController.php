@@ -91,7 +91,7 @@ class NasabahController extends Controller
     }
 
 
-    public function show($id)
+    public function editUser($id)
     {
         //
     }
