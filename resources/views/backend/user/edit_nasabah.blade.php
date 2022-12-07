@@ -12,7 +12,7 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group row">
-                    <div class="col-sm-12 mb-3 mb-sm-0">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
                         <label>Nasabah</label>
                             <select name="penduduk_id" class="form-control  @error('penduduk_id') is-invalid @enderror" id="penduduk_id" data-live-search="true">
                                 <option value="">-Pilih Nama Penduduk-</option>
@@ -25,6 +25,22 @@
                                 @endforeach
                             </select>
                             @error('nasabah_id')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                    </div>   
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label>Dawis</label>
+                            <select name="dawis_id" class="form-control  @error('dawis_id') is-invalid @enderror" id="dawis_id" data-live-search="true">
+                                <option value="">-Pilih Nama Dawis-</option>
+                                @foreach($dataDawis as $item)
+                                <option value="{{$item->id}}" @if ($item->id == $dataNasabah->dawis_id)
+                                    selected
+                                    @endif>
+                                    {{$item->nasabah->penduduk->namaLengkap}}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('dawis_id')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                     </div>   

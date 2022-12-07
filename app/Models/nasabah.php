@@ -29,7 +29,7 @@ class nasabah extends Model
     }
 
     public function dawis(){
-        return $this->hasOne(dawis::class,'nasabah_id');
+        return $this->belongsTo(dawis::class, 'dawis_id', 'id');
     }
     public function user()
     {

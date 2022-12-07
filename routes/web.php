@@ -66,7 +66,12 @@ Route::middleware([
         ->whereIn('id', function ($query) {
             $query->select('penduduk_id')->from('petugas');
         })->count();
-        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah', 'jumlahPetugas'));
+
+        $jumlahTransaksi = DB::table('transaksi')->count();
+
+        $jumlahSaldo = nasabah::sum('saldo');
+
+        return view('admin.index', compact('penduduks', 'nasabahs','jumlahPenduduk','bulan','total_harga','jumlahNasabah', 'jumlahPetugas','jumlahTransaksi','jumlahSaldo'));
     })->name('dashboard');
 });
 // Route::middleware([

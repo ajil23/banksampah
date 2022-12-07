@@ -28,7 +28,6 @@
                             <th>Username</th>
                             <th>Foto</th>
                             <th>Nama Lengkap</th>
-                            <th>Saldo</th>
                             <th>Tanggal Daftar</th>
                             <th>Aksi</th>
                         </tr>
@@ -43,7 +42,6 @@
                                 <img src="{{asset('fotoNasabah/'.$row->foto)}}" width="50px" height="50px" alt="gambar"> 
                             </td>
                             <td class=" align-middle">{{$row->penduduk->namaLengkap}}</td>
-                            <td class=" align-middle">{{$row->saldo}}</td>
                             <td class=" align-middle">{{$row->tgl_daftar}}</td>
                             <td class=" align-middle">
                                 <a href="{{route('user.edit', $row->user_id)}}" class="btn btn-warning"> Edit Paswword </a>

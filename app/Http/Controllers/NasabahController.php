@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dawis;
 use App\Models\nasabah;
 use App\Models\Penduduk;
 use App\Models\User;
@@ -66,8 +67,6 @@ class NasabahController extends Controller
             ]
         );
 
-        
-
         $user = new User();
         $user->name         = $request->input('username');
         $user->email        = $request->input('username');
@@ -100,7 +99,8 @@ class NasabahController extends Controller
     {
         $dataPenduduk = Penduduk::all();
         $dataNasabah = nasabah::find($id);
-        return view('backend.user.edit_nasabah', compact('dataPenduduk', 'dataNasabah'));
+        $dataDawis = dawis::all();
+        return view('backend.user.edit_nasabah', compact('dataPenduduk', 'dataNasabah', 'dataDawis'));
     }
 
  
@@ -109,11 +109,9 @@ class NasabahController extends Controller
         $this->validate($request,
             [
                 'penduduk_id'           => 'required',
-                
             ],
             [
                 'penduduk_id.required'  => "Kode Dawis tidak boleh kosong",
-                
             ]
         );
 
@@ -127,8 +125,8 @@ class NasabahController extends Controller
             $request->file('foto')->move('fotoNasabah/', $request->file('foto')->getClientOriginalName());
             $dataNasabah->foto = $request->file('foto')->getClientOriginalName();
         }
-
         $dataNasabah->penduduk_id   = $request->penduduk_id;
+        $dataNasabah->dawis_id      = $request->dawis_id;
         $dataNasabah->update();
         return redirect()->route('nasabah.view')->with('success', 'Update nasabah berhasil') ;
     }
@@ -136,12 +134,10 @@ class NasabahController extends Controller
     {
         $this->validate($request,
             [
-    
                 'username'              => 'required',
                 'password'              => 'required',
             ],
             [
-            
                 'username.required'     => "Username Harus diisi",
                 'password.required'     => "Password harus diisi",
             ]

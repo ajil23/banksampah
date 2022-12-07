@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\detailMasukan;
 use App\Models\nasabah;
 use App\Models\Penduduk;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\NotIn;
@@ -22,13 +23,13 @@ class GrafikController extends Controller
             ->where(DB::raw('YEAR(created_at)'), '=', '2022')
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('total_harga');
-        dd($total_harga);
+ 
 
         $bulan = detailMasukan::select(DB::raw("MONTHNAME(created_at) as bulan"))
             ->where(DB::raw('YEAR(created_at)'), '=', '2022')
             ->GroupBy(DB::raw("Month(created_at)"))
             ->pluck('bulan');
-        dd($bulan);
+       
 
         $jumlahPenduduk = DB::table('Penduduk')
             ->whereNotIn('id', function ($query) {
@@ -41,8 +42,11 @@ class GrafikController extends Controller
             ->whereIn('id', function ($query) {
                 $query->select('penduduk_id')->from('petugas');
             })->count();
-        dd($jumlahpetugas);
+        
 
+        $jumlahTransaksi = DB::table('transaksi')->count();
+        $jumlahSaldo = nasabah::sum('saldo');
+        dd($jumlahSaldo);
         $jumlahDawis = Penduduk::select(DB::raw("COUNT(*) as jumlah"))
             ->whereIn('id', function ($query) {
                 $query->select('penduduk_id')->from('petugas');
