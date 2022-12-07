@@ -26,7 +26,7 @@
                             <th>Keterangan Masuk</th>
                             <th>Nominal</th>
                             <th>Tanggal Masuk</th>
-                            <th>Aksi</th>
+                            <th>Invoice</th>
                         </tr>
                     </thead>
                    
@@ -38,8 +38,10 @@
                             <td class=" align-middle">{{$row->keterangan_cash}}</td>
                             <td class=" align-middle">{{$row->nominal}}</td>
                             <td class=" align-middle">{{$row->created_at}}</td>
-                            <td class=" align-middle">
-                                <a href="{{route('strukTagihan.view', $row->id)}}"><button type="button" class="btn btn-success">Struk</button></a>
+                            <td class=" align-middle" colspan="2">
+                                <a href="{{route('strukTagihan.view', $row->id)}}"><button type="button" class="btn btn-warning">Lihat</button></a>
+
+                                <a href="{{route('strukTagihan.view', $row->id)}}"><button type="button" class="btn btn-success">Cetak</button></a>
                             </td>
                         </tr>
                         @endforeach

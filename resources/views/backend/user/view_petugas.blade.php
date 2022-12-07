@@ -46,8 +46,8 @@
                             <td class=" align-middle">{{$row->role}}</td>
                             <td class=" align-middle">{{$row->created_at}}</td>
                             <td class=" align-middle">
-                                <a href="{{route('userPetugas.edit', $row->user_id)}}" class="btn btn-warning"> Edit Paswword </a>
-                                <a href="{{route('petugas.edit', $row->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('userPetugas.edit', $row->user_id)}}" class="btn btn-info"> Edit Password </a>
+                                <a href="{{route('petugas.edit', $row->id)}}" class="btn btn-warning"> Edit </a>
                                 <a href="{{route('petugas.delete', $row->user_id)}}" id="delete"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>

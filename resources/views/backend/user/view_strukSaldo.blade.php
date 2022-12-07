@@ -107,10 +107,10 @@
             </tr>
             <tr>
                 <td>Tanggal Pesan:</td>
-                <td>22-09-2022 10:54 AM</td>
+                <td> {{ $data->tgl_transaksi }}</td>
 
                 <td>No Telepon:</td>
-                <td>8889997775</td>
+                <td>{{ $data->nasabah->penduduk->no_hp }}</td>
             </tr>
             <tr>
                 <td>Status Pesanan:</td>
@@ -140,7 +140,7 @@
         <tbody>
             <tr>
                 <td width="10%">1</td>
-                <td>
+                <td width="10%">
                     {{ $data->keterangan_pembelian }}
                 </td>
                 <td width="10%">Rp {{ number_format($data->nominal) }}</td>
@@ -156,7 +156,7 @@
 
     <br>
     <p class="text-center">
-        Terimakasih karena telah menjadi nasabah yang patuh pajak 😊
+        Terimakasih karena telah menjadi nasabah KSM Istana Sumber Suci😊
     </p>
 
 </body>
