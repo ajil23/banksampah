@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PetugasController;
@@ -118,6 +119,10 @@ Route::prefix('pengguna')->group(function () {
     Route::put('/update_passwordPetugas/{id}', [NasabahController::class, 'updatePassword'])->name('passwordPetugas.update');
     Route::put('/update_petugas/{id}', [PetugasController::class, 'update'])->name('petugas.update');
     //endpetugas
+    Route::get('/kelompok', [KelompokController::class, 'index'])->name('kelompok.view');
+    Route::get('/add_kelompok', [KelompokController::class, 'create'])->name('kelompok.add');
+    Route::post('/store_kelompok', [KelompokController::class, 'store'])->name('kelompok.store');
+    
     Route::get('/tabungan', [TabunganController::class, 'tabungan'])->name('tabungan.view');
     Route::get('/edit/{id}', [AdminController::class, 'editData'])->name('edit.view');
 });

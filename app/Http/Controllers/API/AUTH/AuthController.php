@@ -19,7 +19,8 @@ class AuthController extends Controller
 
         if (!Auth::attempt($login)) {
             return response()->json([
-                'error' => 'Login gagal. Harap periksa user'
+                'error' => 'Login gagal. Harap periksa user',
+                'valdasi' => false
             ], 401);
         }
 
@@ -27,6 +28,8 @@ class AuthController extends Controller
 
         return response()->json([
             'token'         => $user->createToken("API TOKEN")->plainTextToken,
+            'role'          => $user->role,
+            'validasi'      => true
         ], 200);
     }
     public function logoutNasabah()

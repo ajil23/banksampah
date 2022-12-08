@@ -22,8 +22,8 @@
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Nasabah</label>
-                            <select name="idnasabah" class="form-control  @error('penduduk_id') is-invalid @enderror"
-                                id="penduduk_id" data-live-search="true">
+                            <select name="idnasabah" class="form-control form-control1  @error('penduduk_id') is-invalid @enderror"
+                                id="penduduk_id" data-live-search="true"> 
                                 <option value="">-Pilih Nama Penduduk-</option>
                                 @foreach ($nasabah as $item)
                                     <option value="{{ $item->id }}">
@@ -43,7 +43,7 @@
                      <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label>Dawis</label>
-                            <select name="iddawis" class="form-control"
+                            <select name="iddawis" class="form-control form-control1"
                                 id="dawis_id" data-live-search="true">
                                 <option value="">-Pilih Nama Dawis-</option>
                                 @foreach ($dawis as $item)
@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                              <label>Petugas</label>
-                            <select name="idpetugas" class="form-control"
+                            <select name="idpetugas" class="form-control form-control1"
                                 id="petugas_id" data-live-search="true">
                                 <option value="">-Pilih Nama Petugas-</option>
                                 @foreach ($petugas as $item)
@@ -117,7 +117,7 @@
     <script src="{{ asset('calc/js/scriptTransaksi.js') }}"></script>
      <script>
         $(document).ready(function() {
-            $('#penduduk_id').select2({
+            $('.form-control1').select2({
                 theme: "bootstrap4"
             });
         });
