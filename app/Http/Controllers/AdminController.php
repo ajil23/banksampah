@@ -60,6 +60,8 @@ class AdminController extends Controller
 
         $data_dawis->save();
 
+        
+
         return redirect()->route('dawis.view')->with('success', 'Tambah Dawis berhasil');
     }
     public function dawisDelete($id)

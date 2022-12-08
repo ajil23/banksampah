@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API\nasabah;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\dawis;
+use App\Models\Kelompok;
+use App\Models\nasabah;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class NasabahController extends Controller
+class KelompokController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +16,8 @@ class NasabahController extends Controller
      */
     public function index()
     {
-        $data = Auth::user();
-        return response()->json([
-            'id'            => $data->id,
-            'role'          => $data->role,
-            'username'      => $data->email,
-            'nama'          => $data->nasabah->penduduk->namaLengkap,
-            'saldo'         => $data->nasabah->saldo,
-            'tgl_daftar'    => $data->nasabah->tgl_daftar,
-            'tempat_lahir'  => $data->nasabah->penduduk->tmp_lahir,
-            'tanggal_lahir' => $data->nasabah->penduduk->tgl_lahir,
-            'alamat'        => $data->nasabah->penduduk->alamat,
-            'kode'          => $data->nasabah->dawis->kode,
-            'alamat_dawis'  => $data->nasabah->dawis->nasabah->penduduk->alamat,
-        ], 200);
+        $allDataKelompok = Kelompok::all();
+        return view('backend.user.view_pengelompokan', compact('allDataKelompok'));
     }
 
     /**
@@ -39,7 +27,9 @@ class NasabahController extends Controller
      */
     public function create()
     {
-        //
+        $dawis = dawis::all();
+        $nasabah = nasabah::all();
+        return view('backend.user.add_kelompok', compact('dawis','nasabah'));
     }
 
     /**
@@ -50,7 +40,13 @@ class NasabahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        foreach ($request->idnasabah as $key => $idnasabah) {
+            $data = new Kelompok();
+            $data->idnasabah = $idnasabah;
+            $data->iddawis = $request->iddawis;
+            $data->save();
+        }
+        return redirect()->route('kelompok.view');
     }
 
     /**
@@ -96,9 +92,5 @@ class NasabahController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function logoutNasabah(Request $request)
-    {
-        $request->user()->currentAccessToken()->delete();
     }
 }

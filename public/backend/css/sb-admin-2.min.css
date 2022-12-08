@@ -9948,6 +9948,10 @@ form.user .form-control-user {
     border-radius: 10rem;
     padding: 1.5rem 1rem;
 }
+.form-control-nasabah {
+    font-size: 0.8rem;
+    width: 100%;
+}
 form.user .btn-user {
     font-size: 0.8rem;
     border-radius: 10rem;
