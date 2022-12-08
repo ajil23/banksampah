@@ -46,11 +46,11 @@
                                     <td>Rp. {{ $transaksi->nominal }}</td>
                                     <td>{{ $transaksi->tgl_transaksi }}</td>
                                     <td colspan="2">
-                                        <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-warning">
+                                        <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-secondary">
                                             Lihat 
                                         </a>
                                          
-                                        <a href="{{ url('/struk_tagihan/'.$transaksi->id.'/generate') }}" class="btn btn-success">
+                                        <a href="{{ url('/struk_tagihan/'.$transaksi->id.'/generate') }}" class="btn btn-info">
                                                 Cetak 
                                          </a>
                                     </td>

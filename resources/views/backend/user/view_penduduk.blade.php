@@ -44,7 +44,7 @@
                             <td>{{$penduduk->jenis_kelamin}}</td>
                             <td>{{$penduduk->no_hp}}</td>
                             <td colspan="2">
-                                <a href="{{route('penduduk.edit', $penduduk->id)}}" class="btn btn-success"> Edit </a>
+                                <a href="{{route('penduduk.edit', $penduduk->id)}}" class="btn btn-warning"> Edit </a>
                                 <a id="delete" href="{{route('penduduk.delete', $penduduk->id)}}"><button type="button" class="btn btn-danger delete">Hapus</button></a>
                             </td>
                         </tr>

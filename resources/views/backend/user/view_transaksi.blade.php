@@ -45,7 +45,7 @@
                             <td>Rp. {{number_format($riwayat->nominal)}}</td>
                             <td>{{$riwayat->created_at}}</td>
                             <td colspan="2">
-                                <a href="{{route('detail.view', $riwayat->kode_id)}}" class="btn btn-success"> Detail </a>
+                                <a href="{{route('detail.view', $riwayat->kode_id)}}" class="btn btn-info"> Lihat </a>
                         </tr>
                         @endforeach
                     </tbody>

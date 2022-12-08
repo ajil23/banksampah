@@ -46,11 +46,11 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
-                                                placeholder="Email">
+                                                placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
-                                                id="password" placeholder="Katasandi">
+                                                id="password" placeholder="Katasandi" required>
                                         </div>
                                         <button type="submit" class="btn btn-success btn-user btn-block">
                                         Login
