@@ -153,7 +153,7 @@ Route::prefix('tagihan')->group(function () {
     Route::post('/tambah_cash', [Masukan::class, 'addCash'])->name('cash.add');
     Route::get('/struk_cash/{id}', [Masukan::class, 'strukCash'])->name('strukTagihan.view');
     Route::get('/struk_tagihan/{id}', [Masukan::class, 'strukTagihan'])->name('strukSaldo.view');       //f
-    Route::get('/cetakstruk/{id}', [Masukan::class, 'generatestruk'])->name('cetakstruk.view');   //f
+    Route::get('/invoice/{id}', [Masukan::class, 'invoice'])->name('print.invoice');   //f
 });
 Route::prefix('penduduk')->group(function () {
     //sampah
