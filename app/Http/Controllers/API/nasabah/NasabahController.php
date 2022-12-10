@@ -31,6 +31,33 @@ class NasabahController extends Controller
             'alamat_dawis'  => $data->nasabah->dawis->nasabah->penduduk->alamat,
         ], 200);
     }
+    
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email'  => 'required',
+            'password'  => 'required'
+        ]);
+
+        $login = request(['email', 'password']);
+
+        if (!Auth::attempt($login)) {
+            return response()->json([
+                'error' => 'Login gagal. Harap periksa user',
+                'valdasi' => false
+            ], 401);
+        }
+
+        $user = $request->user();
+
+        return response()->json([
+            'token'         => $user->createToken("API TOKEN")->plainTextToken,
+            'role'          => $user->role,
+            'validasi'      => true,
+            'nama'          => $user->nasabah->penduduk->namaLengkap,
+            'dawis'         => $user->nasabah->kelompok->dawis->nasabah->penduduk->namaLengkap
+        ], 200);
+    }
 
     /**
      * Show the form for creating a new resource.

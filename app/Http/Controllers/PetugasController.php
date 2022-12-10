@@ -69,6 +69,7 @@ class PetugasController extends Controller
             ]
         );
         $user = new User();
+        $user->id           = $request->user_id;
         $user->name         = $request->input('username');
         $user->email        = $request->input('username');
         $user->password     = bcrypt($request->password);

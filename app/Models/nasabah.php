@@ -28,9 +28,11 @@ class nasabah extends Model
         return $this->belongsTo(Penduduk::class,'penduduk_id','id');
     }
 
-    public function dawis(){
-        return $this->belongsTo(dawis::class, 'dawis_id', 'id');
+    public function kelompok()
+    {
+        return $this->hasOne(Kelompok::class, 'idnasabah');
     }
+   
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');

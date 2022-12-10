@@ -28,4 +28,5 @@ Route::group(['middleware' => 'auth:sanctum'],function(){
     Route::get('/logoutPetugas', [ApiPetugasController::class, 'logoutPetugas']);
 });
 Route::post('login',[AuthController::class,'login']);
+Route::post('loginNasabah',[NasabahController::class,'login']);
 

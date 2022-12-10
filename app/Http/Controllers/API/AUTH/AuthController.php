@@ -32,8 +32,5 @@ class AuthController extends Controller
             'validasi'      => true
         ], 200);
     }
-    public function logoutNasabah()
-    {
-        
-    }
+ 
 }
