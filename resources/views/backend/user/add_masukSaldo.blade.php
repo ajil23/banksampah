@@ -24,7 +24,7 @@
                             <label>Nasabah</label>
                             <select name="idnasabah" class="form-control form-control1  @error('penduduk_id') is-invalid @enderror"
                                 id="penduduk_id" data-live-search="true"> 
-                                <option value="">-Pilih Nama Penduduk-</option>
+                                <option value="">-Pilih Nama Nasabah-</option>
                                 @foreach ($nasabah as $item)
                                     <option value="{{ $item->id }}">
                                         {{ $item->penduduk->namaLengkap }}

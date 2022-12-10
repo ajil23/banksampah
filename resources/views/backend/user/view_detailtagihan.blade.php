@@ -49,10 +49,8 @@
                                         <a href="{{ route('strukSaldo.view', $transaksi->id) }}" class="btn btn-secondary">
                                             Lihat 
                                         </a>
-                                         
-                                        <a href="{{ url('/struk_tagihan/'.$transaksi->id.'/generate') }}" class="btn btn-info">
-                                                Cetak 
-                                         </a>
+
+                                        <a href="{{ route('print.invoice', $transaksi->id) }}" class="btn btn-info">Cetak</a>
                                     </td>
                                 </tr>
                             @endforeach
