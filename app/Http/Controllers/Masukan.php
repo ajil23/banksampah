@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 
 class Masukan extends Controller
 {
@@ -178,20 +179,11 @@ class Masukan extends Controller
         $data = Transaksi::find($id);
         return view('backend.user.view_strukSaldo', compact('data'));
     }
-    // public function generatestruk($id)
-    // {
-    //     $data = Transaksi::find($id);
-    //     $pdf = Pdf::loadView('backend.user.view_strukSaldo', $data);
-    //     return $pdf->download('invoice' . $data->id . '.pdf');
-    // }
 
-    public function generatestruk($id)
+    public function invoice($id)
     {
         $data = Transaksi::find($id);
-        $pdf = PDF::loadView('backend.user.view_strukSaldo', array($data))->output();
-        return response()->streamDownload(
-            fn () => print($pdf),
-            "invoice.pdf"
-        );
+        $pdf = PDF::loadView('backend.user.view_strukSaldo', ['data' => $data]);
+        return $pdf->download('invoice'.$data->id.'.pdf');
     }
 }

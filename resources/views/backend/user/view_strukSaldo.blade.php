@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Invoice</title>
@@ -158,7 +159,6 @@
     <p class="text-center">
         Terimakasih karena telah menjadi nasabah KSM Istana Sumber Suci😊
     </p>
-
 </body>
 </html>
 
