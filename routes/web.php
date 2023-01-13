@@ -166,7 +166,6 @@ Route::prefix('penduduk')->group(function () {
 });
 
 Route::get('/test', [GrafikController::class, 'grafik']);
-
 Route::get('dataRiwayat', [ExportControlller::class,'export'])->name('riwayat.export');
 Route::get('dataKeluaran', [ExportControlller::class, 'exportKeluaran'])->name('keluaran.export');
 
