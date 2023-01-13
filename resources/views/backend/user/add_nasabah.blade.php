@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                          <div class="col-sm-6">
-                            <input  type="text" class="form-control  " value="{{$kd}}"
+                            <input  type="text" class="form-control" hidden value="{{$kd}}"
                                 name="user_id" readonly>
                         </div>
                     </div>

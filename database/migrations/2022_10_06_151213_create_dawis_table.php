@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kode');
             $table->unsignedBigInteger('nasabah_id'); 
             $table->foreign('nasabah_id')->references('id')->on('nasabah')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('jadwal');
             $table->timestamps();
         });
     }

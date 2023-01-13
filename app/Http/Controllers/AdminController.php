@@ -39,7 +39,6 @@ class AdminController extends Controller
     public function add_dawis()
     {
         $data_nasabah = nasabah::doesntHave('dawis')->get();
-
         return view('backend.user.add_dawis', compact('data_nasabah'));
     }
     public function tambah_dawis(Request $request)
@@ -57,6 +56,7 @@ class AdminController extends Controller
         $data_dawis = new dawis();
         $data_dawis->kode = $request->input('kode');
         $data_dawis->nasabah_id = $request->nasabah_id;
+        $data_dawis->jadwal = $request->jadwal;
 
         $data_dawis->save();
 

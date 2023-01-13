@@ -27,6 +27,22 @@
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                     </div>
+                    <div class="col-sm-6 mt-3">
+                        <label>Jadwal Pengambilan</label>
+                            <select name="jadwal" class="form-control  @error('nasabah_id') is-invalid @enderror" id="tes">
+                                <option value="">-Pilih Hari-</option>
+                                <option>Senin</option>
+                                <option>Selasa</option>
+                                <option>Rabu</option>
+                                <option>Kamis</option>
+                                <option>Jumat</option>
+                                <option>Sabtu</option>
+                                <option>Minggu</option>
+                            </select>
+                            @error('nasabah_id')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                    </div>
                 </div>
                 <!-- {{-- <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
