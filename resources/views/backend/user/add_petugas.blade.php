@@ -20,7 +20,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('petugas_id')
+                            @error('penduduk_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <div class="col-sm-6">
@@ -32,29 +32,43 @@
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control form-control-lg" id="username" placeholder="Username"
-                                name="username">
+                            <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                id="username" placeholder="Username" name="email">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control form-control-lg" id="password"
+                            <input type="password"
+                                class="form-control form-control-lg @error('password') is-invalid @enderror" id="password"
                                 placeholder="password" name="password">
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="">Pilih Tugas</label>
-                            <select class="form-control form-control-lg  mb-3 mb-sm-0" name="role" required>
-                                <option>Pilih Tugas</option>
+                            <select class="form-control form-control-lg  mb-3 mb-sm-0 @error('role') is-invalid @enderror"
+                                name="role">
+                                <option value="">Pilih Tugas</option>
                                 <option>Pengangkut</option>
                                 <option>Pencatat</option>
                                 <option>Penimbang</option>
                             </select>
+                            @error('role')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-sm-6 ">
                             <label for="exampleFormControlFile1">Masukan Foto</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto"
-                                accept="image/*" required>
+                            <input type="file" class="form-control-file @error('foto') is-invalid @enderror" id="exampleFormControlFile1" name="foto"
+                                accept="image/*">
+                                 @error('foto')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">

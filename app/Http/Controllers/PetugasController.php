@@ -55,23 +55,28 @@ class PetugasController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
+        $validatedData = $request->validate(
             [
-                'penduduk_id'           => 'required',
-                'username'              => 'required',
-                'password'              => 'required',
+                'email' => ['required', 'unique:users','numeric'],
+                'password' => ['required'],
+                'penduduk_id' => ['required'],
+                'foto' => ['required'],
+                'role' => ['required'],
             ],
             [
-                'penduduk_id.required'  => "Kode Penduuk tidak boleh kosong",
-                'username.required'     => "Username Harus diisi",
+                'penduduk_id.required'  => "Penduduk harus dipilih",
+                'email.required'        => "Username Harus diisi",
+                'email.unique'          => "Username Sudah Terdaftar",
+                'email.numeric'          => "Username Harus Berupa Angka",
                 'password.required'     => "Password harus diisi",
+                'role.required'         => "Tugas harus dipilih",
+                'foto.required'         => "foto harus ditambahkan",
             ]
         );
         $user = new User();
         $user->id           = $request->user_id;
-        $user->name         = $request->input('username');
-        $user->email        = $request->input('username');
+        $user->name         = $request->input('email');
+        $user->email        = $request->input('email');
         $user->password     = bcrypt($request->password);
         $user->role         = "petugas";
         $user->save();

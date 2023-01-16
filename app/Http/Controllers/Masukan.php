@@ -70,14 +70,17 @@ class Masukan extends Controller
     }
     public function kurangSaldo(Request $request)
     {
-        $this->validate(
-            $request,
+        $validatedData = $request->validate(
             [
-                'nominal'              => 'required',
+                'nominal' => ['required', 'numeric'],
+                'nasabah_id' => ['required'],
+                'keterangan_pembelian' => ['required'],
             ],
             [
-                'kode.required'         => "Kode Dawis tidak boleh kosong",
-                'nasabah_id.required'   => "Pilih Nasabah",
+                'nasabah_id.required'               => "Nasabah harus dipilih",
+                'nominal.required'                  => "nominal Harus diisi",
+                'nominal.numeric'                   => "nominal Harus Berupa Angka",
+                'keterangan_pembelian.required'     => "Keterangan harus diisi",
             ]
         );
         $data = new Transaksi();
@@ -158,6 +161,19 @@ class Masukan extends Controller
     }
     public function addCash(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'nominal' => ['required', 'numeric'],
+                'nasabah_id' => ['required'],
+                'keterangan_cash' => ['required'],
+            ],
+            [
+                'nasabah_id.required'               => "Nasabah harus dipilih",
+                'nominal.required'                  => "nominal Harus diisi",
+                'nominal.numeric'                   => "nominal Harus Berupa Angka",
+                'keterangan_cash.required'     => "Keterangan harus diisi",
+            ]
+        );
         $data = new Cash();
         $data->nasabah_id = $request->nasabah_id;
         $data->nominal = $request->nominal;
@@ -184,6 +200,6 @@ class Masukan extends Controller
     {
         $data = Transaksi::find($id);
         $pdf = PDF::loadView('backend.user.view_strukSaldo', ['data' => $data]);
-        return $pdf->download('invoice'.$data->id.'.pdf');
+        return $pdf->download('invoice' . $data->id . '.pdf');
     }
 }

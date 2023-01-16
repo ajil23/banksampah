@@ -11,25 +11,36 @@
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="">Pilih Nasabah</label>
-                            <select class="form-control form-control  mb-3 mb-sm-0" name="nasabah_id" id="nasabah_id"
-                                required>
-                                <option>Pilih Nasabah</option>
+                            <select
+                                class="form-control form-control  mb-3 mb-sm-0 @error('nasabah_id') is-invalid @enderror"
+                                name="nasabah_id" id="nasabah_id">
+                                <option value="">Pilih Nasabah</option>
                                 @foreach ($nasabah as $nsb => $nasabah)
                                     <option value="{{ $nasabah->id }}">{{ $nasabah->penduduk->namaLengkap }}</option>
                                 @endforeach
                             </select>
+                            @error('nasabah_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-sm-6">
                             <label for="Nohp">Keterangan Transaksi</label>
-                            <input type="text" class="form-control form-control" id="password"
-                                placeholder="Keterangan Transaksi" name="keterangan_pembelian">
+                            <input type="text"
+                                class="form-control form-control @error('keterangan_pembelian') is-invalid @enderror"
+                                id="password" placeholder="Keterangan Transaksi" name="keterangan_pembelian">
+                            @error('keterangan_pembelian')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="password">Nominal</label>
-                            <input type="text" class="form-control form-control" id="password" placeholder="Nominal"
-                                name="nominal">
+                            <input type="text" class="form-control form-control @error('nominal') is-invalid @enderror"
+                                id="password" placeholder="Nominal" name="nominal">
+                            @error('nominal')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                     </div>

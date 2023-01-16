@@ -43,16 +43,22 @@ class AdminController extends Controller
     }
     public function tambah_dawis(Request $request)
     {
-        // $this->validate($request,
-        //     [
-        //         'kode'                  => 'required',
-        //         'nasabah_id'            => 'required',
-        //     ],
-        //     [
-        //         'kode.required'         => "Kode Dawis tidak boleh kosong",
-        //         'nasabah_id.required'   => "Pilih Nasabah",
-        //     ]
-        // );
+        $validatedData = $request->validate(
+            [
+                'kode' => ['required', 'unique:dawis', 'numeric', 'min:3', 'max:3'],
+                'nasabah_id' => ['required'],
+                'jadwal' => ['required'],
+            ],
+            [
+                'nasabah_id.required'  => "Nasabah harus dipilih",
+                'kode.required'        => "Kode Harus diisi",
+                'kode.unique'          => "Kode Sudah Terdaftar",
+                'kode.numeric'          => "Kode Harus Berupa Angka",
+                'kode.min'          => "Kode Harus 3 digit",
+                'kode.max'          => "Kode Harus 3 digit",
+                'jadwal.required'     => "Jadwal harus dipilih",
+            ]
+        );
         $data_dawis = new dawis();
         $data_dawis->kode = $request->input('kode');
         $data_dawis->nasabah_id = $request->nasabah_id;
@@ -320,6 +326,26 @@ class AdminController extends Controller
     }
     public function pendudukBaru(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'nama' => ['required'],
+                'tempatlahir' => ['required'],
+                'alamat' => ['required'],
+                'tanggallahir' => ['required'],
+                'select' => ['required'],
+                'telepon' => ['required','numeric'],
+            ],
+            [
+                'nama.required'  => "Nama tidak boleh kosong",
+                'tempatlahir.required'        => "Tempat Lahir Harus diisi",
+                'alamat.required'          => "Alamat tidak boleh kosong",
+                'tanggallahir.required'     => "Tanggal Lahir harus diisi",
+                'select.required'         => "jenis kelamin harus dipilih",
+                'telepon.required'         => "telepon harus ditambahkan",
+                'telepon.numeric'         => "telepon harus berupa angka",
+            ]
+        );
+
         $datapenduduk = new penduduk();
         $datapenduduk->namaLengkap = $request->nama;
         $datapenduduk->tmp_lahir = $request->tempatlahir;

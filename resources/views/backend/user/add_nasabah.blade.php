@@ -24,30 +24,39 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                         <div class="col-sm-6">
-                            <input  type="text" class="form-control" hidden value="{{$kd}}"
-                                name="user_id" readonly>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" hidden value="{{ $kd }}" name="user_id"
+                                readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6">
                             <label for="username">Username</label>
-                            <input type="number" class="form-control form-control"  id="username" placeholder="Username"
-                                name="username">
+                            <input type="number" class="form-control form-control  @error('email') is-invalid @enderror"
+                                id="username" placeholder="Username" name="email">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control form-control"  id="password" placeholder="Name"
-                                name="password">
+                            <input type="password" class="form-control form-control @error('password') is-invalid @enderror"
+                                id="password" placeholder="Name" name="password">
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-6 ">
-                            <label for="exampleFormControlFile1">Masukan Foto</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto"
-                                accept="image/*" required>
+                            <label for="foto">Masukan Foto</label>
+                            <input type="file" class="form-control-file @error('foto') is-invalid @enderror"
+                                id="foto" name="foto" accept="image/*">
+                            @error('foto')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-icon-split">

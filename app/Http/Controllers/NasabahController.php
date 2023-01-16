@@ -23,7 +23,7 @@ class NasabahController extends Controller
     public function index()
     {
         $dataNasabah = nasabah::all();
-        return view('backend.user.view_nasabah',compact('dataNasabah'));
+        return view('backend.user.view_nasabah', compact('dataNasabah'));
     }
 
     /**
@@ -45,32 +45,34 @@ class NasabahController extends Controller
         }
 
         $dataPenduduk = DB::table('penduduk')
-        ->whereNotIn('id', function ($query) {
-            $query->select('penduduk_id')->from('nasabah');
-        })
-        ->get();
-        return view('backend.user.add_nasabah',compact('dataPenduduk', 'kd'));
+            ->whereNotIn('id', function ($query) {
+                $query->select('penduduk_id')->from('nasabah');
+            })
+            ->get();
+        return view('backend.user.add_nasabah', compact('dataPenduduk', 'kd'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,
+        $validatedData = $request->validate(
             [
-                'penduduk_id'           => 'required',
-                'username'              => 'required',
-                'password'              => 'required',
+                'email' => ['required', 'unique:users'],
+                'password' => ['required'],
+                'penduduk_id' => ['required'],
+                'foto' => ['required'],
             ],
             [
-                'penduduk_id.required'  => "Kode Dawis tidak boleh kosong",
-                'username.required'     => "Username Harus diisi",
+                'penduduk_id.required'  => "Nasabah tidak boleh kosong",
+                'email.required'        => "Username Harus diisi",
+                'email.unique'          => "Username Sudah Terdaftar",
                 'password.required'     => "Password harus diisi",
+                'foto.required'         => "foto harus ditambahkan",
             ]
         );
-
         $user = new User();
-        $user->id           =$request->user_id;
-        $user->name         = $request->input('username');
-        $user->email        = $request->input('username');
+        $user->id           = $request->user_id;
+        $user->name         = $request->input('email');
+        $user->email        = $request->input('email');
         $user->password     = bcrypt($request->password);
         $user->role         = "nasabah";
         $user->save();
@@ -104,10 +106,11 @@ class NasabahController extends Controller
         return view('backend.user.edit_nasabah', compact('dataPenduduk', 'dataNasabah', 'dataDawis'));
     }
 
- 
+
     public function update(Request $request, $id)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'penduduk_id'           => 'required',
             ],
@@ -119,8 +122,8 @@ class NasabahController extends Controller
         $dataNasabah = nasabah::find($id);
 
         if ($request->hasFile('foto')) {
-            if (File::exists('fotoNasabah/'.$dataNasabah->foto)) {
-                File::delete('fotoNasabah/'.$dataNasabah->foto);
+            if (File::exists('fotoNasabah/' . $dataNasabah->foto)) {
+                File::delete('fotoNasabah/' . $dataNasabah->foto);
             }
 
             $request->file('foto')->move('fotoNasabah/', $request->file('foto')->getClientOriginalName());
@@ -129,11 +132,12 @@ class NasabahController extends Controller
         $dataNasabah->penduduk_id   = $request->penduduk_id;
         $dataNasabah->dawis_id      = $request->dawis_id;
         $dataNasabah->update();
-        return redirect()->route('nasabah.view')->with('success', 'Update nasabah berhasil') ;
+        return redirect()->route('nasabah.view')->with('success', 'Update nasabah berhasil');
     }
     public function updatePassword(Request $request, $id)
     {
-        $this->validate($request,
+        $this->validate(
+            $request,
             [
                 'username'              => 'required',
                 'password'              => 'required',
@@ -148,7 +152,7 @@ class NasabahController extends Controller
         $dataUser->email      = $request->username;
         $dataUser->password      = bcrypt($request->password);
         $dataUser->update();
-        return redirect()->route('nasabah.view')->with('success', 'Update password berhasil') ;
+        return redirect()->route('nasabah.view')->with('success', 'Update password berhasil');
     }
 
     public function destroy($id)

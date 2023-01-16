@@ -40,6 +40,16 @@ class KelompokController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'idnasabah' => ['required'],
+                'iddawis' => ['required'],
+            ],
+            [
+                'iddawis.required'  => "Dawis Harus Dipilih",
+                'idnasabah.required'        => "Nasabah Harus Dipilih Minimal Satu",
+            ]
+        );
         foreach ($request->idnasabah as $key => $idnasabah) {
             $data = new Kelompok();
             $data->idnasabah = $idnasabah;
