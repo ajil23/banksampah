@@ -66,7 +66,7 @@ class AdminController extends Controller
 
         $data_dawis->save();
 
-        
+
 
         return redirect()->route('dawis.view')->with('success', 'Tambah Dawis berhasil');
     }
@@ -276,6 +276,21 @@ class AdminController extends Controller
     }
     public function tambah_sampah(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'namaSampah' => ['required', 'unique:sampah'],
+                'satuan' => ['required'],
+                'hargas' => ['required', 'numeric'],
+            ],
+            [
+                'penduduk_id.required'  => "Nasabah tidak boleh kosong",
+                'namaSampah.required'        => "Nama Sampah Harus diisi",
+                'namaSampah.unique'          => "Nama Sampah Sudah Terdaftar",
+                'satuan.required'     => "Password harus diisi",
+                'hargas.required'         => "Harga harus ditambahkan",
+                'hargas.numeric'         => "Harga harus berupa angka",
+            ]
+        );
         $data = new sampah();
         $data->namaSampah = $request->namaSampah;
         $data->satuan = $request->satuan;
@@ -333,7 +348,7 @@ class AdminController extends Controller
                 'alamat' => ['required'],
                 'tanggallahir' => ['required'],
                 'select' => ['required'],
-                'telepon' => ['required','numeric'],
+                'telepon' => ['required', 'numeric'],
             ],
             [
                 'nama.required'  => "Nama tidak boleh kosong",
