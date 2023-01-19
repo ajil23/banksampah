@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/umkm', function (){
+    return view('umkm');
+});
 
 Route::middleware([
     'auth:sanctum',
