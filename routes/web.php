@@ -6,11 +6,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\Masukan;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\TabunganController;
 use App\Models\detailMasukan;
+use App\Models\MarketPlace;
 use App\Models\nasabah;
 use App\Models\Penduduk;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/umkm', function (){
-    return view('umkm');
+    $data = MarketPlace::all();
+    return view('umkm', compact('data'));
 });
 
 Route::middleware([
@@ -166,6 +169,15 @@ Route::prefix('penduduk')->group(function () {
     Route::get('/editpenduduk/{id}', [AdminController::class, 'editPenduduk'])->name('penduduk.edit');
     Route::post('/updatependuduk/{id}', [AdminController::class, 'updatePenduduk'])->name('penduduk.update');
     Route::post('/pendudukBaru', [AdminController::class, 'pendudukBaru'])->name('pendudukBaru');
+});
+Route::prefix('marketplace')->group(function () {
+    //marketplace
+    Route::get('/view', [MarketplaceController::class, 'index'])->name('marketplace.view');
+    Route::get('/add', [MarketplaceController::class, 'create'])->name('marketplace.add');
+    Route::get('/edit/{id}', [MarketplaceController::class, 'edit'])->name('marketplace.edit');
+    Route::post('/update/{id}', [MarketplaceController::class, 'update'])->name('marketplace.update');
+    Route::get('/delete/{id}', [MarketplaceController::class, 'destroy'])->name('marketplace.delete');
+    Route::post('/store', [MarketplaceController::class, 'store'])->name('marketplace.store');
 });
 
 Route::get('/test', [GrafikController::class, 'grafik']);

@@ -48,7 +48,7 @@
                 <div class="form-group row">
                     <div class="col-sm-6 ">
                         <label for="exampleFormControlFile1">Masukan Foto</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" required>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto" accept="image/*" >
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-icon-split">
