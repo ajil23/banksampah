@@ -112,7 +112,7 @@
              <div class="bg-white py-2 collapse-inner rounded">
                  <h6 class="collapse-header">Lain Lain : </h6>
                  <a class="collapse-item" href="{{route('marketplace.view')}}">MarketPlace</a>
-                 <a class="collapse-item" href="{{route('kurangSaldo.view')}}">Event</a>
+                 <a class="collapse-item" href="{{route('event.view')}}">Event</a>
              </div>
          </div>
      </li>

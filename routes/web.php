@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ExportControlller;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\KelompokController;
@@ -178,6 +179,15 @@ Route::prefix('marketplace')->group(function () {
     Route::post('/update/{id}', [MarketplaceController::class, 'update'])->name('marketplace.update');
     Route::get('/delete/{id}', [MarketplaceController::class, 'destroy'])->name('marketplace.delete');
     Route::post('/store', [MarketplaceController::class, 'store'])->name('marketplace.store');
+});
+Route::prefix('event')->group(function () {
+    //event
+    Route::get('/view', [EventController::class, 'index'])->name('event.view');
+    Route::get('/add', [EventController::class, 'create'])->name('event.add');
+    Route::get('/edit/{id}', [EventController::class, 'edit'])->name('event.edit');
+    Route::post('/update/{id}', [EventController::class, 'update'])->name('event.update');
+    Route::get('/delete/{id}', [EventController::class, 'destroy'])->name('event.delete');
+    Route::post('/store', [EventController::class, 'store'])->name('event.store');
 });
 
 Route::get('/test', [GrafikController::class, 'grafik']);

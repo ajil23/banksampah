@@ -118,7 +118,7 @@ class MarketplaceController extends Controller
             if (File::exists('fotoBarang/' . $data->gambar)) {
                 File::delete('fotoBarang/' . $data->gambar);
             }
-            $request->file('gambar')->move('gambarBarang/', $request->file('gambar')->getClientOriginalName());
+            $request->file('gambar')->move('fotoBarang/', $request->file('gambar')->getClientOriginalName());
             $data->gambar = $request->file('gambar')->getClientOriginalName();
         }
         $data->judul = $request->judul;

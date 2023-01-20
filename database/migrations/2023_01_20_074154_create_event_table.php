@@ -18,8 +18,8 @@ return new class extends Migration
             $table->text('judul_event');
             $table->text('deskripsi');
             $table->string('gambar');
-            $table->date('tanggal-Mulai');
-            $table->date('tanggal-akhir');
+            $table->date('tanggal_Mulai');
+            $table->date('tanggal_akhir');
             $table->timestamps();
         });
     }

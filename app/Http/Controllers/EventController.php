@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class EventController extends Controller
 {
@@ -13,7 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $data = Event::all();
+        return view('backend.user.view_event', compact('data'));
     }
 
     /**
@@ -23,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.user.add_event');
     }
 
     /**
@@ -34,7 +37,33 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'judul_event' => ['required'],
+                'deskripsi' => ['required'],
+                'tanggal_Mulai' => ['required'],
+                'tanggal_akhir' => ['required'],
+                'gambar' => ['required'],
+            ],
+            [
+                'deskripsi.required'  => "deskripsi harus ditambahkan",
+                'judul_event.required'        => "Judul event Harus diisi",
+                'gambar.required'     => "gambar harus ditambahkan",
+                'tanggal_akhir.required'     => "tanggal akhir harus diisi",
+                'tanggal_Mulai.required'     => "tanggal mulai harus diisi",
+            ]
+        );
+        $data = new Event();
+        $data->judul_event = $request->judul_event;
+        $data->deskripsi = $request->deskripsi;
+        $data->tanggal_Mulai = $request->tanggal_Mulai;
+        $data->tanggal_akhir = $request->tanggal_akhir;
+        if ($request->hasFile('gambar')) {
+            $request->file('gambar')->move('fotoEvent/', $request->file('gambar')->getClientOriginalName());
+            $data->gambar = $request->file('gambar')->getClientOriginalName();
+        }
+        $data->save();
+        return redirect()->route('event.view')->with('success', 'Tambah Event berhasil');
     }
 
     /**
@@ -45,7 +74,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**
@@ -56,7 +85,8 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Event::find($id);
+        return view('backend.user.edit_event', compact('data'));
     }
 
     /**
@@ -68,7 +98,38 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'judul_event' => ['required'],
+                'deskripsi' => ['required'],
+                'tanggal_Mulai' => ['required'],
+                'tanggal_akhir' => ['required'],
+                'gambar' => ['required'],
+            ],
+            [
+                'deskripsi.required'  => "deskripsi harus ditambahkan",
+                'judul_event.required'        => "Judul event Harus diisi",
+                'gambar.required'     => "gambar harus ditambahkan",
+                'tanggal_akhir.required'     => "tanggal akhir harus diisi",
+                'tanggal_Mulai.required'     => "tanggal mulai harus diisi",
+            ]
+        );
+
+        $data = Event::find($id);
+
+        if ($request->hasFile('gambar')) {
+            if (File::exists('fotoEvent/' . $data->gambar)) {
+                File::delete('fotoEvent/' . $data->gambar);
+            }
+            $request->file('gambar')->move('fotoEvent/', $request->file('gambar')->getClientOriginalName());
+            $data->gambar = $request->file('gambar')->getClientOriginalName();
+        }
+        $data->judul_event = $request->judul_event;
+        $data->deskripsi = $request->deskripsi;
+        $data->tanggal_Mulai = $request->tanggal_Mulai;
+        $data->tanggal_akhir = $request->tanggal_akhir;
+        $data->update();
+        return redirect()->route('event.view')->with('success', 'Update event berhasil');
     }
 
     /**
@@ -79,6 +140,8 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dataEvent = Event::find($id);
+        $dataEvent->delete();
+        return redirect()->route('event.view');
     }
 }
