@@ -531,6 +531,7 @@
      padding: .25rem;
      border-radius: .35rem;
      font-size: 1.15rem;
+     z-index: 2;
    }
    
    .product__button:hover{
