@@ -61,7 +61,7 @@
             <!--==================== HOME ====================-->
             <section class="home" id="home">
                 <div class="home__container container grid">
-                    <img src="{{asset('backend/img/home2.png')}}" alt="" class="home__img">
+                    <img src="{{asset('backend/img/home.png')}}" alt="" class="home__img">
 
                     <div class="home__data">
                         <h1 class="home__title">
@@ -80,7 +80,7 @@
             <!--==================== ABOUT ====================-->
             <section class="about section container" id="about">
                 <div class="about__container grid">
-                    <img src="{{asset('backend/img/fixpakades.png')}}" alt="" class="about__img">
+                    <img src="{{asset('backend/img/pakades.png')}}" alt="" class="about__img">
 
                     <div class="about__data">
                         <h2 class="section__title about__title">
