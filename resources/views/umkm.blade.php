@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="{{ asset('backend/images/logo.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('backend/img/logo1.png')}}" type="image/x-icon">
 
     <!--=============== REMIX ICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
