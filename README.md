@@ -1,4 +1,4 @@
-<p align="center"><img src="{{asset('backend/img/logo1.png')}}" width="400" alt="Laravel Logo"></p>
+<p align="center"><img src="backend/img/logo1.png' width="400" alt="Bank Sampah"></p>
 
 ## About Banksampah
 
